@@ -1,0 +1,90 @@
+﻿body {
+}
+
+
+.titleFly {
+    width: 700px;
+    font-family: "Open Sans", sans-serif;
+    background-color: rgb(0,0,0,0.8);
+    color: #87CEFA;
+    padding: 1px 0px 1px 5px;
+    text-align: left;
+    border-radius: 15px 15px 0px 0px;
+}
+
+
+#enterFly {
+    margin: 0px 100px 300px 50px;
+    margin-top: 100px;
+}
+
+
+#enterFlyForm {
+    font-size: 30px;
+    background-color: rgb(0,0,0,0.5);
+    width: 705px;
+    color: white;
+    border-radius: 0px 0px 15px 15px;
+    height: 215px;
+    padding: 20px 0 0 0;
+}
+
+.dateLabel {
+    font-family: "Open Sans", sans-serif;
+    font-weight: bold;
+    position: relative;
+    left: 8px;
+    top: 2px;
+}
+
+
+input[type="date"] {
+    background-color: rgb(0,0,0,0.3);
+    margin: 10px;
+    color: white;
+    padding: 3px;
+    border: none;
+    border-radius: 5px;
+}
+
+::-webkit-calendar-picker-indicator {
+    background-color: #87CEFA;
+    border-radius: 3px;
+}
+
+
+.select-selected {
+    background-color: DodgerBlue;
+}
+
+    .select-selected:after {
+        position: absolute;
+        content: "";
+        top: 14px;
+        right: 10px;
+        width: 0;
+        height: 0;
+        border: 6px solid transparent;
+        border-color: #fff transparent transparent transparent;
+    }
+
+select {
+    font-size: 20px;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 10px;
+    background-color: rgb(0,0,0,0.3);
+    color: white;
+}
+
+#findFly {
+    position: relative;
+    font-size: 30px;
+    background: rgb(0,0,0,0.3);
+    border-radius: 5px;
+    left: 280px;
+    top: 10px;
+    color: #87CEFA;
+    border: none;
+    padding: 7px;
+}

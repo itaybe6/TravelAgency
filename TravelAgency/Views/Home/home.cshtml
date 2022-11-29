@@ -1,0 +1,117 @@
+﻿
+@model TravelAgency.Models.Fly
+
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <link href="@Url.Content("~/Content/NavBar1.css")"
+          rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/home2.css")"
+          rel="stylesheet" type="text/css" />
+    <title>home</title>
+
+    <script src="https://kit.fontawesome.com/c681bde18b.js" crossorigin="anonymous"></script>
+
+    <meta name="viewport" content="width=device-width" />
+</head>
+
+<body>
+    <!-- navigation bar-->
+    <div class="topnav">
+        <a class="active" href="/Home/home">Home</a>
+
+        <a href="/Home/MyFlights">My Flights</a>
+
+        <div class="floatRight">
+            <a href="/Home/login">Log In</a>
+            <a href="/Home/signUp">Sign Up  </a>
+        </div>
+    </div>
+
+
+    <div id="enterFly">
+        <div class="titleFly">
+
+            <h1> <strong>Choose your next fly... </strong> </h1>
+
+        </div>
+
+        <div id="enterFlyForm">
+
+
+
+            <label class="dateLabel">Trip start date</label>
+
+            <input type="date" value="" name="dateFrom" />
+
+            <label class="dateLabel">Trip end Date</label>
+
+            <input type="date" value="" name="dateUntil" />
+
+            <br /> <br />
+
+
+            <label class="dateLabel">Origin</label>
+
+            <!-- from where-->
+            <select>
+                <option value="Country">Select Country</option>
+                <option value="Israel">Israel</option>
+                <option value="France">France</option>
+                <option value="Mexico">Mexico</option>
+                <option value="Italy">Italy</option>
+                <option value="Spain">Spain</option>
+                <option value="UK">UK</option>
+                <option value="USA">USA</option>
+                <option value="Germany">Germany</option>
+                <option value="Australia">Australia</option>
+                <option value="Greace">Greace</option>
+                <option value="Chaina">Chaina</option>
+            </select>
+
+
+            <!--to where -->
+            <label class="dateLabel">Destination</label>
+
+            <select>
+                <option value="Country">Select Country</option>
+                <option value="Israel">Israel</option>
+                <option value="France">France</option>
+                <option value="Mexico">Mexico</option>
+                <option value="Italy">Italy</option>
+                <option value="Spain">Spain</option>
+                <option value="UK">UK</option>
+                <option value="USA">USA</option>
+                <option value="Germany">Germany</option>
+                <option value="Australia">Australia</option>
+                <option value="Greace">Greace</option>
+                <option value="Chaina">Chaina</option>
+            </select>
+
+            <br />
+
+            <button id="findFly">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                Search
+            </button>
+
+
+
+
+
+        </div>
+
+    </div>
+
+
+</body>
+
+
+</html>

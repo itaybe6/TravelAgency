@@ -1,0 +1,87 @@
+﻿
+@model TravelAgency.Models.passenger
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="@Url.Content("~/Content/NavBar1.css")"
+          rel="stylesheet" type="text/css" />
+
+    <link href="@Url.Content("~/Content/signUp1.css")"
+          rel="stylesheet" type="text/css" />
+
+
+
+
+    <meta name="viewport" content="width=device-width" />
+    <title>signUp</title>
+
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+
+
+</head>
+
+<body>
+
+    <!-- Navigtion bar -->
+    <div class="topnav">
+
+        <a href="/Home/home">Home</a>
+        <a href="/Home/MyFlights">My Flights</a>
+
+        <div class="floatRight">
+
+            <a href="/Home/login">Log In</a>
+            <a class="active" href="/Home/signUp">Sign Up  </a>
+
+        </div>
+    </div>
+
+    <div id="All">
+
+        <div class="titlesignup"> <h1> <strong> Sign Up </strong> </h1> </div>
+
+        <div class="signUpForm">
+
+            @using (Html.BeginForm("submit_SignUp", "passenger", FormMethod.Post))
+            {
+
+                <br />
+                <i> <strong>First Name :</strong> </i> <div class="textbox"> @Html.TextBoxFor(m => m.firstName) @Html.ValidationMessageFor(x => x.firstName) </div>
+                <br />
+                <i> <strong> Last Name : </strong></i><div class="textbox">  @Html.TextBoxFor(m => m.lastName) @Html.ValidationMessageFor(x => x.lastName)</div>
+                <br />
+                <i><strong>Passport : </strong></i><div class="textbox">  @Html.TextBoxFor(m => m.passport) @Html.ValidationMessageFor(x => x.passport)</div>
+                <br />
+                <i><strong>Age : </strong></i><div class="textbox">  @Html.TextBoxFor(m => m.age) @Html.ValidationMessageFor(x => x.age)</div>
+                <br />
+                <i><strong>Student : </strong></i> <div class="textbox">
+                    @Html.DropDownListFor(m => m.student
+, new List<SelectListItem> { new SelectListItem { Text = "Yes", Value = "yes" }, new SelectListItem { Text = "No", Value = "No" } }, "")
+                </div>
+                <br />
+                <i><strong>User Name: </strong></i><div class="textbox">  @Html.TextBoxFor(m => m.userName)</div>
+                <br />
+                <i><strong>Password: </strong></i><div class="textbox">  @Html.TextBoxFor(m => m.password)</div>
+                <br /><br />
+                <input id="sub_botton" type="submit" value="Submit" />
+
+            }
+
+        </div>
+
+    </div>
+</body>
+
+
+
+
+</html>

@@ -1,0 +1,35 @@
+﻿@model TravelAgency.Models.Fly
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <!-- for the navigtion bar -->
+    <link href="@Url.Content("~/Content/NavBar1.css")"
+          rel="stylesheet" type="text/css" />
+
+    <meta name="viewport" content="width=device-width" />
+    <title>MyFlights</title>
+</head>
+<body>
+    <!--navigtion bar -->
+    <div class="topnav">
+        <a href="/Home/home">Home</a>
+        <a class="active" href="/Home/MyFlights">My Flights</a>
+
+        <div class="floatRight">
+            <a href="/Home/login">Log In</a>
+            <a href="/Home/signUp">Sign Up  </a>
+
+        </div>
+    </div>
+
+
+
+</body>
+</html>
