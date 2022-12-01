@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TravelAgency.Dal;
 using TravelAgency.Models;
 
 namespace TravelAgency.Controllers
@@ -36,15 +37,18 @@ namespace TravelAgency.Controllers
             return View();
         }
 
-        public ActionResult submit_SignUp(passenger temp)
+        public ActionResult submit_SignUp(passenger1 temp)
         {
 
             if (ModelState.IsValid)
             {
-                return View("home");
+                passenger1Dal dal = new passenger1Dal();
+                dal.passengerDB.Add(temp);
+                dal.SaveChanges();
+                return View("successPage",temp);
             }
 
-            return View("signUp");
+            else return View("signUp");
         }
 
         public ActionResult Enter_Fly_Homepage()
@@ -52,7 +56,6 @@ namespace TravelAgency.Controllers
             return View();
         }
 
-
-
+    
     }
 }

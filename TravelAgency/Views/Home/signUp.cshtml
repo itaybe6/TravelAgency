@@ -1,5 +1,5 @@
 ﻿
-@model TravelAgency.Models.passenger
+@model TravelAgency.Models.passenger1
 
 @{
     Layout = null;
@@ -51,7 +51,7 @@
 
         <div class="signUpForm">
 
-            @using (Html.BeginForm("submit_SignUp", "passenger", FormMethod.Post))
+            @using (Html.BeginForm("submit_SignUp", "passenger1", FormMethod.Post))
             {
 
                 <br />
@@ -65,12 +65,12 @@
                 <br />
                 <i><strong>Student : </strong></i> <div class="textbox">
                     @Html.DropDownListFor(m => m.student
-, new List<SelectListItem> { new SelectListItem { Text = "Yes", Value = "yes" }, new SelectListItem { Text = "No", Value = "No" } }, "")
+                    , new List<SelectListItem> { new SelectListItem { Text = "Yes", Value = "yes" }, new SelectListItem { Text = "No", Value = "no" } }, "")
                 </div>
                 <br />
                 <i><strong>User Name: </strong></i><div class="textbox">  @Html.TextBoxFor(m => m.userName)</div>
                 <br />
-                <i><strong>Password: </strong></i><div class="textbox">  @Html.TextBoxFor(m => m.password)</div>
+                <i><strong>Password: </strong></i><div class="textbox">  @Html.TextBoxFor(m => m.password1)</div>
                 <br /><br />
                 <input id="sub_botton" type="submit" value="Submit" />
 
