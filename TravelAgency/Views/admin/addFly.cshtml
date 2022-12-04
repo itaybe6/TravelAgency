@@ -1,0 +1,114 @@
+﻿@model TravelAgency.Models.Fly
+
+@{
+    ViewBag.Title = "addFly";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <link href="@Url.Content("~/Content/adminHome.css")"
+          rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/addFly.css")"
+          rel="stylesheet" type="text/css" />
+
+
+    <meta name="viewport" content="width=device-width" />
+</head>
+
+<body>
+
+    <!-- navigation bar-->
+    <div class="topnav">
+
+        <a id="logo1" href="~/admin/adminHome">
+            <img src="~/Content/logo.png" alt="Logo" style="width:80px;">
+        </a>
+
+        <div id="topnav-left">
+            <a href="">Add Flight</a>
+            <a href="">Remove Flight</a>
+            <a href="">Edit Flight</a>
+        </div>
+
+    </div>
+
+
+
+
+    <div class="addFlyForm">
+
+        @using (Html.BeginForm("submit_SignUp", "passenger1", FormMethod.Post))
+        {
+
+            <i > <strong>Source Fly :</strong> </i> <div class="textbox"> @Html.DropDownListFor(m => m.sourceFly
+        , new List<SelectListItem> { new SelectListItem { Text = "aaaaaaaaaaaaaaaaaaa        a", Value = "yes" }, new SelectListItem { Text = "No", Value = "no" } }, "")</div>
+            <br />
+            <i> <strong>Destination :</strong></i> <div class="textbox"> @Html.DropDownListFor(m => m.destination
+        , new List<SelectListItem> { new SelectListItem { Text = "aaaaaaaaaaaaaaaaaaa        a", Value = "yes" }, new SelectListItem { Text = "No", Value = "no" } }, "")</div>
+            <br />
+            <i><strong>Date Fly : </strong></i><div class="textbox">  @Html.TextBoxFor(m => m.dateFly) @Html.ValidationMessageFor(x => x.dateFly)</div>
+            <br />
+            <i><strong>Time Fly : </strong></i><div class="textbox">  @Html.TextBoxFor(m => m.timeFly) @Html.ValidationMessageFor(x => x.timeFly)</div>
+            <br />
+            <i><strong>Fly Number : </strong></i> <div class="textbox">
+                @Html.DropDownListFor(m => m.flyNumber
+                , new List<SelectListItem> { new SelectListItem { Text = "Yes", Value = "yes" }, new SelectListItem { Text = "No", Value = "no" } }, "")
+            </div>
+            <br />
+            <i><strong>Price : </strong></i><div class="textbox">  @Html.TextBoxFor(m => m.price)</div>
+            <br />
+            <i><strong>Number Seats: </strong></i><div class="textbox">  @Html.TextBoxFor(m => m.aviableSeat)</div>
+            <br /><br />
+
+            <input id="sub_botton" type="submit" value="Submit" />
+
+
+            <!-- icons -->
+            <div class="icons">
+
+                <img src="~/Content/icons/icon-1.png" id="q1" alt="Logo">
+                <br /><br /><br />
+                <img src="~/Content/icons/icon-2.png" id="q2" alt="Logo">
+                <br /><br /><br />
+                <img src="~/Content/icons/icon-3.png" id="q3" alt="Logo">
+                <br /><br />
+                <img src="~/Content/icons/icon-4.png" id="q4" alt="Logo">
+                <br /><br />
+                <img src="~/Content/icons/icon-5.png" id="q5" alt="Logo">
+                <br /><br />
+                <img src="~/Content/icons/icon-6.png" id="q6" alt="Logo">
+                <br /><br />
+                <img src="~/Content/icons/icon-7.png" id="q7" alt="Logo">
+                <br />
+
+
+
+
+
+
+            </div>
+
+
+
+        }
+
+
+
+        
+    </div>
+
+
+    
+
+
+
+
+
+</body>
+
+
+</html>
+

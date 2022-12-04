@@ -30,7 +30,6 @@ namespace TravelAgency.Models
         public string student { get; set; }
 
         //only for register user
-        public string userName { get; set; }
         public string password1 { get; set; }
 
     }

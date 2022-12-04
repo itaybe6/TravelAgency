@@ -19,6 +19,16 @@ namespace Project_TravelAgency
                 defaults: new { controller = "Home", action = "submit_SignUp", id = UrlParameter.Optional }
             );
 
+            routes.MapRoute(
+               name: "enterLogin",
+               url: "passenger1/enterLogin",
+               defaults: new { controller = "Home", action = "enterLogin", id = UrlParameter.Optional }
+           );
+            routes.MapRoute(
+               name: "enterLoginAdmin",
+               url: "admin/home",
+               defaults: new { controller = "admin", action = "adminHome", id = UrlParameter.Optional }
+           );
 
             routes.MapRoute(
                 name: "Default",
@@ -32,4 +42,5 @@ namespace Project_TravelAgency
 
 
     }
+    
 }

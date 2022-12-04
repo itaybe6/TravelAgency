@@ -9,11 +9,15 @@ namespace TravelAgency.Models
 {
     public class seat
     {
-        [Required]
-        public int row { get; set; }
 
         [Required]
-        public int col { get; set; }
+        public string flyNumber { get; set; }
+
+        [Required]
+        public int rowSeat { get; set; }
+
+        [Required]
+        public int colSeat { get; set; }
 
         [Required]
         public Boolean available { get; set; }

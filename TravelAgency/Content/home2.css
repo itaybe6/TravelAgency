@@ -1,7 +1,13 @@
-﻿body {
+﻿
+
+body {
+    background-image: url('5.jpg');
+    background-color: #cccccc;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    Z-index: 99;
 }
-
-
 .titleFly {
     width: 700px;
     font-family: "Open Sans", sans-serif;

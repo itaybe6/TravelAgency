@@ -1,4 +1,4 @@
-﻿@model TravelAgency.Models.passenger
+﻿@model TravelAgency.Models.passenger1
 
 @{
     Layout = null;
@@ -7,9 +7,12 @@
 <head>
 
     <title>Login Page</title>
+    <link href="@Url.Content("~/Content/NavBar1.css")" ,
+          rel="stylesheet" type="text/css" />
 
     <link href="@Url.Content("~/Content/login.css")" ,
           rel="stylesheet" type="text/css" />
+
 
 
     <script src="~/Scripts/jquery-3.4.1.js"></script>
@@ -23,19 +26,34 @@
 
 <body>
 
-    <div class="body"></div>
-    <div class="grad"></div>
-    <div class="header">
-        <div>Fly<span>Up</span></div>
-    </div>
-    <br>
-    <div class="login">
-        @using (Html.BeginForm("submit", "Home", FormMethod.Post))
-        {
+    <!-- Navigtion bar -->
+    <div id="nav">
+        <div class="topnav">
 
-            <input type="text" placeholder="username" name="user"><br>
+            <a href="/Home/home">Home</a>
+            <a href="/Home/MyFlights">My Flights</a>
+
+            <div class="floatRight">
+
+                <a class="active" href="/Home/login">Log In</a>
+                <a  href="/Home/signUp">Sign Up  </a>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="login">
+        @using (Html.BeginForm("enterLogin", "passenger1", FormMethod.Post))
+        {
+            <label class="label1">User Name</label>
+
+            <input type="text" placeholder="Passport" name="user"><br>
+
+            <label class="label1">password</label>
+
             <input type="password" placeholder="password" name="password"><br>
-            <input type="button" value="Login">
+
+            <input type="submit" value="Login">
 
         }
     </div>

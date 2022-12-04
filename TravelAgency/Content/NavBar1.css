@@ -4,20 +4,14 @@
 */
 
 body {
-    background-image: url('4.jpg');
-    background-color: #cccccc;
+    background-image: url('5.jpg');
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    background-attachment: fixed;
-    Z-index: 99;
+    background-attachment: fixed
 }
 
 /* Add a black background color to the top navigation */
-.topnav {
-    top: 0;
-    background-color: black;
-    overflow: hidden;
-}
+
 
     /* Style the links inside the navigation bar */
     .topnav a {
@@ -37,11 +31,20 @@ body {
 
         /* Add a color to the active/current link */
         .topnav a.active {
-            background-color: #87CEFA;
+            background-color: black;
             color: white;
         }
 
 
 .floatRight a {
     float: right;
+}
+
+
+
+.topnav {
+    top: 0;
+    background-color: #000000b3;
+    overflow: hidden;
+    border-radius: 30px;
 }

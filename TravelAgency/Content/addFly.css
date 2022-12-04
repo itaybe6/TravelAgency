@@ -1,0 +1,53 @@
+﻿.addFlyForm {
+    background-color: rgb(0 0 0 / 69%);
+    width: 307px;
+    margin: auto;
+    color: white;
+    border-radius: 0px 0px 15px 15px;
+    height: 519px;
+    padding: 74px;
+    padding-top: 40px;
+    padding-right: 30px;
+    padding-bottom: 50px;
+    padding-left: 45px;
+    box-shadow: inset 0px 1px 9px 1px #dbd8d86b;
+    margin-top: 122px;
+    border-radius: 30px;
+    margin-left: 127px;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+}
+
+.input{
+    border-radius:10px;
+}
+
+.icons {
+    margin-left: -35px;
+    margin-top: -470px;
+}
+
+#q2{
+    margin-top:-30px;
+}
+
+#q3 {
+    margin-top: -15px;
+}
+
+#q4 {
+    margin-top: 7px;
+}
+
+#q5 {
+    margin-top: 10px;
+}
+
+#q6 {
+    margin-top: 5px;
+}
+
+#q7 {
+    margin-top: 6px;
+}

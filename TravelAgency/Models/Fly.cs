@@ -13,42 +13,34 @@ namespace TravelAgency.Models
         //set for set informaion
         //[Required] - user must to put
 
+        [Key]
         [Required]
-        public DateTime time { get; set; }
+        [StringLength(6, ErrorMessage = "Fly number size is 6")]
+        public string flyNumber { get; set; }
+
+        [Required]
+        public DateTime timeFly { get; set; }
 
         [Required]
         public string destination { get; set; }
 
         [Required]
-        public DateTime Date { get; set; }
+        public DateTime dateFly { get; set; }
 
         [Required]
-        public string from { get; set; }
-
-
+        public string sourceFly { get; set; }
 
         //CountrysConnection size = Number connections
         [Required]
         public int NumberConnections { get; set; }
         public List<String> CountrysConnection = new List<string>();
 
-
-
         //seatList size = number of seats
         [Required]
-        public int numberOfSeets { get; set; }
-        [Required]
-        List<seat> seatList = new List<seat>();
-
+        public int aviableSeat { get; set; }
 
         [Required]
         public int price { get; set; }
-
-
-        [Required]
-        public string company { get; set; }
-
-
 
     }
 }

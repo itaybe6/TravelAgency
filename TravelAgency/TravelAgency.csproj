@@ -127,8 +127,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\adminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Dal\passenger1Dal.cs" />
+    <Compile Include="Dal\seatDal.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -141,17 +143,31 @@
     <Compile Include="Models\passenger1.cs" />
     <Compile Include="Models\seat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\passengerViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\2.jpg" />
+    <Content Include="Content\10.png" />
     <Content Include="Content\4.jpg" />
+    <Content Include="Content\5.jpg" />
     <Content Include="Content\6.jpg" />
+    <Content Include="Content\7.jpg" />
+    <Content Include="Content\9.jpg" />
+    <Content Include="Content\addFly.css" />
+    <Content Include="Content\adminHome.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\home2.css" />
+    <Content Include="Content\icons\icon-1.png" />
+    <Content Include="Content\icons\icon-2.png" />
+    <Content Include="Content\icons\icon-3.png" />
+    <Content Include="Content\icons\icon-4.png" />
+    <Content Include="Content\icons\icon-5.png" />
+    <Content Include="Content\icons\icon-6.png" />
+    <Content Include="Content\icons\icon-7.png" />
     <Content Include="Content\login.css" />
+    <Content Include="Content\logo.png" />
     <Content Include="Content\NavBar1.css" />
     <Content Include="Content\signUp1.css" />
     <Content Include="favicon.ico" />
@@ -184,6 +200,8 @@
     <Content Include="Views\Home\MyFlights.cshtml" />
     <Content Include="Views\Home\login.cshtml" />
     <Content Include="Views\Home\successPage.cshtml" />
+    <Content Include="Views\admin\adminHome.cshtml" />
+    <Content Include="Views\admin\addFly.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
