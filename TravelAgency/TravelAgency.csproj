@@ -202,6 +202,9 @@
     <Content Include="Views\Home\successPage.cshtml" />
     <Content Include="Views\admin\adminHome.cshtml" />
     <Content Include="Views\admin\addFly.cshtml" />
+    <Content Include="Views\admin\removeFly.cshtml" />
+    <Content Include="Views\admin\editFly.cshtml" />
+    <Content Include="Views\admin\addFlightConections.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

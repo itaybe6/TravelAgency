@@ -21,6 +21,37 @@ namespace TravelAgency.Controllers
 
         public ActionResult addFly() {
             return View();
-                }
+
+         }
+
+        public ActionResult removeFly() {
+
+            return View();
+
+        }
+
+        public ActionResult editFly()
+        {
+
+            return View();
+
+        }
+
+
+        public ActionResult submit_AddFly(Fly temp)
+        {
+            //WRONG
+           if(temp.sourceFly == temp.destination)
+            {
+                return null;
+            }
+
+
+            return View("editFly");
+        }
+
+
+
+
     }
 }

@@ -22,16 +22,21 @@ namespace TravelAgency.Models
         public DateTime timeFly { get; set; }
 
         [Required]
+        public DateTime timeLanding { get; set; }
+
+        [Required]
         public string destination { get; set; }
 
         [Required]
         public DateTime dateFly { get; set; }
 
         [Required]
+        public DateTime dateLanding { get; set; }
+
+        [Required]
         public string sourceFly { get; set; }
 
         //CountrysConnection size = Number connections
-        [Required]
         public int NumberConnections { get; set; }
         public List<String> CountrysConnection = new List<string>();
 

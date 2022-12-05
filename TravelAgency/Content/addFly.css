@@ -4,9 +4,9 @@
     margin: auto;
     color: white;
     border-radius: 0px 0px 15px 15px;
-    height: 519px;
+    height: 471px;
     padding: 74px;
-    padding-top: 40px;
+    padding-top: 71px;
     padding-right: 30px;
     padding-bottom: 50px;
     padding-left: 45px;
@@ -19,15 +19,19 @@
     font-weight: 600;
 }
 
+
 .input{
     border-radius:10px;
 }
 
 .icons {
     margin-left: -35px;
-    margin-top: -470px;
+    margin-top: -476px;
 }
 
+#q1 {
+    margin-top: 18px;
+}
 #q2{
     margin-top:-30px;
 }
@@ -37,17 +41,45 @@
 }
 
 #q4 {
-    margin-top: 7px;
-}
-
-#q5 {
     margin-top: 10px;
 }
 
+#q5 {
+    margin-top:13px;
+}
+
 #q6 {
-    margin-top: 5px;
+    margin-top: 9px;
+    margin-left: 2px;
 }
 
 #q7 {
     margin-top: 6px;
+    margin-left: 3px;
+}
+
+dates{
+
+
+    padding-left:50px;
+}
+
+appt{
+
+
+
+}
+#q8 {
+    position: absolute;
+    left: 342px;
+    top: 419px;
+}
+#q9 {
+    position: absolute;
+    left: 342px;
+    top: 484px;
+}
+#sub_botton{
+
+
 }
