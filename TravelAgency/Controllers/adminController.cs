@@ -52,13 +52,24 @@ namespace TravelAgency.Controllers
                 return null;
             }
            
+            if(temp.flyNumber == null)
+            {
+                return null;
+
+            }
            
+            FlyDal dal = new FlyDal();
+            dal.FlyDB.Add(temp);
+            dal.SaveChanges();
+            return View("addFlySuccess");
 
-            return View("editFly");
-        }
+            
+            }
 
+        public ActionResult addFlySuccess() { return View(); }
 
 
 
     }
-}
+
+ }
