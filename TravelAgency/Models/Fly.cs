@@ -36,10 +36,6 @@ namespace TravelAgency.Models
         [Required]
         public string sourceFly { get; set; }
 
-        //CountrysConnection size = Number connections
-        public int NumberConnections { get; set; }
-        public List<String> CountrysConnection = new List<string>();
-
         //seatList size = number of seats
         [Required]
         public int aviableSeat { get; set; }

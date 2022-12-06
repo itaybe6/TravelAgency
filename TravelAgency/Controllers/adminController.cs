@@ -40,12 +40,19 @@ namespace TravelAgency.Controllers
 
         public ActionResult submit_AddFly(Fly temp)
         {
-            //WRONG
+            //SAME LOCATION TO FLY
            if(temp.sourceFly == temp.destination)
             {
                 return null;
             }
 
+            //WRONG DATES
+            if (temp.dateLanding < temp.dateFly)
+            {
+                return null;
+            }
+           
+           
 
             return View("editFly");
         }

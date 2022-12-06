@@ -20,7 +20,7 @@ namespace TravelAgency.Models
         public int colSeat { get; set; }
 
         [Required]
-        public Boolean available { get; set; }
+        public string available { get; set; }
 
 
 

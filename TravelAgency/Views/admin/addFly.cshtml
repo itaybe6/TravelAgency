@@ -9,9 +9,9 @@
 <html>
 <head>
 
-    <link href="@Url.Content("~/Content/adminHome.css")"
+    <link href="@Url.Content("~/CSS/adminHome.css")"
           rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/Content/addFly.css")"
+    <link href="@Url.Content("~/CSS/addFly.css")"
           rel="stylesheet" type="text/css" />
 
 
@@ -24,7 +24,7 @@
     <div class="topnav">
 
         <a id="logo1" href="~/admin/adminHome">
-            <img src="~/Content/logo.png" alt="Logo" style="width:80px;">
+            <img src="~/Photos/logo.png" alt="Logo" style="width:80px;">
         </a>
 
         <div id="topnav-left">
@@ -549,7 +549,7 @@
             <i><strong>Date Fly </strong></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;<i><strong>Time</strong></i>    <div class="dates">  <input id="dateInput" type="date" width="10" class="date" name="dateFly" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="time" id="appt" name="timeFly"> </div>
             <br />
 
-            <i><strong>Date Landing  </strong></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<i><strong>Time</strong></i>  <div class="dates">  <input id="dateInput" type="date" width="10" class="date" name="dateLanding" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="time" id="appt" name="timeLanding">  </div>
+            <i><strong>Date Landing  </strong></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<i><strong>Time</strong></i>  <div class="dates">  <input id="dateInput" type="date" width="10" class="date" name="dateLanding"  /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="time" id="appt" name="timeLanding">  </div>
             <br />
             
 
@@ -560,7 +560,13 @@
             <br /><br />
             <i><strong>Price  </strong></i><div class="textbox"></div> @Html.TextBoxFor(m => m.price)
             <br /><br />
-            <i><strong>Number Seats </strong></i><div class="textbox"></div> @Html.TextBoxFor(m => m.aviableSeat)
+            <i><strong>Number Seats </strong></i><div class="textbox"></div> <select id="country" name="aviableSeat" class="form-control">
+            <option value=""></option>
+            <option value=100>100</option>
+            <option value=125>125</option>
+            <option value=150>150</option>
+            <option value=175>175</option>
+            </select>
             <br /><br />
 
             <input id="sub_botton" type="submit" value="Submit" />
@@ -571,28 +577,28 @@
             <!-- icons -->
             <div class="icons">
 
-                <img src="~/Content/icons/icon-1.png" id="q1" alt="Logo">
+                <img src="~/Photos/icons/icon-1.png" id="q1" alt="Logo">
                 <br /><br /><br />
-                <img src="~/Content/icons/icon-2.png" id="q2" alt="Logo">
+                <img src="~/Photos/icons/icon-2.png" id="q2" alt="Logo">
                 <br /><br /><br />
-                <img src="~/Content/icons/icon-3.png" id="q3" alt="Logo">
+                <img src="~/Photos/icons/icon-3.png" id="q3" alt="Logo">
                 <br /><br />
-                <img src="~/Content/icons/icon-3.png" id="q4" alt="Logo">
+                <img src="~/Photos/icons/icon-3.png" id="q4" alt="Logo">
                 <br /><br />
-                <img src="~/Content/icons/icon-5.png" id="q5" alt="Logo">
+                <img src="~/Photos/icons/icon-5.png" id="q5" alt="Logo">
                 <br /><br />
-                <img src="~/Content/icons/icon-6.png" id="q6" alt="Logo">
+                <img src="~/Photos/icons/icon-6.png" id="q6" alt="Logo">
                 <br /><br />
-                <img src="~/Content/icons/icon-7.png" id="q7" alt="Logo">
+                <img src="~/Photos/icons/icon-7.png" id="q7" alt="Logo">
                 <br />
 
             </div>
 
             <div class="icons2">
 
-                <img src="~/Content/icons/icon-4.png" id="q8" alt="Logo">
+                <img src="~/Photos/icons/icon-4.png" id="q8" alt="Logo">
                 <br /><br /><br />
-                <img src="~/Content/icons/icon-4.png" id="q9" alt="Logo">
+                <img src="~/Photos/icons/icon-4.png" id="q9" alt="Logo">
                 <br /><br /><br />
                 
 
