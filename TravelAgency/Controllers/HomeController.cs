@@ -55,7 +55,7 @@ namespace TravelAgency.Controllers
         {
             //the admin enetr
             if(user == 6 && password == "1")
-                return RedirectToAction("home","admin");
+                return RedirectToAction("adminHome","admin");
 
             passenger1Dal dal = new passenger1Dal();
             List<passenger1> temp = dal.passengerDB.ToList<passenger1>();

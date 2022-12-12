@@ -18,11 +18,10 @@ namespace TravelAgency.Models
         [StringLength(6, ErrorMessage = "Fly number size is 6")]
         public string flyNumber { get; set; }
 
-        [Required]
-        public DateTime timeFly { get; set; }
+        public TimeSpan timeFly { get; set; }
 
         [Required]
-        public DateTime timeLanding { get; set; }
+        public TimeSpan timeLanding { get; set; }
 
         [Required]
         public string destination { get; set; }

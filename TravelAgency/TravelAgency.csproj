@@ -144,9 +144,11 @@
     <Compile Include="Models\passenger1.cs" />
     <Compile Include="Models\seat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\FlyViewModel.cs" />
     <Compile Include="ViewModel\passengerViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="JS\editFly.js" />
     <Content Include="Photos\10.png" />
     <Content Include="Photos\4.jpg" />
     <Content Include="Photos\5.jpg" />

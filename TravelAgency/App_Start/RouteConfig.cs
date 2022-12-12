@@ -29,6 +29,11 @@ namespace Project_TravelAgency
                url: "admin/home",
                defaults: new { controller = "admin", action = "adminHome", id = UrlParameter.Optional }
            );
+            routes.MapRoute(
+               name: "deleteFly",
+               url: "Views/admin/delete",
+               defaults: new { controller = "admin", action = "deleteFly", id = UrlParameter.Optional }
+           );
 
             routes.MapRoute(
                 name: "Default",
