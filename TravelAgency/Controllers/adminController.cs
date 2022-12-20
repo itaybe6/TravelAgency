@@ -28,7 +28,13 @@ namespace TravelAgency.Controllers
 
         public ActionResult removeFly( ) {
 
-            return View();
+            FlyDal dal = new FlyDal();
+            List<Fly> list = dal.FlyDB.ToList<Fly>();
+            FlyViewModel temp = new FlyViewModel();
+
+            temp.fly = new Fly();
+            temp.flyList = list;
+            return View(temp);
 
         }
 
@@ -112,25 +118,45 @@ namespace TravelAgency.Controllers
             
             }
 
+
         public ActionResult addFlySuccess() { return View(); }
 
          
 
-        public ActionResult deleteFly(string flyNum)
+        public ActionResult submitRemoveFly(string flyNum)
         {
-            Fly y = new Fly();
-            flyNum = "111111";
+
+           
             FlyDal dal = new FlyDal();
-            List<Fly> list = (from x in dal.FlyDB where x.flyNumber == flyNum select x).ToList();
-            foreach (Fly f in list)
-            {
-                Fly temp = new Fly();
-            }
+            Fly y = dal.FlyDB.Where(f => f.flyNumber== flyNum).FirstOrDefault();
             dal.FlyDB.Remove(y);
             dal.SaveChanges();
            
             return View("addFly");
         }
+
+
+        public ActionResult addEditFly(string flyNum)
+        {
+            FlyDal dal = new FlyDal();
+            Fly fly = dal.FlyDB.Where(f => f.flyNumber == flyNum).FirstOrDefault();
+            FlyViewModel temp = new FlyViewModel();
+            temp.fly = fly;
+            temp.flyList = new List<Fly>();
+            return View(temp);
+        
+        }
+
+        public ActionResult submit_EditFly(FlyViewModel temp)
+        {
+            FlyDal dal = new FlyDal();
+            dal.FlyDB.Where(f => f.flyNumber == temp.fly.flyNumber).FirstOrDefault().price = temp.fly.price;
+            dal.SaveChanges();
+
+            return View("addFly");
+        }
+
+
 
     }
 

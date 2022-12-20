@@ -1,4 +1,5 @@
-﻿@model TravelAgency.Models.Fly
+﻿@model TravelAgency.ViewModel.FlyViewModel
+@using TravelAgency.Models;
 
 @{
     ViewBag.Title = "removeFly";
@@ -22,7 +23,7 @@
     <div class="topnav">
 
         <a id="logo1" href="~/admin/adminHome">
-            <img src="~/Content/logo.png" alt="Logo" style="width:80px;">
+            <img src="~/Photos/logo.png" alt="Logo" style="width:80px;">
         </a>
 
         <div id="topnav-left">
@@ -35,9 +36,37 @@
 
 
 
+    <table>
 
-    
-   
+        <tr>
+            <th>Flight Number</th>
+            <th>Source</th>
+            <th>Distanation</th>
+            <th>Price</th>
+
+        </tr>
+
+
+
+        @foreach (Fly fly in Model.flyList)
+        {
+            <tr>
+                <td>@fly.flyNumber</td>
+                <td>@fly.sourceFly</td>
+                <td>@fly.destination</td>
+                <td>@fly.price</td>
+                <td> <a href="~/Views/admin/delete/@fly.flyNumber">Remove </a></td>
+
+
+            </tr>
+
+
+
+        }
+
+    </table>
+
+
 
 </body>
 

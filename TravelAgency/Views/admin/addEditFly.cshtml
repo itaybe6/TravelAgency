@@ -1,8 +1,10 @@
-﻿@{
-    ViewBag.Title = "addFlightConections";
-}
+﻿@model TravelAgency.ViewModel.FlyViewModel
+@using TravelAgency.Models;
 
-@model TravelAgency.Models.Fly
+
+@{
+    ViewBag.Title = "addEditFly";
+}
 
 <!DOCTYPE html>
 
@@ -14,8 +16,8 @@
     <link href="@Url.Content("~/CSS/addFly.css")"
           rel="stylesheet" type="text/css" />
 
-
     <meta name="viewport" content="width=device-width" />
+
 </head>
 
 <body>
@@ -24,7 +26,7 @@
     <div class="topnav">
 
         <a id="logo1" href="~/admin/adminHome">
-            <img src="~/Content/logo.png" alt="Logo" style="width:80px;">
+            <img src="~/Photos/logo.png" alt="Logo" style="width:80px;">
         </a>
 
         <div id="topnav-left">
@@ -36,17 +38,15 @@
     </div>
 
 
-
+    
 
     <div class="addFlyForm">
 
-        <form action="submit_addFly" method="post">
+        <form action="submit_EditFly" method="post">
 
-
-
-            <i> <strong>Source Fly :</strong> </i> <div class="textbox">
+            <i> <strong>Source Fly </strong> </i> <div class="textbox">
                 <select id="country" name="sourceFly" class="form-control">
-                    <option value=""></option>
+                    <option value="@Model.fly.sourceFly">@Model.fly.sourceFly</option>
                     <option value="Afghanistan">Afghanistan</option>
                     <option value="Åland Islands">Åland Islands</option>
                     <option value="Albania">Albania</option>
@@ -295,9 +295,9 @@
             </div>
             <br />
 
-            <i> <strong>Destination :</strong></i> <div class="textbox">
+            <i> <strong>Destination </strong></i> <div class="textbox">
                 <select id="to" name="destination" class="form-control">
-                    <option value=""></option>
+                    <option value="@Model.fly.destination">@Model.fly.destination</option>
                     <option value="Afghanistan">Afghanistan</option>
                     <option value="Åland Islands">Åland Islands</option>
                     <option value="Albania">Albania</option>
@@ -546,17 +546,26 @@
             </div>
 
             <br />
-            <i><strong>Date Fly : </strong></i><div class="textbox">  <input id="dateInput" type="date" width="10" class="date" name="dateFly" /> </div>
+            <i><strong>Date Fly </strong></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;<i><strong>Time</strong></i>    <div class="dates">  <input id="dateInput" type="date" width="10" class="date" name="dateFly" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="time" id="appt" name="timeFly"> </div>
             <br />
-            <i><strong>Time Fly : </strong></i><div class="textbox">   <input type="time" id="appt" name="timeFly">  </div>
+
+            <i><strong>Date Landing  </strong></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<i><strong>Time</strong></i>  <div class="dates">  <input id="dateInput" type="date" width="10" class="date" name="dateLanding" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="time" id="appt" name="timeLanding">  </div>
             <br />
-            <i><strong>Fly Number : </strong></i> <div class="textbox">  </div> @Html.TextBoxFor(m => m.flyNumber)
+
+
+
+            <i><strong>Fly Number </strong></i> <div class="textbox">  </div> @Html.TextBoxFor(m => m.fly.flyNumber) 
 
 
             <br /><br />
-            <i><strong>Price : </strong></i><div class="textbox"></div> @Html.TextBoxFor(m => m.price)
+            <i><strong>Price  </strong></i><div class="textbox"></div> @Html.TextBoxFor(m => m.fly.price)
             <br /><br />
-            <i><strong>Number Seats: </strong></i><div class="textbox"></div> @Html.TextBoxFor(m => m.aviableSeat)
+            <i><strong>Number Seats </strong></i><div class="textbox"></div> <select id="country" name="aviableSeat" class="form-control">
+                <option value="@Model.fly.aviableSeat">@Model.fly.aviableSeat</option>
+                <option value=180>180</option>
+                <option value=210>210</option>
+                <option value=240>240</option>
+            </select>
             <br /><br />
 
             <input id="sub_botton" type="submit" value="Submit" />
@@ -567,23 +576,32 @@
             <!-- icons -->
             <div class="icons">
 
-                <img src="~/Content/icons/icon-1.png" id="q1" alt="Logo">
+                <img src="~/Photos/icons/icon-1.png" id="q1" alt="Logo">
                 <br /><br /><br />
-                <img src="~/Content/icons/icon-2.png" id="q2" alt="Logo">
+                <img src="~/Photos/icons/icon-2.png" id="q2" alt="Logo">
                 <br /><br /><br />
-                <img src="~/Content/icons/icon-3.png" id="q3" alt="Logo">
+                <img src="~/Photos/icons/icon-3.png" id="q3" alt="Logo">
                 <br /><br />
-                <img src="~/Content/icons/icon-4.png" id="q4" alt="Logo">
+                <img src="~/Photos/icons/icon-3.png" id="q4" alt="Logo">
                 <br /><br />
-                <img src="~/Content/icons/icon-5.png" id="q5" alt="Logo">
+                <img src="~/Photos/icons/icon-5.png" id="q5" alt="Logo">
                 <br /><br />
-                <img src="~/Content/icons/icon-6.png" id="q6" alt="Logo">
+                <img src="~/Photos/icons/icon-6.png" id="q6" alt="Logo">
                 <br /><br />
-                <img src="~/Content/icons/icon-7.png" id="q7" alt="Logo">
+                <img src="~/Photos/icons/icon-7.png" id="q7" alt="Logo">
                 <br />
 
             </div>
 
+            <div class="icons2">
+
+                <img src="~/Photos/icons/icon-4.png" id="q8" alt="Logo">
+                <br /><br /><br />
+                <img src="~/Photos/icons/icon-4.png" id="q9" alt="Logo">
+                <br /><br /><br />
+
+
+            </div>
 
 
 
@@ -605,6 +623,3 @@
 
 
 </html>
-
-
-

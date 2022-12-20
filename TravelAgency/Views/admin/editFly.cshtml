@@ -40,6 +40,7 @@
             <th>Flight Number</th>
             <th>Source</th>
             <th>Distanation</th>
+            <th>Seats</th>
             <th>Price</th>
 
         </tr>
@@ -52,8 +53,9 @@
                 <td>@fly.flyNumber</td>
                 <td>@fly.sourceFly</td>
                 <td>@fly.destination</td>
+                <td>@fly.aviableSeat </td>
                 <td>@fly.price</td>
-                <td> <a href="~/Views/admin/delete" >Edit </a></td>
+                <td> <a href="~/Views/admin/addEditFly/@fly.flyNumber" >Edit </a></td>
                 
     
             </tr>

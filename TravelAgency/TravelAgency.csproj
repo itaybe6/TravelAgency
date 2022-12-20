@@ -207,8 +207,8 @@
     <Content Include="Views\admin\addFly.cshtml" />
     <Content Include="Views\admin\removeFly.cshtml" />
     <Content Include="Views\admin\editFly.cshtml" />
-    <Content Include="Views\admin\addFlightConections.cshtml" />
     <Content Include="Views\admin\addFlySuccess.cshtml" />
+    <Content Include="Views\admin\addEditFly.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
