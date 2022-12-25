@@ -68,14 +68,23 @@ namespace Project_TravelAgency
             defaults: new { controller = "Home", action = "submit_personalDetails", id = UrlParameter.Optional }
         );
 
+
+
+            routes.MapRoute(
+                name: "orderFlight",
+                url: "Home/orderFlight{temp}",
+                defaults: new { controller = "Home", action = "orderFlight", id = UrlParameter.Optional }
+            );
+
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
 
-
             
+
 
 
         }

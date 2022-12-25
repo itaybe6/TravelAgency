@@ -114,12 +114,7 @@ namespace TravelAgency.Controllers
             temp.flyList = filterList;
             return View("showFlights_oneWay",temp);
 
-
-
-
         }
-
-
 
 
 
@@ -244,6 +239,15 @@ namespace TravelAgency.Controllers
         }
 
 
+        [HttpPost]
+        public ActionResult orderFlight(FlyViewModel temp)
+        {
+            return View("showFlights_oneWay", temp);  
+        }
+
+
+
+       
     }
 
 

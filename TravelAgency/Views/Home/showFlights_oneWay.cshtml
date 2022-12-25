@@ -1,5 +1,6 @@
 ﻿@model TravelAgency.ViewModel.FlyViewModel
 @using TravelAgency.Models;
+@using Newtonsoft.Json
 
 
 @{
@@ -19,12 +20,8 @@
           rel="stylesheet" type="text/css" />
 
 
-
+   
     <title>showFlights</title>
-
-
-
-    <script src="https://kit.fontawesome.com/c681bde18b.js" crossorigin="anonymous"></script>
 
     <meta name="viewport" content="width=device-width" />
 </head>
@@ -48,8 +45,8 @@
         </div>
     </div>
 
-    
-    
+
+
 
     <table id="tbl1" cellpadding="10px">
 
@@ -65,8 +62,8 @@
             <th>Price</th>
 
         </tr>
-     
-        
+
+
         @foreach (Fly fly in Model.flyList)
         {
             <tr>
@@ -95,17 +92,63 @@
 
     <form id="orderForm" action="orderFlight">
         <label id="orderLabel">Order by</label>
-        <select>
+
+
+        <select id="orderBy">
             <option value="price_increase">price increase</option>
             <option value="price_decrease">price decrease</option>
             <option value="most_popular">most popular</option>
         </select>
 
 
-        <input id="sub_botton" type="submit" value="Submit" />
     </form>
 
-   
+    <button onclick="order_by()">submit</button>
+
+    <script type="text/javascript">
+
+               function order_by() {
+                var select = document.getElementById("orderBy");
+                var value = select.options[select.selectedIndex].value;
+
+
+                   switch (value) {
+
+                       case "price_increase":
+
+
+
+                       break;
+
+
+                       case "price_decrease":
+
+
+                       break;
+
+                       case "most_popular":
+
+
+
+                       break;
+
+
+
+                   }
+
+
+
+
+
+            }
+           
+
+
+        
+
+
+    </script>
+
 
 </body>
 
