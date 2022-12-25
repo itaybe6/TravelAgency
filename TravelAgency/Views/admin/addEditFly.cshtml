@@ -40,9 +40,9 @@
 
     
 
-    <div class="addFlyForm">
+    <div class="addFlyForm"> 
 
-        <form action="submit_EditFly" method="post">
+        <form action="submitRemoveFly" method="post">
 
             <i> <strong>Source Fly </strong> </i> <div class="textbox">
                 <select id="country" name="sourceFly" class="form-control">
@@ -554,7 +554,7 @@
 
 
 
-            <i><strong>Fly Number </strong></i> <div class="textbox">  </div> @Html.TextBoxFor(m => m.fly.flyNumber) 
+            <i><strong>Fly Number </strong></i> <div class="textbox">  </div> @Html.TextBoxFor(m => m.fly.flyNumber)
 
 
             <br /><br />
@@ -568,7 +568,9 @@
             </select>
             <br /><br />
 
-            <input id="sub_botton" type="submit" value="Submit" />
+           
+
+            <input type="submit" value="Submit" />
 
 
 
@@ -607,6 +609,8 @@
 
 
         </form>
+
+        <a href="~/Views/admin/submit_EditFly/@Model">SAVEEEEE </a>
 
 
 

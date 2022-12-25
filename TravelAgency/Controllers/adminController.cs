@@ -149,9 +149,9 @@ namespace TravelAgency.Controllers
 
         public ActionResult submit_EditFly(FlyViewModel temp)
         {
-            FlyDal dal = new FlyDal();
-            dal.FlyDB.Where(f => f.flyNumber == temp.fly.flyNumber).FirstOrDefault().price = temp.fly.price;
-            dal.SaveChanges();
+            //FlyDal dal = new FlyDal();
+            //dal.FlyDB.Where(f => f.flyNumber == temp.flyNumber).FirstOrDefault().price = temp.price;
+            //dal.SaveChanges();
 
             return View("addFly");
         }

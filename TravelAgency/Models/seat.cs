@@ -35,6 +35,11 @@ namespace TravelAgency.Models
             this.id = id;
         }
 
+        public seat()
+        {
+
+        }
+
 
     }
 }

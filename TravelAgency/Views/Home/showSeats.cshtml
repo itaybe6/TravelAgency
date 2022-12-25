@@ -1,0 +1,150 @@
+﻿@model TravelAgency.ViewModel.seatViewModel
+@using TravelAgency.Models;
+
+@{
+    ViewBag.Title = "showSeats";
+}
+
+
+
+
+
+<html>
+
+<head>
+    <link href="@Url.Content("~/CSS/NavBar1.css")"
+          rel="stylesheet" type="text/css" />
+
+    <link href="@Url.Content("~/CSS/home2.css")"
+          rel="stylesheet" type="text/css" />
+
+    <link href="@Url.Content("~/CSS/showSeats.css")"
+          rel="stylesheet" type="text/css" />
+
+
+    <title>showFlights</title>
+
+
+    <script src="https://kit.fontawesome.com/c681bde18b.js" crossorigin="anonymous"></script>
+
+    <meta name="viewport" content="width=device-width" />
+</head>
+
+<body>
+    <!-- navigation bar-->
+    <div class="topnav">
+
+        <a id="logo1" href="">
+            <img src="~/Photos/logo.png" alt="Logo" style="width:80px;">
+        </a>
+
+        <div id="topnav-left">
+            <a class="active" href="/Home/home">Home</a>
+            <a href="/Home/MyFlights">My Flights</a>
+            <div class="floatRight">
+                <a href="/Home/login">Log In</a>
+                <a href="/Home/signUp">Sign Up  </a>
+            </div>
+
+        </div>
+    </div>
+    
+
+    <label>seat number : @TempData["seatNum"]</label>
+
+    <table class="tbl1" align="center" cellpadding="10px" width=50%>
+
+        <tr id="up">
+            <th>A</th>
+            <th>B</th>
+            <th>C</th>
+            <th>D</th>
+            <th>E</th>
+            <th>F</th>
+        </tr>
+     
+
+
+            @for (int i = 1; i <= Model.seatList.Count / 6; i++)
+            {
+                <tr> 
+
+                    @if (Model.seatList.Where(M => M.rowSeat == i && M.colSeat == "A").FirstOrDefault().available == "yes")
+                    {
+                        
+                        <td><a href="~/Views/Home/personal_details/@Model.seatList[1].flyNumber/@i/A/@TempData["order"]" class="avaibleSeats">
+                             <img src="~/Photos/icons/seat1.png" alt="Logo" width=35px;></a> </td>
+                    }
+                    else
+                    {
+                        <td><a href="" id="noAvaible"> </a><img src="~/Photos/icons/seat2.png" alt="Logo" width=45px;> </td>
+                    }
+
+                    @if (Model.seatList.Where(M => M.rowSeat == i && M.colSeat == "B").FirstOrDefault().available == "yes")
+                    {
+                        <td><a href="~/Views/Home/personal_details/@Model.seatList[1].flyNumber/@i/B/@TempData["order"]" class="avaibleSeats"><img src="~/Photos/icons/seat1.png" alt="Logo" width=45px;></a> </td>
+                    }
+                    else
+                    {
+                        <td><a href="" id="noAvaible"> </a><img src="~/Photos/icons/seat2.png" alt="Logo" width=45px;> </td>
+                    }
+
+                    @if (Model.seatList.Where(M => M.rowSeat == i && M.colSeat == "C").FirstOrDefault().available == "yes")
+                    {
+                        <td><a href="~/Views/Home/personal_details/@Model.seatList[1].flyNumber/@i/C/@TempData["order"]" class="avaibleSeats" ><img src="~/Photos/icons/seat1.png" alt="Logo" width=45px;></a> </td>
+                    }
+                    else
+                    {
+                       <td><a href="" id="noAvaible"> </a><img src="~/Photos/icons/seat2.png" alt="Logo" width=45px;> </td>
+                    }
+
+                    @if (Model.seatList.Where(M => M.rowSeat == i && M.colSeat == "D").FirstOrDefault().available == "yes")
+                    {
+                        <td><a href="~/Views/Home/personal_details/@Model.seatList[1].flyNumber/@i/D/@TempData["order"]" class="avaibleSeats" ><img src="~/Photos/icons/seat1.png" alt="Logo" width=45px;></a> </td>
+                    }
+                    else
+                    {
+                        <td><a href="" id="noAvaible"> </a><img src="~/Photos/icons/seat2.png" alt="Logo" width=45px;> </td>
+                    }
+
+                    @if (Model.seatList.Where(M => M.rowSeat == i && M.colSeat == "E").FirstOrDefault().available == "yes")
+                    {
+                        <td><a href="~/Views/Home/personal_details/@Model.seatList[1].flyNumber/@i/E/@TempData["order"]" class="avaibleSeats" ><img src="~/Photos/icons/seat1.png" alt="Logo" width=45px;></a> </td>
+                    }
+                    else
+                    {
+                        <td><a href="" id="noAvaible"> </a><img src="~/Photos/icons/seat2.png" alt="Logo" width=45px;> </td>
+                    }
+
+                    @if (Model.seatList.Where(M => M.rowSeat == i && M.colSeat == "F").FirstOrDefault().available == "yes")
+                    {
+                        <td><a href="~/Views/Home/personal_details/@Model.seatList[1].flyNumber/@i/F/@TempData["order"]" class="avaibleSeats"  ><img src="~/Photos/icons/seat1.png" alt="Logo" width=45px;></a> </td>
+                    }
+                    else
+                    {
+                        <td><a href="" id="noAvaible"> </a><img src="~/Photos/icons/seat2.png" alt="Logo" width=45px;> </td>
+                    }
+
+                </tr>
+
+
+            }
+
+
+
+
+    </table>
+
+
+
+    <script>
+        document.getElementById("noAvaible").onclick = function () {
+            alert("The seat is no avaible")
+
+        }
+
+    </script>
+</body>
+
+
+</html>

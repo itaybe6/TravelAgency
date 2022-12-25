@@ -1,0 +1,113 @@
+﻿@model TravelAgency.ViewModel.FlyViewModel
+@using TravelAgency.Models;
+
+
+@{
+    ViewBag.Title = "showFlights";
+}
+
+<html>
+
+<head>
+    <link href="@Url.Content("~/CSS/NavBar1.css")"
+          rel="stylesheet" type="text/css" />
+
+    <link href="@Url.Content("~/CSS/home2.css")"
+          rel="stylesheet" type="text/css" />
+
+    <link href="@Url.Content("~/CSS/showFlights_oneWay.css")"
+          rel="stylesheet" type="text/css" />
+
+
+
+    <title>showFlights</title>
+
+
+
+    <script src="https://kit.fontawesome.com/c681bde18b.js" crossorigin="anonymous"></script>
+
+    <meta name="viewport" content="width=device-width" />
+</head>
+
+<body>
+    <!-- navigation bar-->
+    <div class="topnav">
+
+        <a id="logo1" href="">
+            <img src="~/Photos/logo.png" alt="Logo" style="width:80px;">
+        </a>
+
+        <div id="topnav-left">
+            <a class="active" href="/Home/home">Home</a>
+            <a href="/Home/MyFlights">My Flights</a>
+            <div class="floatRight">
+                <a href="/Home/login">Log In</a>
+                <a href="/Home/signUp">Sign Up  </a>
+            </div>
+
+        </div>
+    </div>
+
+    
+    
+
+    <table id="tbl1" cellpadding="10px">
+
+        <tr>
+            <th>Flight Number</th>
+            <th>Source</th>
+            <th>Distanation</th>
+            <th>Date Flight</th>
+            <th>Time Flight</th>
+            <th>Date Landing</th>
+            <th>Time Landing</th>
+            <th>Aviable Seats</th>
+            <th>Price</th>
+
+        </tr>
+     
+        
+        @foreach (Fly fly in Model.flyList)
+        {
+            <tr>
+                <td>@fly.flyNumber</td>
+                <td>@fly.sourceFly</td>
+                <td>@fly.destination</td>
+                <td>@fly.dateFly</td>
+                <td>@fly.timeFly</td>
+                <td>@fly.dateLanding</td>
+                <td>@fly.timeLanding</td>
+                <td>@fly.aviableSeat </td>
+                <td>@fly.price</td>
+                <td> <a href="~/Views/Home/ShowSeats/@fly.flyNumber/@TempData["order"]">Choose Seats</a></td>
+
+
+
+
+            </tr>
+
+
+
+        }
+
+    </table>
+
+
+    <form id="orderForm" action="orderFlight">
+        <label id="orderLabel">Order by</label>
+        <select>
+            <option value="price_increase">price increase</option>
+            <option value="price_decrease">price decrease</option>
+            <option value="most_popular">most popular</option>
+        </select>
+
+
+        <input id="sub_botton" type="submit" value="Submit" />
+    </form>
+
+   
+
+</body>
+
+
+</html>

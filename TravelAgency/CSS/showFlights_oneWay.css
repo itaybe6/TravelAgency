@@ -1,0 +1,20 @@
+﻿#tbl1 {
+    position: absolute;
+    left: 599px;
+    top: 151px;
+    background-color: #000000b3;
+    border-radius: 0px 0px 15px 15px;
+    color: white;
+    padding: 20px;
+}
+
+#orderForm {
+    position: absolute;
+    left: 599px;
+    top: 96px;
+    background-color: black;
+    border-radius: 15px 15px 0 0;
+    color: white;
+    padding-left: 15px;
+    width: 927px;
+}

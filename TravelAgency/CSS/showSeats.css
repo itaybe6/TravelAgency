@@ -1,0 +1,23 @@
+﻿.avaibleSeats  {
+    color:seagreen;
+    
+}
+
+.avaibleSeats a{
+    width:35px;
+}
+#noAvaible{
+    color:red;
+}
+.tbl1 {
+    padding: 20px;
+    background: #000000b0;
+    border-radius: 20px;
+    color: white;
+    font-size: 30px;
+}
+#up{
+    position:absolute;
+    left:100px;
+
+}

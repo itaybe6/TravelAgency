@@ -1,5 +1,4 @@
-﻿@model TravelAgency.Models.passenger1
-
+﻿@model TravelAgency.Models.Ticket
 @{
     Layout = null;
 }
@@ -31,7 +30,7 @@
 
 <body>
 
-  
+
     <!-- Navigtion bar -->
     <div id="nav">
         <div class="topnav">
@@ -42,20 +41,19 @@
             <div class="floatRight">
 
                 <a href="/Home/login">Log In</a>
-                <a class="active" href="/Home/signUp">Sign Up  </a>
+                <a href="/Home/signUp">Sign Up  </a>
 
             </div>
         </div>
     </div>
     <div id="All">
 
-        <div class="titlesignup"> <h1> <strong> Sign Up </strong> </h1> </div>
+        <div class="titlesignup"> <h1> <strong>Personal Details </strong> </h1> </div>
 
         <div class="signUpForm">
 
-            @using (Html.BeginForm("submit_SignUp", "passenger1", FormMethod.Post))
+            @using (Html.BeginForm("submit_personalDetails", "Ticket", FormMethod.Get))
             {
-
                 <br />
                 <i> <strong>First Name :</strong> </i> <div class="textbox"> @Html.TextBoxFor(m => m.firstName) @Html.ValidationMessageFor(x => x.firstName) </div>
                 <br />
@@ -63,10 +61,16 @@
                 <br />
                 <i><strong>Passport : </strong></i><div class="textbox">  @Html.TextBoxFor(m => m.passport) @Html.ValidationMessageFor(x => x.passport)</div>
                 <br />
-                <i><strong>Age : </strong></i><div class="textbox">  @Html.TextBoxFor(m => m.age) @Html.ValidationMessageFor(x => x.age)</div>
+
+                <!-- Safe input that user cannot change-->
+                <i><strong>Flight Number</strong></i> <input readonly value="@Model.flyNUmber" name="flyNUmber" />
                 <br />
+                <i><strong>Seat</strong></i> <input readonly value="@Model.seat" name="seat" />
                 <br />
-                <i><strong>Password: </strong></i><div class="textbox">  @Html.TextBoxFor(m => m.password1)</div>
+
+                <i><strong>Number Order</strong></i> <input readonly value="@Model.orderNumber"  name="orderNumber" />
+                <br />
+
                 <br /><br />
                 <input id="sub_botton" type="submit" value="Submit" />
 
@@ -75,9 +79,13 @@
         </div>
 
     </div>
+
+
 </body>
 
 
 
 
 </html>
+
+

@@ -1,0 +1,50 @@
+﻿@model TravelAgency.Models.order
+
+@{
+    ViewBag.Title = "payment";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <link href="@Url.Content("~/CSS/NavBar1.css")"
+          rel="stylesheet" type="text/css" />
+
+    <link href="@Url.Content("~/CSS/home2.css")"
+          rel="stylesheet" type="text/css" />
+
+
+    <title>home</title>
+
+    <script src="https://kit.fontawesome.com/c681bde18b.js" crossorigin="anonymous"></script>
+
+    <meta name="viewport" content="width=device-width" />
+</head>
+
+<body>
+    <div class="topnav">
+        <a class="active" href="/Home/home">Home</a>
+
+        <a href="/Home/MyFlights">My Flights</a>
+
+        <div class="floatRight">
+            <a href="/Home/login">Log In</a>
+            <a href="/Home/signUp">Sign Up  </a>
+        </div>
+    </div>
+
+
+
+    @Model.price
+    <br />
+    @Model.flyNumber
+    <br />
+    @Model.numberOrder
+
+
+</body>
+
+
+</html>
