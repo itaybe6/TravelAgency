@@ -1,7 +1,7 @@
 ﻿
 
 body {
-    background-image: url('/Photos/5.jpg');
+    background-image: url('/Photos/7.jpg');
     background-color: #cccccc;
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -93,4 +93,11 @@ select {
     color: #87CEFA;
     border: none;
     padding: 7px;
+}
+
+
+#enterFly2{
+    display:none;
+
+
 }

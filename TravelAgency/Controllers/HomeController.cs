@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
 using TravelAgency.Dal;
 using TravelAgency.Models;
 using TravelAgency.ViewModel;
+
+
+
 
 namespace TravelAgency.Controllers
 {
@@ -84,14 +88,26 @@ namespace TravelAgency.Controllers
             List<Fly> list = dal.FlyDB.ToList<Fly>();
             List<Fly> filterList = new List<Fly>();
 
-            //
-            foreach (Fly fly in list)
+
+            if (Request.Form["dateFrom"] == "")
             {
-                //להוסיף בדיקה אם מוסיפים נאל
-                if(fly.sourceFly == Request.Form["Source"].ToString() && Convert.ToDateTime(Request.Form["dateFrom"]) == fly.dateFly && fly.destination == Request.Form["dis"] && fly.aviableSeat > 0 && fly.aviableSeat >= Int32.Parse(Request.Form["numTicket"]))
-                    filterList.Add(fly);
+                //enter all the flight without date limit
+                foreach (Fly fly in list)
+                {
+                    if (fly.sourceFly == Request.Form["Source"].ToString() && fly.destination == Request.Form["dis"] && fly.aviableSeat > 0 && fly.aviableSeat >= Int32.Parse(Request.Form["numTicket"]))
+                        filterList.Add(fly);
+                }
+            }
+            else{
+                foreach (Fly fly in list)
+                {
+                    if (fly.sourceFly == Request.Form["Source"].ToString() && Convert.ToDateTime(Request.Form["dateFrom"]) == fly.dateFly && fly.destination == Request.Form["dis"] && fly.aviableSeat > 0 && fly.aviableSeat >= Int32.Parse(Request.Form["numTicket"]))
+                        filterList.Add(fly);
+
+                }
 
             }
+            
             orderDal dalOrder = new orderDal();
             Random rnd = new Random();
             order ord = new order();
@@ -107,11 +123,12 @@ namespace TravelAgency.Controllers
 
             TempData["order"]=ord.numberOrder;
             
-
-            
             FlyViewModel temp = new FlyViewModel();
             temp.fly = new Fly();
             temp.flyList = filterList;
+            temp.increase = filterList.OrderBy(p => p.price).ToList();
+            temp.decrease = filterList.OrderByDescending(p => p.price).ToList();
+
             return View("showFlights_oneWay",temp);
 
         }

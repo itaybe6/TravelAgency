@@ -1,6 +1,6 @@
 ﻿@model TravelAgency.ViewModel.FlyViewModel
 @using TravelAgency.Models;
-@using Newtonsoft.Json
+@using Newtonsoft.Json;
 
 
 @{
@@ -20,7 +20,7 @@
           rel="stylesheet" type="text/css" />
 
 
-   
+
     <title>showFlights</title>
 
     <meta name="viewport" content="width=device-width" />
@@ -47,47 +47,129 @@
 
 
 
+    <div id="tbl_one">
+        <table id="tbl1" cellpadding="10px">
 
-    <table id="tbl1" cellpadding="10px">
-
-        <tr>
-            <th>Flight Number</th>
-            <th>Source</th>
-            <th>Distanation</th>
-            <th>Date Flight</th>
-            <th>Time Flight</th>
-            <th>Date Landing</th>
-            <th>Time Landing</th>
-            <th>Aviable Seats</th>
-            <th>Price</th>
-
-        </tr>
-
-
-        @foreach (Fly fly in Model.flyList)
-        {
             <tr>
-                <td>@fly.flyNumber</td>
-                <td>@fly.sourceFly</td>
-                <td>@fly.destination</td>
-                <td>@fly.dateFly</td>
-                <td>@fly.timeFly</td>
-                <td>@fly.dateLanding</td>
-                <td>@fly.timeLanding</td>
-                <td>@fly.aviableSeat </td>
-                <td>@fly.price</td>
-                <td> <a href="~/Views/Home/ShowSeats/@fly.flyNumber/@TempData["order"]">Choose Seats</a></td>
-
-
-
+                <th>Flight Number</th>
+                <th>Source</th>
+                <th>Distanation</th>
+                <th>Date Flight</th>
+                <th>Time Flight</th>
+                <th>Date Landing</th>
+                <th>Time Landing</th>
+                <th>Aviable Seats</th>
+                <th>Price</th>
 
             </tr>
 
 
 
-        }
+            @foreach (Fly fly in Model.flyList)
+            {
+                <tr>
+                    <td>@fly.flyNumber</td>
+                    <td>@fly.sourceFly</td>
+                    <td>@fly.destination</td>
+                    <td>@fly.dateFly</td>
+                    <td>@fly.timeFly</td>
+                    <td>@fly.dateLanding</td>
+                    <td>@fly.timeLanding</td>
+                    <td>@fly.aviableSeat </td>
+                    <td>@fly.price</td>
+                    <td> <a href="~/Views/Home/ShowSeats/@fly.flyNumber/@TempData["order"]">Choose Seats</a></td>
 
-    </table>
+                </tr>
+
+            }
+
+        </table>
+
+    </div>
+
+
+    <div id="tbl_two">
+
+        <table id="tbl1" cellpadding="10px">
+
+            <tr>
+                <th>Flight Number</th>
+                <th>Source</th>
+                <th>Distanation</th>
+                <th>Date Flight</th>
+                <th>Time Flight</th>
+                <th>Date Landing</th>
+                <th>Time Landing</th>
+                <th>Aviable Seats</th>
+                <th>Price</th>
+
+            </tr>
+
+
+
+            @foreach (Fly fly in Model.increase)
+            {
+                <tr>
+                    <td>@fly.flyNumber</td>
+                    <td>@fly.sourceFly</td>
+                    <td>@fly.destination</td>
+                    <td>@fly.dateFly</td>
+                    <td>@fly.timeFly</td>
+                    <td>@fly.dateLanding</td>
+                    <td>@fly.timeLanding</td>
+                    <td>@fly.aviableSeat </td>
+                    <td>@fly.price</td>
+                    <td> <a href="~/Views/Home/ShowSeats/@fly.flyNumber/@TempData["order"]">Choose Seats</a></td>
+
+                </tr>
+
+            }
+
+        </table>
+
+    </div>
+
+
+    <div id="tbl_three">
+
+        <table id="tbl1" cellpadding="10px">
+
+            <tr>
+                <th>Flight Number</th>
+                <th>Source</th>
+                <th>Distanation</th>
+                <th>Date Flight</th>
+                <th>Time Flight</th>
+                <th>Date Landing</th>
+                <th>Time Landing</th>
+                <th>Aviable Seats</th>
+                <th>Price</th>
+
+            </tr>
+
+
+
+            @foreach (Fly fly in Model.increase)
+            {
+                <tr>
+                    <td>@fly.flyNumber</td>
+                    <td>@fly.sourceFly</td>
+                    <td>@fly.destination</td>
+                    <td>@fly.dateFly</td>
+                    <td>@fly.timeFly</td>
+                    <td>@fly.dateLanding</td>
+                    <td>@fly.timeLanding</td>
+                    <td>@fly.aviableSeat </td>
+                    <td>@fly.price</td>
+                    <td> <a href="~/Views/Home/ShowSeats/@fly.flyNumber/@TempData["order"]">Choose Seats</a></td>
+
+                </tr>
+
+            }
+
+        </table>
+
+    </div>
 
 
     <form id="orderForm" action="orderFlight">
@@ -103,48 +185,52 @@
 
     </form>
 
-    <button onclick="order_by()">submit</button>
+    <button id="sub" onclick="order_by()">submit</button>
 
     <script type="text/javascript">
 
-               function order_by() {
-                var select = document.getElementById("orderBy");
-                var value = select.options[select.selectedIndex].value;
+       
+        let sub = document.getElementById("sub");
+        let element = document.getElementById("tbl_one");
+        let increase = document.getElementById("tbl_two");
+        let decrease = document.getElementById("tbl_three");
 
+        increase.style.display = "none";
+        decrease.style.display = "none";
 
-                   switch (value) {
+        function order_by() {
 
-                       case "price_increase":
+            var select = document.getElementById("orderBy");
+            var value = select.options[select.selectedIndex].value;
 
+            if (value == "price_increase") {
 
+                //increase option
+                sub.addEventListener("click", () => {
 
-                       break;
+                    decrease.style.display = "none";
+                    element.style.display = "none";
+                    increase.style.display = "block";
+                    
 
-
-                       case "price_decrease":
-
-
-                       break;
-
-                       case "most_popular":
-
-
-
-                       break;
-
-
-
-                   }
-
-
-
-
+                });
 
             }
-           
+            else if (value == "price_decrease") {
 
+                sub.addEventListener("click", () => {
 
-        
+                    decrease.style.display = "block";
+                    element.style.display = "none";
+                    increase.style.display = "none";
+                    
+
+                });
+
+            }
+            
+            
+        }
 
 
     </script>
@@ -154,3 +240,7 @@
 
 
 </html>
+
+
+
+
