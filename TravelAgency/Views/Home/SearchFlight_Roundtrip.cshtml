@@ -1,10 +1,9 @@
 ﻿@model TravelAgency.ViewModel.FlyViewModel
 @using TravelAgency.Models;
-@using Newtonsoft.Json;
 
 
 @{
-    ViewBag.Title = "showFlights";
+    ViewBag.Title = "SearchFlight_Roundtrip";
 }
 
 <html>
@@ -92,7 +91,7 @@
 
         <table id="tbl1" cellpadding="10px">
 
-            <tr >
+            <tr>
                 <th>Flight Number</th>
                 <th>Source</th>
                 <th>Distanation</th>
@@ -176,7 +175,7 @@
         <label id="orderLabel">Order by</label>
 
 
-        <select name="orderBy">
+        <select id="orderBy" name="orderBy">
             <option value="price_increase">price increase</option>
             <option value="price_decrease">price decrease</option>
             <option value="most_popular">most popular</option>
@@ -201,24 +200,23 @@
             var select = document.querySelector('[name=orderBy]');
             var value = select.value;
 
-            if (value == "price_increase") { 
+            if (value == "price_increase") {
 
                 //increase option
-                    decrease.style.display = "none";
-                    element.style.display = "none";
-                    increase.style.display = "block";
-  
+                decrease.style.display = "none";
+                element.style.display = "none";
+                increase.style.display = "block";
+
             }
             else if (value == "price_decrease") {
 
-                    decrease.style.display = "block";
-                    element.style.display = "none";
-                    increase.style.display = "none";
+                decrease.style.display = "block";
+                element.style.display = "none";
+                increase.style.display = "none";
 
             }
 
         }
-
 
     </script>
 
@@ -227,6 +225,7 @@
 
 
 </html>
+
 
 
 

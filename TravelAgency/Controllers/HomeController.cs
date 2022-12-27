@@ -82,6 +82,61 @@ namespace TravelAgency.Controllers
             return View();
         }
 
+        public ActionResult SearchFlight_Roundtrip()
+        {
+            FlyDal dal = new FlyDal();
+            List<Fly> list = dal.FlyDB.ToList<Fly>();
+            List<Fly> filterList = new List<Fly>();
+
+            if(Request.Form["dateFrom"] == "")
+            {
+                //להוסיף תנאי שלא יציג טיסות שכבר היו
+                //enter all the flight without date limit
+                foreach (Fly fly in list)
+                {
+                    if (fly.sourceFly == Request.Form["Source"].ToString() && fly.destination == Request.Form["dis"] && fly.aviableSeat > 0 && fly.aviableSeat >= Int32.Parse(Request.Form["numTicket"]))
+                        filterList.Add(fly);
+                }
+            }
+            else
+            {
+                foreach (Fly fly in list)
+                {
+                    if (fly.sourceFly == Request.Form["Source"].ToString() && Convert.ToDateTime(Request.Form["dateFrom"]) == fly.dateFly && fly.destination == Request.Form["dis"] && fly.aviableSeat > 0 && fly.aviableSeat >= Int32.Parse(Request.Form["numTicket"]))
+                        filterList.Add(fly);
+
+                }
+
+            }
+
+            orderDal dalOrder = new orderDal();
+            Random rnd = new Random();
+            order ord = new order();
+            int num = rnd.Next(1, 999999999);
+
+            ord.numberTicket = Int32.Parse(Request.Form["numTicket"]);
+            ord.numberOrder = num.ToString();
+            ord.checkNum = 1;
+            ord.chekin_return = "no";
+            ord.endDate = Convert.ToDateTime(Request.Form["dateEnd"]);
+            ord.price = 0;
+            dalOrder.orderDB.Add(ord);
+            dalOrder.SaveChanges();
+
+            TempData["order"] = ord.numberOrder;
+
+            FlyViewModel temp = new FlyViewModel();
+            temp.fly = new Fly();
+            temp.flyList = filterList;
+            temp.increase = filterList.OrderBy(p => p.price).ToList();
+            temp.decrease = filterList.OrderByDescending(p => p.price).ToList();
+
+
+            return View(temp);
+
+        }
+
+
         public ActionResult SearchFlight_oneWay()
         {
             FlyDal dal = new FlyDal();
@@ -91,6 +146,7 @@ namespace TravelAgency.Controllers
 
             if (Request.Form["dateFrom"] == "")
             {
+                //להוסיף תנאי שלא יציג טיסות שכבר היו
                 //enter all the flight without date limit
                 foreach (Fly fly in list)
                 {
@@ -116,7 +172,8 @@ namespace TravelAgency.Controllers
             ord.numberTicket = Int32.Parse(Request.Form["numTicket"]);
             ord.numberOrder = num.ToString();
             ord.checkNum = 1;
-            
+            ord.chekin_return = "yes";
+            ord.price = 0;
 
             dalOrder.orderDB.Add(ord);
             dalOrder.SaveChanges();
@@ -133,8 +190,7 @@ namespace TravelAgency.Controllers
 
         }
 
-
-
+        
         public ActionResult showSeats(string flyNum ,string orderNum)
         {
             seatDal dal = new seatDal();
@@ -146,7 +202,7 @@ namespace TravelAgency.Controllers
             order order = dalOrder.orderDB.Where(o => o.numberOrder == orderNum).FirstOrDefault();
             FlyDal flydal = new FlyDal();
             Fly f = flydal.FlyDB.Where(o => o.flyNumber== flyNum).FirstOrDefault();
-            order.price = f.price * order.numberTicket;
+            order.price += f.price;
             order.flyNumber = flyNum;
             dalOrder.SaveChanges();
 
@@ -174,11 +230,48 @@ namespace TravelAgency.Controllers
 
         
         public ActionResult personal_details (string flyNum , int row , string col,string orderNum) {
+
             Ticket ticket= new Ticket();
             ticket.flyNUmber = flyNum;
             ticket.seat = row.ToString() + col;
             ticket.orderNumber = orderNum;
-            return View("personal_details", ticket);
+
+            orderDal orderDal= new orderDal();
+            order order = orderDal.orderDB.Where(o => o.numberOrder== orderNum).FirstOrDefault();
+            if(order.chekin_return == "yes" && order.checkNum != order.numberTicket)
+            {
+                seatDal seDal = new seatDal();
+                List<seat> list2 = seDal.seatDB.ToList<seat>();
+                List<seat> filterlist = new List<seat>();
+                FlyDal flyDal = new FlyDal();
+                Fly t = flyDal.FlyDB.Where(o => o.flyNumber == ticket.flyNUmber).FirstOrDefault();
+
+                order.checkNum += 1;
+                order.price += t.price;
+                orderDal.SaveChanges();
+                TempData["order"] = ticket.orderNumber;
+                TempData["seatNum"] = order.checkNum;
+
+                for (int i = 1; i <= list2.Count / 6; i++)
+                {
+                    foreach (seat seat in list2)
+                    {
+                        //add all the list with flynum 
+                        if (seat.flyNumber == ticket.flyNUmber && seat.rowSeat == i)
+                            filterlist.Add(seat);
+
+                    }
+
+                }
+                seatViewModel temp = new seatViewModel();
+                temp.seatList = filterlist;
+                return View("showSeats", temp);
+            }
+
+            else if (order.chekin_return == "yes" && order.checkNum == order.numberTicket)
+                return View("payment", order);
+
+            else return View("personal_details", ticket);
         }
 
 
@@ -218,20 +311,17 @@ namespace TravelAgency.Controllers
             //move to page according the number of tickets that have to order
             orderDal dalOrder = new orderDal();
             order order = dalOrder.orderDB.Where(o => o.numberOrder == ticket.orderNumber).FirstOrDefault();
+            
 
-            //end of the order
-            if (order.checkNum == order.numberTicket)
-            {
-                return View("payment",order);
-
-            }
-
-            //all round the order
-            else
+            if(order.checkNum != order.numberTicket)
             {
                 List<seat> list2 = seDal.seatDB.ToList<seat>();
                 List<seat> filterlist = new List<seat>();
+                FlyDal flyDal = new FlyDal();
+                Fly t = flyDal.FlyDB.Where(o => o.flyNumber == ticket.flyNUmber).FirstOrDefault();
+
                 order.checkNum += 1;
+                order.price += t.price;
                 dalOrder.SaveChanges();
                 TempData["order"] = ticket.orderNumber;
                 TempData["seatNum"] = order.checkNum;
@@ -250,8 +340,40 @@ namespace TravelAgency.Controllers
                 seatViewModel temp = new seatViewModel();
                 temp.seatList = filterlist;
                 return View("showSeats", temp);
+            }
+            else if(order.checkNum == order.numberTicket && order.chekin_return == "no")
+            {
+                //now we want to display the return flight
+                order.chekin_return= "yes";
+                order.checkNum = 1;
+                
+                TempData["order"] = order.numberOrder;
+
+                //search all the flight that we need
+                FlyDal flydal = new FlyDal();
+                Fly fly = flydal.FlyDB.Where(t => t.flyNumber == order.flyNumber).FirstOrDefault();
+                List<Fly> flyList = flydal.FlyDB.Where(w => w.sourceFly == fly.destination && w.destination == fly.sourceFly && w.dateFly == order.endDate).ToList();
+
+
+                //send the order list
+                FlyViewModel temp = new FlyViewModel();
+                temp.fly = new Fly();
+                temp.flyList = flyList;
+                temp.increase = flyList.OrderBy(p => p.price).ToList();
+                temp.decrease = flyList.OrderByDescending(p => p.price).ToList();
+
+                dalOrder.SaveChanges();
+                return View("SearchFlight_Roundtrip", temp);
 
             }
+            //end of the order
+            else 
+            {
+                return View("payment",order);
+
+            }
+            
+
 
         }
 

@@ -12,12 +12,69 @@
 .tbl1 {
     padding: 20px;
     background: #000000b0;
-    border-radius: 20px;
+    border-radius: 329px 329px 100px 100px;
     color: white;
     font-size: 30px;
+    PADDING-TOP: 250;
+    margin-top: 50px;
+    padding-left: 60px;
 }
-#up{
-    position:absolute;
-    left:100px;
+#up {
+    position: absolute;
+    left: 658px;
+    TOP: 333px;
+    FONT-SIZE: 50PX;
+    COLOR: WHITE;
+    font-family: fantasy;
+}
 
+#up2 {
+    position: absolute;
+    left: 769px;
+    TOP: 333px;
+    FONT-SIZE: 50PX;
+    COLOR: WHITE;
+    font-family: fantasy;
+}
+#up3 {
+    position: absolute;
+    left: 880px;
+    TOP: 333px;
+    FONT-SIZE: 50PX;
+    COLOR: WHITE;
+    font-family: fantasy;
+}
+#up4 {
+    position: absolute;
+    left: 991px;
+    TOP: 333px;
+    FONT-SIZE: 50PX;
+    COLOR: WHITE;
+    font-family: fantasy;
+}
+#up5 {
+    position: absolute;
+    left: 1105px;
+    TOP: 333px;
+    FONT-SIZE: 50PX;
+    COLOR: WHITE;
+    font-family: fantasy;
+}
+#up6 {
+    position: absolute;
+    left: 1220px;
+    TOP: 333px;
+    FONT-SIZE: 50PX;
+    COLOR: WHITE;
+    font-family: fantasy;
+}
+
+
+#seatNum {
+    position: absolute;
+    font-size: 30px;
+    COLOR: WHITE;
+    font-family: fantasy;
+    left: 783px;
+    top: 250px;
 }

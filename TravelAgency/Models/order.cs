@@ -21,6 +21,11 @@ namespace TravelAgency.Models
         //number of ticket that have to enter details
         public int checkNum { get; set;}
 
+        public DateTime endDate { get; set; }
+
+        public string chekin_return { get; set; }
+
+
 
     }
 }

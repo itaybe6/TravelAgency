@@ -222,6 +222,7 @@
     <Content Include="Views\Home\showSeats.cshtml" />
     <Content Include="Views\Home\personal_details.cshtml" />
     <Content Include="Views\Home\payment.cshtml" />
+    <Content Include="Views\Home\SearchFlight_Roundtrip.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

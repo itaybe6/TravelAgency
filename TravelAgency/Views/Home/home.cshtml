@@ -41,9 +41,10 @@
     <div id="enterFly">
         <div class="titleFly">
 
-            <h1> <strong>Choose your next fly... </strong> </h1>
+            <h1> <strong>Search One Way Flight..</strong> </h1>
 
         </div>
+
 
         <form action="SearchFlight_oneWay" method="post">
 
@@ -584,11 +585,11 @@
     <div id="RoundtripForm">
         <div class="titleFly">
 
-            <h1> <strong>Choose your next fly... </strong> </h1>
+            <h1> <strong>Search Your Roundtrip</strong> </h1>
 
         </div>
 
-        <form action="SearchFlight_oneWay" method="post">
+        <form action="SearchFlight_Roundtrip" method="post">
 
             <div id="enterFlyForm">
 
@@ -1125,32 +1126,47 @@
     </div>
 
 
-
-    <button id="Roundtrip" >Roundtrip</button>
+    <button id="oneWay" onclick="showDiv('enterFly')">One Way</button>
+    <button id="Roundtrip" onclick="showDiv('RoundtripForm')">Roundtrip</button>
 
 
     <script type="text/javascript">
 
-
-        let oneWayForm = document.getElementById("enterFly");
-        let RoundtripForm = document.getElementById("RoundtripForm");
-        let Rbutton = document.getElementById("Roundtrip");
-
         RoundtripForm.style.display = "none";
+        oneWay.style.display = "none";
 
-       
+        function showDiv(divId) {
+            var oneWayForm = document.getElementById("enterFly");
+            var RoundtripForm = document.getElementById("RoundtripForm");
+            var Roundtrip = document.getElementById("Roundtrip");
+            var oneWay = document.getElementById("oneWay");
 
-            Rbutton.addEventListener("click", () => {
+            if (divId === 'RoundtripForm') {
+                RoundtripForm.style.display = 'block';
+                oneWayForm.style.display = 'none';
+                Roundtrip.style.display = 'none';
+                oneWay.style.display = 'block';
 
-                oneWayForm.style.display = none;
-                RoundtripForm.style.display = block;
-                alert("123");
+            }
+            else {
+                RoundtripForm.style.display = 'none';
+                oneWayForm.style.display = 'block';
+                Roundtrip.style.display = 'block';
+                oneWay.style.display = 'none';
 
-            });
-           
 
 
-        
+            }
+
+
+
+        }
+
+
+
+
+
+
 
 
     </script>
