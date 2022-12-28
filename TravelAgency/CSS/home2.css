@@ -91,7 +91,7 @@ select {
     top: 10px;
     border-radius: 6px;
     font-size: 20px;
-    background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ffd6 100%);
+    background-image: radial-gradient(100% 100% at 100% 0, #f3f3f3 0, #223b48d6 100%);
     border: 0;
     color: white;
     padding: 10px;
@@ -116,7 +116,7 @@ select {
     top: 201px;
     border-radius: 6px;
     font-size: 20px;
-    background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ffd6 100%);
+    background-image: radial-gradient(100% 100% at 100% 0, #f3f3f3 0, #223b48d6 100%);
     border: 0;
     color: white;
     padding: 10px;
@@ -139,14 +139,14 @@ select {
     top: 201px;
     border-radius: 6px;
     font-size: 20px;
-    background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ffd6 100%);
+    background-image: radial-gradient(100% 100% at 100% 0, #f3f3f3 0, #223b48d6 100%);
     border: 0;
     color: white;
     padding: 10px;
 }
 
 #test12 {
-    background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ffd6 100%);
+    background-image: radial-gradient(100% 100% at 100% 0, #0095ff 0, #ffffffd6 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -168,3 +168,7 @@ select {
     top: 175px;
     color: #0000009e;
 }
+
+
+
+
