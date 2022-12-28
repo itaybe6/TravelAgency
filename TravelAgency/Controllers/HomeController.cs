@@ -85,29 +85,27 @@ namespace TravelAgency.Controllers
         public ActionResult SearchFlight_Roundtrip()
         {
             FlyDal dal = new FlyDal();
-            List<Fly> list = dal.FlyDB.ToList<Fly>();
-            List<Fly> filterList = new List<Fly>();
+            List<Fly> filterList;
 
-            if(Request.Form["dateFrom"] == "")
+            string source = Request.Form["Source"].ToString();
+            string dis = Request.Form["dis"].ToString();
+            int numTicket = Int32.Parse(Request.Form["numTicket"]);
+            DateTime dateTime= DateTime.Now;
+            DateTime dateFly;
+
+
+
+            //if the user dont enter flight date
+            if (Request.Form["dateFrom"] == "")
             {
-                //להוסיף תנאי שלא יציג טיסות שכבר היו
-                //enter all the flight without date limit
-                foreach (Fly fly in list)
-                {
-                    if (fly.sourceFly == Request.Form["Source"].ToString() && fly.destination == Request.Form["dis"] && fly.aviableSeat > 0 && fly.aviableSeat >= Int32.Parse(Request.Form["numTicket"]))
-                        filterList.Add(fly);
-                }
+                filterList = dal.FlyDB.Where(f => f.sourceFly == source && f.destination == dis && f.aviableSeat >= numTicket && f.dateFly > dateTime).ToList();
             }
             else
             {
-                foreach (Fly fly in list)
-                {
-                    if (fly.sourceFly == Request.Form["Source"].ToString() && Convert.ToDateTime(Request.Form["dateFrom"]) == fly.dateFly && fly.destination == Request.Form["dis"] && fly.aviableSeat > 0 && fly.aviableSeat >= Int32.Parse(Request.Form["numTicket"]))
-                        filterList.Add(fly);
-
-                }
-
+                dateFly = DateTime.Parse(Request.Form["dateFrom"]);
+                filterList = dal.FlyDB.Where(f => f.sourceFly == source && f.destination == dis && f.aviableSeat >= numTicket && f.dateFly > dateTime && f.dateFly == dateFly && f.dateFly > dateTime).ToList();
             }
+
 
             orderDal dalOrder = new orderDal();
             Random rnd = new Random();
@@ -140,30 +138,26 @@ namespace TravelAgency.Controllers
         public ActionResult SearchFlight_oneWay()
         {
             FlyDal dal = new FlyDal();
-            List<Fly> list = dal.FlyDB.ToList<Fly>();
-            List<Fly> filterList = new List<Fly>();
+            List<Fly> filterList;
+
+            string source = Request.Form["Source"].ToString();
+            string dis = Request.Form["dis"].ToString();
+            int numTicket = Int32.Parse(Request.Form["numTicket"]);
+            DateTime dateTime = DateTime.Now;
+            DateTime dateFly;
 
 
+            //if the user dont enter flight date
             if (Request.Form["dateFrom"] == "")
             {
-                //להוסיף תנאי שלא יציג טיסות שכבר היו
-                //enter all the flight without date limit
-                foreach (Fly fly in list)
-                {
-                    if (fly.sourceFly == Request.Form["Source"].ToString() && fly.destination == Request.Form["dis"] && fly.aviableSeat > 0 && fly.aviableSeat >= Int32.Parse(Request.Form["numTicket"]))
-                        filterList.Add(fly);
-                }
+                filterList = dal.FlyDB.Where(f => f.sourceFly == source && f.destination == dis && f.aviableSeat >= numTicket && f.dateFly > dateTime).ToList();
             }
-            else{
-                foreach (Fly fly in list)
-                {
-                    if (fly.sourceFly == Request.Form["Source"].ToString() && Convert.ToDateTime(Request.Form["dateFrom"]) == fly.dateFly && fly.destination == Request.Form["dis"] && fly.aviableSeat > 0 && fly.aviableSeat >= Int32.Parse(Request.Form["numTicket"]))
-                        filterList.Add(fly);
-
-                }
-
+            else
+            {
+                dateFly= DateTime.Parse(Request.Form["dateFrom"]);
+                filterList = dal.FlyDB.Where(f => f.sourceFly == source && f.destination == dis && f.aviableSeat >= numTicket && f.dateFly > dateTime && f.dateFly == dateFly && f.dateFly > dateTime).ToList();
             }
-            
+
             orderDal dalOrder = new orderDal();
             Random rnd = new Random();
             order ord = new order();
@@ -172,7 +166,6 @@ namespace TravelAgency.Controllers
             ord.numberTicket = Int32.Parse(Request.Form["numTicket"]);
             ord.numberOrder = num.ToString();
             ord.checkNum = 1;
-            ord.chekin_return = "yes";
             ord.price = 0;
 
             dalOrder.orderDB.Add(ord);
@@ -385,8 +378,27 @@ namespace TravelAgency.Controllers
         }
 
 
+        public ActionResult submitPay()
+        {
+            //if the user want to save is details
+            if (Request.Form["keep-credit-info"] == "yes")
+            {
+                creditDal dal= new creditDal();
+                creditCards creadit = new creditCards();
+                creadit.number = Request.Form["cardNumber"];
+                creadit.month = Request.Form["month"];
+                creadit.year = Request.Form["year"];
+                creadit.number = Request.Form["passport"];
+                dal.creditDB.Add(creadit);
+                dal.SaveChanges();  
 
-       
+            }
+            return View("paySuccess");
+        }
+
+
+
+
     }
 
 

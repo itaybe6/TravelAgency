@@ -1,7 +1,7 @@
 ﻿
 
 body {
-    background-image: url('/Photos/7.jpg');
+    background-image: url('/Photos/11.jpg');
     background-color: #cccccc;
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -11,11 +11,12 @@ body {
 .titleFly {
     width: 700px;
     font-family: "Open Sans", sans-serif;
-    background-color: rgb(0,0,0,0.8);
-    color: #87CEFA;
+    background-color: rgb(6 6 6 / 94%);
     padding: 1px 0px 1px 5px;
     text-align: left;
     border-radius: 15px 15px 0px 0px;
+
+  
 }
 
 
@@ -54,7 +55,7 @@ input[type="date"] {
 }
 
 ::-webkit-calendar-picker-indicator {
-    background-color: #87CEFA;
+    background-color: white;
     border-radius: 3px;
 }
 
@@ -85,16 +86,24 @@ select {
 
 #findFly {
     position: relative;
-    font-size: 30px;
-    background: rgb(0,0,0,0.3);
-    border-radius: 5px;
+    font-size: 50px;
     left: 280px;
     top: 10px;
-    color: #87CEFA;
-    border: none;
-    padding: 7px;
+    border-radius: 6px;
+    font-size: 20px;
+    background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ffd6 100%);
+    border: 0;
+    color: white;
+    padding: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
 }
 
+    #findFly:hover {
+        box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        -webkit-transform: scale(1.1);
+        transform: translateY(2px);
+    }
 
 #enterFly2{
     display:none;
@@ -102,4 +111,60 @@ select {
 }
 #oneWay {
     display: none;
+    position: absolute;
+    left: 620px;
+    top: 201px;
+    border-radius: 6px;
+    font-size: 20px;
+    background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ffd6 100%);
+    border: 0;
+    color: white;
+    padding: 10px;
+}
+
+    #oneWay:hover {
+        box-shadow: 0 0 20px white;
+        -webkit-transform: scale(1.1);
+        transform: translateY(2px);
+    }
+
+    #RoundtripForm {
+        margin: 0px 100px 300px 50px;
+        margin-top: 100px;
+    }
+
+#Roundtrip {
+    position: absolute;
+    left: 620px;
+    top: 201px;
+    border-radius: 6px;
+    font-size: 20px;
+    background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ffd6 100%);
+    border: 0;
+    color: white;
+    padding: 10px;
+}
+
+#test12 {
+    background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ffd6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#Roundtrip:hover {
+    box-shadow: 0 0 20px white;
+    -webkit-transform: scale(1.1);
+    transform: translateY(2px);
+}
+
+
+
+#travel {
+    position: absolute;
+    font-size: 40px;
+    font-weight: 900;
+    font-family: Impact, fantasy;
+    left: 1265px;
+    top: 175px;
+    color: #0000009e;
 }

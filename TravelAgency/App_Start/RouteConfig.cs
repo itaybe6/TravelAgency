@@ -21,7 +21,7 @@ namespace Project_TravelAgency
                 url: "passenger1/submit_SignUp",
                 defaults: new { controller = "Home", action = "submit_SignUp", id = UrlParameter.Optional }
             );
-
+            
             routes.MapRoute(
                name: "enterLogin",
                url: "passenger1/enterLogin",
@@ -74,6 +74,12 @@ namespace Project_TravelAgency
                 name: "orderFlight",
                 url: "Home/orderFlight{temp}",
                 defaults: new { controller = "Home", action = "orderFlight", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "submitPay",
+                url: "Ticket/submitPay/{keepCreditInfo}",
+                defaults: new { controller = "Home", action = "submitPay", id = UrlParameter.Optional, keepCreditInfo = false }
             );
 
 

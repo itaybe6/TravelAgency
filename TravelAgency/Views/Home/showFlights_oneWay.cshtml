@@ -50,7 +50,7 @@
     <div id="tbl_one">
         <table id="tbl1" cellpadding="10px">
 
-            <tr>
+            <tr class="tr1">
                 <th>Flight Number</th>
                 <th>Source</th>
                 <th>Distanation</th>
@@ -71,13 +71,13 @@
                     <td>@fly.flyNumber</td>
                     <td>@fly.sourceFly</td>
                     <td>@fly.destination</td>
-                    <td>@fly.dateFly</td>
+                    <td>@fly.dateFly.ToShortDateString()</td>
                     <td>@fly.timeFly</td>
-                    <td>@fly.dateLanding</td>
+                    <td>@fly.dateLanding.ToShortDateString()</td>
                     <td>@fly.timeLanding</td>
                     <td>@fly.aviableSeat </td>
                     <td>@fly.price</td>
-                    <td> <a href="~/Views/Home/ShowSeats/@fly.flyNumber/@TempData["order"]">Choose Seats</a></td>
+                    <td> <a href="~/Views/Home/ShowSeats/@fly.flyNumber/@TempData["order"]" class="chooseSeat" >Choose Seats</a></td>
 
                 </tr>
 
@@ -113,13 +113,13 @@
                     <td>@fly.flyNumber</td>
                     <td>@fly.sourceFly</td>
                     <td>@fly.destination</td>
-                    <td>@fly.dateFly</td>
+                    <td>@fly.dateFly.ToShortDateString()</td>
                     <td>@fly.timeFly</td>
-                    <td>@fly.dateLanding</td>
+                    <td>@fly.dateLanding.ToShortDateString()</td>
                     <td>@fly.timeLanding</td>
                     <td>@fly.aviableSeat </td>
                     <td>@fly.price</td>
-                    <td> <a href="~/Views/Home/ShowSeats/@fly.flyNumber/@TempData["order"]">Choose Seats</a></td>
+                    <td> <a href="~/Views/Home/ShowSeats/@fly.flyNumber/@TempData["order"]" class="chooseSeat">Choose Seats</a></td>
 
                 </tr>
 
@@ -155,13 +155,13 @@
                     <td>@fly.flyNumber</td>
                     <td>@fly.sourceFly</td>
                     <td>@fly.destination</td>
-                    <td>@fly.dateFly</td>
+                    <td>@fly.dateFly.ToShortDateString()</td>
                     <td>@fly.timeFly</td>
-                    <td>@fly.dateLanding</td>
+                    <td>@fly.dateLanding.ToShortDateString()</td>
                     <td>@fly.timeLanding</td>
                     <td>@fly.aviableSeat </td>
                     <td>@fly.price</td>
-                    <td> <a href="~/Views/Home/ShowSeats/@fly.flyNumber/@TempData["order"]">Choose Seats</a></td>
+                    <td> <a href="~/Views/Home/ShowSeats/@fly.flyNumber/@TempData["order"]" class="chooseSeat">Choose Seats</a></td>
 
                 </tr>
 
@@ -176,7 +176,7 @@
         <label id="orderLabel">Order by</label>
 
 
-        <select name="orderBy">
+        <select id="orderBy" name="orderBy">
             <option value="price_increase">price increase</option>
             <option value="price_decrease">price decrease</option>
             <option value="most_popular">most popular</option>

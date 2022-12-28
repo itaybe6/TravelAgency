@@ -27,9 +27,15 @@
 <body>
     <!-- navigation bar-->
     <div class="topnav">
-        <a class="active" href="/Home/home">Home</a>
 
-        <a href="/Home/MyFlights">My Flights</a>
+        <a id="logo1" href="~/admin/adminHome">
+            <img src="~/Photos/logo.png" alt="Logo" style="width:80px;">
+        </a>
+
+        <div class="left">
+            <a href="/Home/home">Home</a>
+            <a href="/Home/MyFlights">My Flights</a>
+        </div>
 
         <div class="floatRight">
             <a href="/Home/login">Log In</a>
@@ -38,15 +44,18 @@
     </div>
 
 
+    <div class="img1"></div>
+
+
     <div id="enterFly">
         <div class="titleFly">
 
-            <h1> <strong>Search One Way Flight..</strong> </h1>
+            <h1 id="test12"> <strong>Let the journey begin..</strong> </h1>
 
         </div>
 
 
-        <form action="SearchFlight_oneWay" method="post">
+        <form action="SearchFlight_oneWay" method="post" onsubmit="return validateDates()" >
 
             <div id="enterFlyForm">
 
@@ -61,7 +70,7 @@
                 <label class="dateLabel">Origin</label>
 
                 <!-- from where-->
-                <select id="country" name="Source" class="form-control">
+                <select id="countryS" name="Source" class="form-control">
                     <option value="Afghanistan">Afghanistan</option>
                     <option value="Aland Islands">Aland Islands</option>
                     <option value="Albania">Albania</option>
@@ -312,7 +321,7 @@
                 <!--to where -->
                 <label class="dateLabel">Destination</label>
 
-                <select id="country" name="dis" class="form-control">
+                <select id="countryD" name="dis" class="form-control">
                     <option value="Afghanistan">Afghanistan</option>
                     <option value="Aland Islands">Aland Islands</option>
                     <option value="Albania">Albania</option>
@@ -561,7 +570,7 @@
 
                 <br />
 
-                <label class="numberTicket">Number Ticket</label>
+                <label class="dateLabel">Number Ticket</label>
                 <select name="numTicket">
                     <option value=1>1</option>
                     <option value=2>2</option>
@@ -585,22 +594,22 @@
     <div id="RoundtripForm">
         <div class="titleFly">
 
-            <h1> <strong>Search Your Roundtrip</strong> </h1>
+            <h1 id="test12"> <strong>Let the journey begin..</strong> </h1>
 
         </div>
 
-        <form action="SearchFlight_Roundtrip" method="post">
+        <form action="SearchFlight_Roundtrip" method="post" onsubmit="return validateDates()">
 
             <div id="enterFlyForm">
 
                 <label class="dateLabel">Trip start date</label>
 
-                <input type="date" value="" name="dateFrom" />
+                <input type="date" value="" id ="dateFrom" name="dateFrom" required /> 
 
 
                 <label class="dateLabel">Trip end date</label>
 
-                <input type="date" value="" name="dateEnd" />
+                <input type="date" value="" id="dateEnd" name="dateEnd" required/>
 
                 <br /> <br />
 
@@ -608,7 +617,7 @@
                 <label class="dateLabel">Origin</label>
 
                 <!-- from where-->
-                <select id="country" name="Source" class="form-control">
+                <select id="countryS" name="Source" class="form-control">
                     <option value="Afghanistan">Afghanistan</option>
                     <option value="Aland Islands">Aland Islands</option>
                     <option value="Albania">Albania</option>
@@ -859,7 +868,7 @@
                 <!--to where -->
                 <label class="dateLabel">Destination</label>
 
-                <select id="country" name="dis" class="form-control">
+                <select id="countryD" name="dis" class="form-control">
                     <option value="Afghanistan">Afghanistan</option>
                     <option value="Aland Islands">Aland Islands</option>
                     <option value="Albania">Albania</option>
@@ -1130,6 +1139,7 @@
     <button id="Roundtrip" onclick="showDiv('RoundtripForm')">Roundtrip</button>
 
 
+    <label id="travel">Travel while you can..</label>
     <script type="text/javascript">
 
         RoundtripForm.style.display = "none";
@@ -1164,6 +1174,32 @@
 
 
 
+        function validateDates() {
+
+            var startDateInput = document.getElementById("dateFrom");
+            var endDateInput = document.getElementById("dateEnd");
+            var source = document.getElementById("countryS");
+            var dis = document.getElementById("countryD");
+
+
+
+            var startDate = new Date(startDateInput.value);
+            var endDate = new Date(endDateInput.value);
+
+            if (startDate > endDate) {
+                alert("The end trip date must to be greater from the start trip date");
+                return false;
+            }
+            if (source.value == dis.value) {
+                alert("Please choose a difrent country");
+                return false;
+            }
+            
+            return true;
+        }
+
+
+       
 
 
 

@@ -72,7 +72,8 @@ namespace TravelAgency.Controllers
                 return null;
 
             }
-           
+            temp.dateFly = temp.dateFly.Date;
+            temp.dateLanding = temp.dateLanding.Date;
             FlyDal dal = new FlyDal();
             dal.FlyDB.Add(temp);
             dal.SaveChanges();

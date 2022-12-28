@@ -15,6 +15,8 @@
     <link href="@Url.Content("~/CSS/home2.css")"
           rel="stylesheet" type="text/css" />
 
+    <link href="@Url.Content("~/CSS/payment.css")"
+          rel="stylesheet" type="text/css" />
 
     <title>home</title>
 
@@ -25,7 +27,10 @@
 
 <body>
     <div class="topnav">
-        <a class="active" href="/Home/home">Home</a>
+        <a id="logo1" href="~/admin/adminHome">
+            <img src="~/Photos/logo.png" alt="Logo" style="width:80px;">
+        </a>
+        <a href="/Home/home">Home</a>
 
         <a href="/Home/MyFlights">My Flights</a>
 
@@ -36,11 +41,84 @@
     </div>
 
 
+    <div class="titleFly">
 
-    @Model.price
-    <br />
-    <br />
-    @Model.numberOrder
+        <h1 id="payTitle"> <strong>Payment</strong> </h1>
+
+    </div>
+
+
+
+    <div id="payForm">
+
+        <form action="submitPay"  method="get">
+
+            <p id="p1">
+                Your number order is : <strong>@Model.numberOrder</strong>
+                <br />
+                The price is :<strong> @Model.price $</strong>
+
+            </p>
+
+
+
+            <label class="labels">Passport of the card owner </label>
+            <input class="inputs" type="text" required  id="passport" pattern="\d{8}"/>
+
+            <br />
+
+            <label class="labels">Card Number</label>
+            <input class="inputs" type="text" id="cardNumber" required pattern="\d{16}" />
+
+            <br />
+
+            <label class="labels" >Year</label>
+            <select class="inputs" id="year" required>
+                <option value=2023>2023</option>
+                <option value=2024>2024</option>
+                <option value=2025>2025</option>
+                <option value=2026>2026</option>
+                <option value=2027>2027</option>
+                <option value=2028>2028</option>
+                <option value=2029>2029</option>
+            </select>
+
+            <br />
+
+            <label class="labels">Month</label>
+
+            <select class="inputs" required>
+                <option value=1>01</option>
+                <option value=2>02</option>
+                <option value=3>03</option>
+                <option value=4>04</option>
+                <option value=5>05</option>
+                <option value=6>06</option>
+                <option value=7>07</option>
+                <option value=8>08</option>
+                <option value=9>09</option>
+                <option value=10>10</option>
+                <option value=11>11</option>
+                <option value=12>12</option>
+            </select>
+
+
+            <label class="labels">Keep credit information</label>
+            <input type="checkbox" id="keep-credit-info" name="keep-credit-info" value="yes">
+
+
+            <input id="pay" type="submit" value="Pay" />
+
+        </form>
+
+
+
+
+
+
+    </div>
+
+
 
 
 </body>

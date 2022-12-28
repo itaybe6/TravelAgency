@@ -39,14 +39,16 @@
         </a>
 
         <div id="topnav-left">
-            <a class="active" href="/Home/home">Home</a>
+            <a href="/Home/home">Home</a>
             <a href="/Home/MyFlights">My Flights</a>
-            <div class="floatRight">
+        </div>
+
+        <div class="floatRight">
                 <a href="/Home/login">Log In</a>
                 <a href="/Home/signUp">Sign Up  </a>
             </div>
 
-        </div>
+        
     </div>
 
 
@@ -65,7 +67,7 @@
         @for (int i = 1; i <= Model.seatList.Count / 6; i++)
         {
             <tr>
-
+                
                 @if (Model.seatList.Where(M => M.rowSeat == i && M.colSeat == "A").FirstOrDefault().available == "yes")
                 {
 
@@ -134,6 +136,16 @@
 
 
     </table>
+
+
+
+    <div id="numberSeats">
+        @for (int i = 1; i <= Model.seatList.Count / 6; i++)
+            {
+                @i <br /> 
+            }
+    </div>
+
 
 
 

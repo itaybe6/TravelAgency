@@ -129,6 +129,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\adminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Dal\creditDal.cs" />
     <Compile Include="Dal\FlyDal.cs" />
     <Compile Include="Dal\orderDal.cs" />
     <Compile Include="Dal\passenger1Dal.cs" />
@@ -142,6 +143,7 @@
       <DependentUpon>202212012004193_passenger1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\creditCards.cs" />
     <Compile Include="Models\Fly.cs" />
     <Compile Include="Models\order.cs" />
     <Compile Include="Models\passenger1.cs" />
@@ -153,10 +155,12 @@
     <Compile Include="ViewModel\seatViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CSS\payment.css" />
     <Content Include="CSS\showFlights_oneWay.css" />
     <Content Include="CSS\showSeats.css" />
     <Content Include="JS\editFly.js" />
     <Content Include="Photos\10.png" />
+    <Content Include="Photos\11.jpg" />
     <Content Include="Photos\4.jpg" />
     <Content Include="Photos\5.jpg" />
     <Content Include="Photos\6.jpg" />
@@ -223,6 +227,7 @@
     <Content Include="Views\Home\personal_details.cshtml" />
     <Content Include="Views\Home\payment.cshtml" />
     <Content Include="Views\Home\SearchFlight_Roundtrip.cshtml" />
+    <Content Include="Views\Home\paySuccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

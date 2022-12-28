@@ -2,10 +2,15 @@
     color:seagreen;
     
 }
+    .avaibleSeats:hover {
+        box-shadow: 0 0 20px white;
+        -webkit-transform: scale(1.1);
+        transform: scale(1,1);
+    }
 
-.avaibleSeats a{
-    width:35px;
-}
+    .avaibleSeats a {
+        width: 35px;
+    }
 #noAvaible{
     color:red;
 }
@@ -21,8 +26,8 @@
 }
 #up {
     position: absolute;
-    left: 658px;
-    TOP: 333px;
+    left: 643px;
+    TOP: 332px;
     FONT-SIZE: 50PX;
     COLOR: WHITE;
     font-family: fantasy;
@@ -30,40 +35,40 @@
 
 #up2 {
     position: absolute;
-    left: 769px;
-    TOP: 333px;
+    left: 750px;
+    TOP: 332px;
     FONT-SIZE: 50PX;
     COLOR: WHITE;
     font-family: fantasy;
 }
 #up3 {
     position: absolute;
-    left: 880px;
-    TOP: 333px;
+    left: 857px;
+    TOP: 332px;
     FONT-SIZE: 50PX;
     COLOR: WHITE;
     font-family: fantasy;
 }
 #up4 {
     position: absolute;
-    left: 991px;
-    TOP: 333px;
+    left: 967px;
+    TOP: 332px;
     FONT-SIZE: 50PX;
     COLOR: WHITE;
     font-family: fantasy;
 }
 #up5 {
     position: absolute;
-    left: 1105px;
-    TOP: 333px;
+    left: 1081px;
+    TOP: 332px;
     FONT-SIZE: 50PX;
     COLOR: WHITE;
     font-family: fantasy;
 }
 #up6 {
     position: absolute;
-    left: 1220px;
-    TOP: 333px;
+    left: 1188px;
+    TOP: 332px;
     FONT-SIZE: 50PX;
     COLOR: WHITE;
     font-family: fantasy;
@@ -77,4 +82,15 @@
     font-family: fantasy;
     left: 783px;
     top: 250px;
+}
+
+
+#numberSeats {
+    color: white;
+    font-family: fantasy;
+    font-size: 30px;
+    position: absolute;
+    left: 606px;
+    top: 378px;
+    line-height: 2.228;
 }
