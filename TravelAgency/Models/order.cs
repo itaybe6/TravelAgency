@@ -18,6 +18,8 @@ namespace TravelAgency.Models
 
         public string flyNumber { get; set; }
 
+        public string flyNumber2 { get; set; }
+
         //number of ticket that have to enter details
         public int checkNum { get; set;}
 

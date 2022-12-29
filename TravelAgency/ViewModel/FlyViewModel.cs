@@ -16,5 +16,8 @@ namespace TravelAgency.ViewModel
         public List<Fly> increase { get; set; }
 
         public List<Fly> decrease { get; set; }
+
+        public List<Fly> rated { get; set; }
+
     }
 }

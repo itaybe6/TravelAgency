@@ -11,8 +11,10 @@
     <link href="@Url.Content("~/CSS/NavBar1.css")"
           rel="stylesheet" type="text/css" />
 
+    <link href="@Url.Content("~/CSS/home2.css")"
+          rel="stylesheet" type="text/css" />
 
-    <link href="@Url.Content("~/CSS/signUp1.css")"
+    <link href="@Url.Content("~/CSS/personalDetails.css")"
           rel="stylesheet" type="text/css" />
 
 
@@ -50,33 +52,42 @@
             </div>
         </div>
     </div>
-    <div id="All">
+    <div id="enterFly">
 
-        <div class="titlesignup"> <h1> <strong>Personal Details </strong> </h1> </div>
+        <div class="titleFly"> 
 
-        <div class="signUpForm">
+            <h1 id="test12" > <strong>Personal Details </strong> </h1> 
+
+        </div>
+
+        <div id="enterFlyForm">
 
             @using (Html.BeginForm("submit_personalDetails", "Ticket", FormMethod.Get))
             {
-                <br />
-                <i> <strong>First Name :</strong> </i> <div class="textbox"> @Html.TextBoxFor(m => m.firstName) @Html.ValidationMessageFor(x => x.firstName) </div>
-                <br />
-                <i> <strong> Last Name : </strong></i><div class="textbox">  @Html.TextBoxFor(m => m.lastName) @Html.ValidationMessageFor(x => x.lastName)</div>
-                <br />
-                <i><strong>Passport : </strong></i><div class="textbox">  @Html.TextBoxFor(m => m.passport) @Html.ValidationMessageFor(x => x.passport)</div>
-                <br />
+
+                <label class="dateLabel">First Name :</label>
+
+                <div class="textbox"> @Html.TextBoxFor(m => m.firstName) @Html.ValidationMessageFor(x => x.firstName) </div>
+
+                <label class="dateLabel">Last Name :</label>
+
+                <div class="textbox">  @Html.TextBoxFor(m => m.lastName) @Html.ValidationMessageFor(x => x.lastName)</div>
+
+                <label class="dateLabel">Passport : </label> <div class="textbox">  @Html.TextBoxFor(m => m.passport) @Html.ValidationMessageFor(x => x.passport)</div>
+
 
                 <!-- Safe input that user cannot change-->
-                <i><strong>Flight Number</strong></i> <input readonly value="@Model.flyNUmber" name="flyNUmber" />
-                <br />
-                <i><strong>Seat</strong></i> <input readonly value="@Model.seat" name="seat" />
+                <label class="dateLabel">Flight Number </label> <input readonly value="@Model.flyNUmber" name="flyNUmber" />
                 <br />
 
-                <i><strong>Number Order</strong></i> <input readonly value="@Model.orderNumber"  name="orderNumber" />
+                <label class="dateLabel">Seat </label> <input readonly value="@Model.seat" name="seat" />
                 <br />
 
-                <br /><br />
-                <input id="sub_botton" type="submit" value="Submit" />
+                <label class="dateLabel">Number Order </label> <input readonly value="@Model.orderNumber" name="orderNumber" />
+
+
+
+                <input id="findFly" type="submit" value="Submit" />
 
             }
 

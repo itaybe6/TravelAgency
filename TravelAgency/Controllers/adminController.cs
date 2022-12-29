@@ -72,6 +72,8 @@ namespace TravelAgency.Controllers
                 return null;
 
             }
+            temp.flightSeat = temp.aviableSeat;
+            temp.rated = 0;
             temp.dateFly = temp.dateFly.Date;
             temp.dateLanding = temp.dateLanding.Date;
             FlyDal dal = new FlyDal();
@@ -123,7 +125,11 @@ namespace TravelAgency.Controllers
         public ActionResult addFlySuccess() { return View(); }
 
          
+        public ActionResult logoutAdmin() {
 
+            return RedirectToAction("home", "home");
+
+        }
         public ActionResult submitRemoveFly(string flyNum)
         {
 

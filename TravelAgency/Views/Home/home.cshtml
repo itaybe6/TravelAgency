@@ -48,6 +48,7 @@
 
 
     <div id="enterFly">
+
         <div class="titleFly">
 
             <h1 id="test12"> <strong>Let the journey begin..</strong> </h1>
@@ -70,7 +71,7 @@
                 <label class="dateLabel">Origin</label>
 
                 <!-- from where-->
-                <select id="countryS" name="Source" class="form-control">
+                <select id="source1" name="Source" class="form-control">
                     <option value="Afghanistan">Afghanistan</option>
                     <option value="Aland Islands">Aland Islands</option>
                     <option value="Albania">Albania</option>
@@ -321,7 +322,7 @@
                 <!--to where -->
                 <label class="dateLabel">Destination</label>
 
-                <select id="countryD" name="dis" class="form-control">
+                <select id="dis1" name="dis" class="form-control">
                     <option value="Afghanistan">Afghanistan</option>
                     <option value="Aland Islands">Aland Islands</option>
                     <option value="Albania">Albania</option>
@@ -617,7 +618,7 @@
                 <label class="dateLabel">Origin</label>
 
                 <!-- from where-->
-                <select id="countryS" name="Source" class="form-control">
+                <select id="source2" name="Source" class="form-control">
                     <option value="Afghanistan">Afghanistan</option>
                     <option value="Aland Islands">Aland Islands</option>
                     <option value="Albania">Albania</option>
@@ -868,7 +869,7 @@
                 <!--to where -->
                 <label class="dateLabel">Destination</label>
 
-                <select id="countryD" name="dis" class="form-control">
+                <select id="dis2" name="dis" class="form-control">
                     <option value="Afghanistan">Afghanistan</option>
                     <option value="Aland Islands">Aland Islands</option>
                     <option value="Albania">Albania</option>
@@ -1178,22 +1179,47 @@
 
             var startDateInput = document.getElementById("dateFrom");
             var endDateInput = document.getElementById("dateEnd");
-            var source = document.getElementById("countryS");
-            var dis = document.getElementById("countryD");
+            var source1 = document.getElementById("source1");
+            var source2 = document.getElementById("source2");
+
+            var dis1 = document.getElementById("dis1");
+            var dis2 = document.getElementById("dis2");
+
 
 
 
             var startDate = new Date(startDateInput.value);
             var endDate = new Date(endDateInput.value);
 
+
+
+            var oneWayForm = document.getElementById("enterFly");
+            var RoundtripForm = document.getElementById("RoundtripForm");
+
+            //if the one way form active
+            if (oneWayForm.style.display != "none") {
+
+                if (source1.value == dis1.value) {
+                    alert("Please choose a difrent country");
+                    return false;
+                }
+
+            }
+
+            if (RoundtripForm.style.display == "block") {
+
+                if (source2.value == dis2.value) {
+                    alert("Please choose a difrent country");
+                    return false;
+                }
+
+            }
+
             if (startDate > endDate) {
                 alert("The end trip date must to be greater from the start trip date");
                 return false;
             }
-            if (source.value == dis.value) {
-                alert("Please choose a difrent country");
-                return false;
-            }
+            
             
             return true;
         }

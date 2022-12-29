@@ -42,5 +42,11 @@ namespace TravelAgency.Models
         [Required]
         public int price { get; set; }
 
+        public int rated { get; set; }
+
+
+        public int flightSeat { get; set; }
+
+
     }
 }

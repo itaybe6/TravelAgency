@@ -20,8 +20,6 @@
 
     <title>home</title>
 
-    <script src="https://kit.fontawesome.com/c681bde18b.js" crossorigin="anonymous"></script>
-
     <meta name="viewport" content="width=device-width" />
 </head>
 
@@ -51,7 +49,7 @@
 
     <div id="payForm">
 
-        <form action="submitPay"  method="get">
+        <form action="submitPay"  method="post">
 
             <p id="p1">
                 Your number order is : <strong>@Model.numberOrder</strong>
@@ -63,17 +61,17 @@
 
 
             <label class="labels">Passport of the card owner </label>
-            <input class="inputs" type="text" required  id="passport" pattern="\d{8}"/>
+            <input class="inputs" type="text" required  id="passport" name="passport" pattern="\d{8}"/>
 
             <br />
 
             <label class="labels">Card Number</label>
-            <input class="inputs" type="text" id="cardNumber" required pattern="\d{16}" />
+            <input class="inputs" type="text" id="cardNumber" name="cardNumber" required pattern="\d{16}" />
 
             <br />
 
             <label class="labels" >Year</label>
-            <select class="inputs" id="year" required>
+            <select class="inputs" id="year"  name="year"required>
                 <option value=2023>2023</option>
                 <option value=2024>2024</option>
                 <option value=2025>2025</option>
@@ -87,7 +85,7 @@
 
             <label class="labels">Month</label>
 
-            <select class="inputs" required>
+            <select class="inputs" name="month" required>
                 <option value=1>01</option>
                 <option value=2>02</option>
                 <option value=3>03</option>
@@ -104,7 +102,7 @@
 
 
             <label class="labels">Keep credit information</label>
-            <input type="checkbox" id="keep-credit-info" name="keep-credit-info" value="yes">
+            <input type="checkbox" id="keep-credit-info" name="keep" >
 
 
             <input id="pay" type="submit" value="Pay" />
@@ -125,3 +123,5 @@
 
 
 </html>
+
+
