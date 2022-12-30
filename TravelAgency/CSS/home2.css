@@ -89,21 +89,39 @@ select {
     font-size: 50px;
     left: 280px;
     top: 10px;
-    border-radius: 6px;
-    font-size: 20px;
-    background-image: radial-gradient(100% 100% at 100% 0, #f3f3f3 0, #223b48d6 100%);
+    --b: 3px;
+    --s: .45em;
+    --color: #ffffff;
+    padding: calc(0.5em + var(--s)) calc(0.9em + var(--s));
+    color: var(--color);
+    --_p: var(--s);
+    background: conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--color) 0) var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+    transition: .3s linear, color 0s, background-color 0s;
+    outline: var(--b) solid #0000;
+    outline-offset: 0.6em;
+    font-size: 15px;
     border: 0;
-    color: white;
-    padding: 10px;
-    padding-left: 25px;
-    padding-right: 25px;
+    font-weight: 900;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
 }
 
-    #findFly:hover {
-        box-shadow: 0 0 20px rgba(0,0,0,0.5);
-        -webkit-transform: scale(1.1);
-        transform: translateY(2px);
+
+    #findFly:hover, #findFly:focus-visible {
+        --_p: 0px;
+        outline-color: var(--color);
+        outline-offset: .05em;
     }
+
+
+    #findFly:active {
+        background: var(--color);
+        color: #fff;
+    }
+
+
+
 
 #enterFly2{
     display:none;
@@ -114,18 +132,34 @@ select {
     position: absolute;
     left: 620px;
     top: 201px;
-    border-radius: 6px;
-    font-size: 20px;
-    background-image: radial-gradient(100% 100% at 100% 0, #f3f3f3 0, #223b48d6 100%);
+    --b: 3px;
+    --s: .45em;
+    --color: #ffffff;
+    padding: calc(0.5em + var(--s)) calc(0.9em + var(--s));
+    color: var(--color);
+    --_p: var(--s);
+    background: conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--color) 0) var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+    transition: .3s linear, color 0s, background-color 0s;
+    outline: var(--b) solid #0000;
+    outline-offset: 0.6em;
+    font-size: 15px;
     border: 0;
-    color: white;
-    padding: 10px;
+    font-weight: 900;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
 }
 
-    #oneWay:hover {
-        box-shadow: 0 0 20px white;
-        -webkit-transform: scale(1.1);
-        transform: translateY(2px);
+    #oneWay:hover, #oneWay:focus-visible {
+        --_p: 0px;
+        outline-color: var(--color);
+        outline-offset: .05em;
+    }
+
+
+    #oneWay:active {
+        background: var(--color);
+        color: #fff;
     }
 
     #RoundtripForm {
@@ -137,12 +171,22 @@ select {
     position: absolute;
     left: 620px;
     top: 201px;
-    border-radius: 6px;
-    font-size: 20px;
-    background-image: radial-gradient(100% 100% at 100% 0, #f3f3f3 0, #223b48d6 100%);
+    --b: 3px;
+    --s: .45em;
+    --color: #ffffff;
+    padding: calc(0.5em + var(--s)) calc(0.9em + var(--s));
+    color: var(--color);
+    --_p: var(--s);
+    background: conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--color) 0) var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+    transition: .3s linear, color 0s, background-color 0s;
+    outline: var(--b) solid #0000;
+    outline-offset: 0.6em;
+    font-size: 15px;
     border: 0;
-    color: white;
-    padding: 10px;
+    font-weight: 900;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
 }
 
 #test12 {
@@ -151,12 +195,15 @@ select {
     -webkit-text-fill-color: transparent;
 }
 
-#Roundtrip:hover {
-    box-shadow: 0 0 20px white;
-    -webkit-transform: scale(1.1);
-    transform: translateY(2px);
+#Roundtrip:hover, #Roundtrip:focus-visible {
+    --_p: 0px;
+    outline-color: var(--color);
+    outline-offset: .05em;
 }
-
+#Roundtrip:active {
+    background: var(--color);
+    color: #fff;
+}
 
 
 #travel {

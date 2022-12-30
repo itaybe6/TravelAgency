@@ -25,7 +25,7 @@
 
 <body>
     <div class="topnav">
-        <a id="logo1" href="~/admin/adminHome">
+        <a id="logo1" href="~/Home/home">
             <img src="~/Photos/logo.png" alt="Logo" style="width:80px;">
         </a>
         <a href="/Home/home">Home</a>
@@ -46,80 +46,157 @@
     </div>
 
 
+    <div id="firstTime">
 
-    <div id="payForm">
+        <div id="payForm">
 
-        <form action="submitPay"  method="post">
+            <form action="~/Views/Home/submitPay" method="post">
+                <p id="p1">
 
-            <p id="p1">
-                Your number order is : <strong>@Model.numberOrder</strong>
+                    The price is :<strong> @Model.price$</strong>
+                </p>
+
+
+                <label class="labels">Your number order is :</label>
+
+                <input class="inputs" type="text" name="numberOrder" readonly value="@Model.numberOrder" />
+
+                <label class="labels">Passport of the card owner </label>
+                <input class="inputs" type="text" required id="passport" name="passport" pattern="\d{8}" />
+
                 <br />
-                The price is :<strong> @Model.price $</strong>
-
-            </p>
 
 
+                <label class="labels">Card Number</label>
+                <input class="inputs" type="text" id="cardNumber" name="cardNumber" required pattern="\d{16}" />
 
-            <label class="labels">Passport of the card owner </label>
-            <input class="inputs" type="text" required  id="passport" name="passport" pattern="\d{8}"/>
+                <br />
 
-            <br />
+                <label class="labels">Year</label>
+                <select class="inputs" id="year" name="year" required>
+                    <option value=2023>2023</option>
+                    <option value=2024>2024</option>
+                    <option value=2025>2025</option>
+                    <option value=2026>2026</option>
+                    <option value=2027>2027</option>
+                    <option value=2028>2028</option>
+                    <option value=2029>2029</option>
+                </select>
 
-            <label class="labels">Card Number</label>
-            <input class="inputs" type="text" id="cardNumber" name="cardNumber" required pattern="\d{16}" />
+                <br />
 
-            <br />
+                <label class="labels">Month</label>
 
-            <label class="labels" >Year</label>
-            <select class="inputs" id="year"  name="year"required>
-                <option value=2023>2023</option>
-                <option value=2024>2024</option>
-                <option value=2025>2025</option>
-                <option value=2026>2026</option>
-                <option value=2027>2027</option>
-                <option value=2028>2028</option>
-                <option value=2029>2029</option>
-            </select>
-
-            <br />
-
-            <label class="labels">Month</label>
-
-            <select class="inputs" name="month" required>
-                <option value=1>01</option>
-                <option value=2>02</option>
-                <option value=3>03</option>
-                <option value=4>04</option>
-                <option value=5>05</option>
-                <option value=6>06</option>
-                <option value=7>07</option>
-                <option value=8>08</option>
-                <option value=9>09</option>
-                <option value=10>10</option>
-                <option value=11>11</option>
-                <option value=12>12</option>
-            </select>
+                <select class="inputs" name="month" required>
+                    <option value=1>01</option>
+                    <option value=2>02</option>
+                    <option value=3>03</option>
+                    <option value=4>04</option>
+                    <option value=5>05</option>
+                    <option value=6>06</option>
+                    <option value=7>07</option>
+                    <option value=8>08</option>
+                    <option value=9>09</option>
+                    <option value=10>10</option>
+                    <option value=11>11</option>
+                    <option value=12>12</option>
+                </select>
 
 
-            <label class="labels">Keep credit information</label>
-            <input type="checkbox" id="keep-credit-info" name="keep" >
+                <label class="labels">Keep credit information</label>
+                <input type="checkbox" id="keep-credit-info" name="keep">
 
 
-            <input id="pay" type="submit" value="Pay" />
+                <input id="pay" type="submit" value="Pay" />
 
-        </form>
+            </form>
+
+        </div>
 
 
+    </div>
 
 
+    <div id="noFirstTime">
 
+        <div id="payForm">
+
+            <form action="~/Views/Home/submitPaySaveCard" method="post">
+
+                <p id="p1">
+                    The price is :<strong> @Model.price$</strong>
+                    <br />
+                    Not your first time?
+                    Enter the passport number you purchased with it previously
+                </p>
+
+
+                <label class="labels">Your number order is :</label>
+
+                <input class="inputs" type="text" name="numberOrder" readonly value="@Model.numberOrder" />
+
+                <label class="labels">Passport of the card owner </label>
+                <input class="inputs" type="text" required id="passport" name="passport" pattern="\d{8}" />
+
+                <input id="pay" type="submit" value="Pay" />
+
+
+                <br />
+            </form>
+        </div>
 
     </div>
 
 
 
 
+    <button id="showFirstTime" onclick="showDiv('firstTime')">first Time</button>
+    <button id="showNoFirstTime" onclick="showDiv('noFirstTime')">I already bought here</button>
+
+
+    <script type="text/javascript">
+
+
+        noFirstTime.style.display = "none";
+        showFirstTime.style.display = "none";
+
+        function showDiv(divId) {
+            var firstForm = document.getElementById("firstTime");
+            var nofirstForm = document.getElementById("noFirstTime");
+            var showFirstTime = document.getElementById("showFirstTime");
+            var showNoFirstTime = document.getElementById("showNoFirstTime");
+
+            if (divId === 'firstTime') {
+
+                firstForm.style.display = 'block';
+                nofirstForm.style.display = 'none';
+                showFirstTime.style.display = 'none';
+                showNoFirstTime.style.display = 'block';
+
+            }
+            else if (divId === 'noFirstTime') {
+
+                firstForm.style.display = 'none';
+                nofirstForm.style.display = 'block';
+                showFirstTime.style.display = 'block';
+                showNoFirstTime.style.display = 'none';
+
+
+
+            }
+
+
+
+        }
+
+
+
+
+    </script>
+
+
 </body>
+
 
 
 </html>

@@ -29,7 +29,7 @@
     <!-- navigation bar-->
     <div class="topnav">
 
-        <a id="logo1" href="~/admin/adminHome">
+        <a id="logo1" href="~/Home/home">
             <img src="~/Photos/logo.png" alt="Logo" style="width:80px;">
         </a>
 
@@ -172,6 +172,48 @@
 
     </div>
 
+
+
+    <div id="tbl_four">
+
+        <table id="tbl1" cellpadding="10px">
+
+            <tr>
+                <th>Flight Number</th>
+                <th>Source</th>
+                <th>Distanation</th>
+                <th>Date Flight</th>
+                <th>Time Flight</th>
+                <th>Date Landing</th>
+                <th>Time Landing</th>
+                <th>Aviable Seats</th>
+                <th>Price</th>
+
+            </tr>
+
+
+
+            @foreach (Fly fly in Model.rated)
+            {
+                <tr>
+                    <td>@fly.flyNumber</td>
+                    <td>@fly.sourceFly</td>
+                    <td>@fly.destination</td>
+                    <td>@fly.dateFly.ToShortDateString()</td>
+                    <td>@fly.timeFly</td>
+                    <td>@fly.dateLanding.ToShortDateString()</td>
+                    <td>@fly.timeLanding</td>
+                    <td>@fly.aviableSeat </td>
+                    <td>@fly.price</td>
+                    <td> <a href="~/Views/Home/ShowSeats/@fly.flyNumber/@TempData["order"]" class="chooseSeat">Choose Seats</a></td>
+
+                </tr>
+
+            }
+
+        </table>
+
+    </div>
 
 
 

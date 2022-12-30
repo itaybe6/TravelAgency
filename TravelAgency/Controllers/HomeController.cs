@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Security.Cryptography;
@@ -75,8 +76,7 @@ namespace TravelAgency.Controllers
             return View("login");
         }
 
-
-        
+   
         public ActionResult Enter_Fly_Homepage()
         {
             return View();
@@ -106,6 +106,15 @@ namespace TravelAgency.Controllers
                 filterList = dal.FlyDB.Where(f => f.sourceFly == source && f.destination == dis && f.aviableSeat >= numTicket && f.dateFly > dateTime && f.dateFly == dateFly && f.dateFly > dateTime).ToList();
             }
 
+            //to rate the flights
+            int rated;
+            foreach (Fly fly in filterList)
+            {
+                rated = ((fly.flightSeat - fly.aviableSeat) * 1000) / fly.flightSeat;
+                dal.FlyDB.Where(f => f.flyNumber == fly.flyNumber).FirstOrDefault().rated = rated;
+
+            }
+            dal.SaveChanges();
 
             orderDal dalOrder = new orderDal();
             Random rnd = new Random();
@@ -128,6 +137,7 @@ namespace TravelAgency.Controllers
             temp.flyList = filterList;
             temp.increase = filterList.OrderBy(p => p.price).ToList();
             temp.decrease = filterList.OrderByDescending(p => p.price).ToList();
+            temp.rated = filterList.OrderByDescending(p => p.rated).ToList();
 
 
             return View(temp);
@@ -158,6 +168,18 @@ namespace TravelAgency.Controllers
                 filterList = dal.FlyDB.Where(f => f.sourceFly == source && f.destination == dis && f.aviableSeat >= numTicket && f.dateFly > dateTime && f.dateFly == dateFly && f.dateFly > dateTime).ToList();
             }
 
+            //rated the flights
+            int rated;
+            foreach (Fly fly in filterList)
+            {
+                rated = ((fly.flightSeat - fly.aviableSeat) * 1000) / fly.flightSeat;  
+                dal.FlyDB.Where(f => f.flyNumber == fly.flyNumber).FirstOrDefault().rated= rated;
+
+            }
+            dal.SaveChanges();
+            
+
+
             orderDal dalOrder = new orderDal();
             Random rnd = new Random();
             order ord = new order();
@@ -167,7 +189,7 @@ namespace TravelAgency.Controllers
             ord.numberOrder = num.ToString();
             ord.checkNum = 1;
             ord.price = 0;
-
+            ord.flyNumber2 = null; //no return flight
             dalOrder.orderDB.Add(ord);
             dalOrder.SaveChanges();
 
@@ -178,6 +200,8 @@ namespace TravelAgency.Controllers
             temp.flyList = filterList;
             temp.increase = filterList.OrderBy(p => p.price).ToList();
             temp.decrease = filterList.OrderByDescending(p => p.price).ToList();
+            temp.rated = filterList.OrderByDescending(p => p.rated).ToList();
+
 
             return View("showFlights_oneWay",temp);
 
@@ -196,7 +220,10 @@ namespace TravelAgency.Controllers
             FlyDal flydal = new FlyDal();
             Fly f = flydal.FlyDB.Where(o => o.flyNumber== flyNum).FirstOrDefault();
             order.price += f.price;
-            order.flyNumber = flyNum;
+
+            if(order.chekin_return != "yes")
+                order.flyNumber = flyNum;
+
             dalOrder.SaveChanges();
 
             TempData["order"] = orderNum;
@@ -231,9 +258,21 @@ namespace TravelAgency.Controllers
 
             orderDal orderDal= new orderDal();
             order order = orderDal.orderDB.Where(o => o.numberOrder== orderNum).FirstOrDefault();
-            if(order.chekin_return == "yes" && order.checkNum != order.numberTicket)
+
+            if(order.chekin_return == "yes")
+            {
+                orderDal.orderDB.Where(o => o.numberOrder == orderNum).FirstOrDefault().flyNumber2 = flyNum;
+                orderDal.SaveChanges();
+            }
+           
+            
+
+            if (order.chekin_return == "yes" && order.checkNum != order.numberTicket)
             {
                 seatDal seDal = new seatDal();
+                seDal.seatDB.Where(seat => seat.colSeat == col && seat.rowSeat == row && seat.flyNumber == flyNum).FirstOrDefault().available = "no"; //change the state of the seat to no aviable
+                seDal.SaveChanges();
+
                 List<seat> list2 = seDal.seatDB.ToList<seat>();
                 List<seat> filterlist = new List<seat>();
                 FlyDal flyDal = new FlyDal();
@@ -262,8 +301,13 @@ namespace TravelAgency.Controllers
             }
 
             else if (order.chekin_return == "yes" && order.checkNum == order.numberTicket)
-                return View("payment", order);
+            {
+                seatDal seDal = new seatDal();
+                seDal.seatDB.Where(seat => seat.colSeat == col && seat.rowSeat == row && seat.flyNumber == flyNum).FirstOrDefault().available = "no"; //change the state of the seat to no aviable
+                seDal.SaveChanges();
 
+                return View("payment", order);
+            }
             else return View("personal_details", ticket);
         }
 
@@ -347,6 +391,15 @@ namespace TravelAgency.Controllers
                 Fly fly = flydal.FlyDB.Where(t => t.flyNumber == order.flyNumber).FirstOrDefault();
                 List<Fly> flyList = flydal.FlyDB.Where(w => w.sourceFly == fly.destination && w.destination == fly.sourceFly && w.dateFly == order.endDate).ToList();
 
+                //to rate the flights
+                int rated;
+                foreach (Fly fly1 in flyList)
+                {
+                    rated = ((fly1.flightSeat - fly1.aviableSeat) * 1000) / fly1.flightSeat;
+                    flydal.FlyDB.Where(f => f.flyNumber == fly1.flyNumber).FirstOrDefault().rated = rated;
+
+                }
+                dal.SaveChanges();
 
                 //send the order list
                 FlyViewModel temp = new FlyViewModel();
@@ -354,6 +407,7 @@ namespace TravelAgency.Controllers
                 temp.flyList = flyList;
                 temp.increase = flyList.OrderBy(p => p.price).ToList();
                 temp.decrease = flyList.OrderByDescending(p => p.price).ToList();
+                temp.rated = flyList.OrderByDescending(p => p.rated).ToList();
 
                 dalOrder.SaveChanges();
                 return View("SearchFlight_Roundtrip", temp);
@@ -380,21 +434,73 @@ namespace TravelAgency.Controllers
 
         public ActionResult submitPay()
         {
+            //change the seats aviable acording the flight number
+            string numberOrder = Request.Form["numberOrder"];
+            orderDal orderD = new orderDal();
+            order order = orderD.orderDB.Where(o => o.numberOrder== numberOrder).FirstOrDefault();
+
+            FlyDal flyDal = new FlyDal();
+
+           flyDal.FlyDB.Where(f=>f.flyNumber == order.flyNumber).FirstOrDefault().aviableSeat -= order.numberTicket;
+
+            //only for round trip flight
+            if(order.flyNumber2 != null )
+                flyDal.FlyDB.Where(f => f.flyNumber == order.flyNumber2).FirstOrDefault().aviableSeat -= order.numberTicket;
+
+            flyDal.SaveChanges();
+
+
             //if the user want to save is details
-            if (Request.Form["keep-credit-info"] == "yes")
+            if (Request.Form["keep"] == "on")
             {
                 creditDal dal= new creditDal();
                 creditCards creadit = new creditCards();
                 creadit.number = Request.Form["cardNumber"];
-                creadit.month = Request.Form["month"];
-                creadit.year = Request.Form["year"];
-                creadit.number = Request.Form["passport"];
+                creadit.month = Request.Form["month"].ToString();
+                creadit.year = Request.Form["year"].ToString();
+                creadit.passport = Request.Form["passport"];
                 dal.creditDB.Add(creadit);
                 dal.SaveChanges();  
 
             }
             return View("paySuccess");
         }
+
+
+        public ActionResult submitPay_SaveCard()
+        {
+            //check if the card exist in the System
+            creditDal dalCrads = new creditDal();
+            string pas = Request.Form["passport"];
+            creditCards creadit = dalCrads.creditDB.Where(card => card.passport == pas).FirstOrDefault();
+
+            //return to pay page again
+            if(creadit == null ) {
+                return View("payNotSuccess");
+            }
+
+            
+
+
+            string numberOrder = Request.Form["numberOrder"];
+            orderDal orderD = new orderDal();
+            order order = orderD.orderDB.Where(o => o.numberOrder == numberOrder).FirstOrDefault();
+
+            FlyDal flyDal = new FlyDal();
+
+            flyDal.FlyDB.Where(f => f.flyNumber == order.flyNumber).FirstOrDefault().aviableSeat -= order.numberTicket;
+
+            //only for round trip flight
+            if (order.flyNumber2 != null)
+                flyDal.FlyDB.Where(f => f.flyNumber == order.flyNumber2).FirstOrDefault().aviableSeat -= order.numberTicket;
+
+            flyDal.SaveChanges();
+
+
+            return View("paySuccess");
+        }
+
+        
 
 
 

@@ -78,8 +78,14 @@ namespace Project_TravelAgency
 
             routes.MapRoute(
                 name: "submitPay",
-                url: "Ticket/submitPay/{keepCreditInfo}",
-                defaults: new { controller = "Home", action = "submitPay", id = UrlParameter.Optional, keepCreditInfo = false }
+                url: "Views/Home/submitPay",
+                defaults: new { controller = "Home", action = "submitPay", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "submitPaySaveCard",
+                url: "Views/Home/submitPaySaveCard",
+                defaults: new { controller = "Home", action = "submitPay_SaveCard", id = UrlParameter.Optional }
             );
 
 
