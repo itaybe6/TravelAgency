@@ -24,7 +24,13 @@ namespace TravelAgency.Models
 
         [Required]
         [StringLength(8, ErrorMessage = "Must to fill 8 digit")]
-        public string passport { get; set; }
+        public string id { get; set; }
+
+        [Required]
+        [StringLength(3, ErrorMessage = "Must to fill 3 digit")]
+        public string cvv { get; set; }
+
+
 
     }
 }

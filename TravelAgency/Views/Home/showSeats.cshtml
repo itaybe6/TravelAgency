@@ -54,77 +54,82 @@
 
     <label id="seatNum">Choose Your Seat Number @TempData["seatNum"]</label>
 
-    <label id="up"> A </label>
-    <label id="up2"> B </label>
-    <label id="up3"> C </label>
-    <label id="up4"> D </label>
-    <label id="up5"> E </label>
-    <label id="up6"> F </label>
-
+  
     <table class="tbl1" align="center" cellpadding="10px" width=40%>
 
+
+        <tr>
+            <th>A </th>
+            <th>B</th>
+            <th>C</th>
+            <th>D</th>
+            <th>E</th>
+            <th>F</th>
+            
+
+        </tr>
 
         @for (int i = 1; i <= Model.seatList.Count / 6; i++)
         {
             <tr>
-                
+
                 @if (Model.seatList.Where(M => M.rowSeat == i && M.colSeat == "A").FirstOrDefault().available == "yes")
                 {
 
-                    <td>
+                    <th>
                         <a href="~/Views/Home/personal_details/@Model.seatList[1].flyNumber/@i/A/@TempData["order"]" class="avaibleSeats">
                             <img src="~/Photos/icons/seat1.png" alt="Logo" width=45px;>
                         </a>
-                    </td>
+                    </th>
                 }
                 else
                 {
-                    <td><a href="" id="noAvaible"> </a><img src="~/Photos/icons/seat2.png" alt="Logo" width=45px;> </td>
+                    <th><a href="" id="noAvaible"> </a><img src="~/Photos/icons/seat2.png" alt="Logo" width=45px;> </th>
                 }
 
                 @if (Model.seatList.Where(M => M.rowSeat == i && M.colSeat == "B").FirstOrDefault().available == "yes")
                 {
-                    <td><a href="~/Views/Home/personal_details/@Model.seatList[1].flyNumber/@i/B/@TempData["order"]" class="avaibleSeats"><img src="~/Photos/icons/seat1.png" alt="Logo" width=45px;></a> </td>
+                    <th><a href="~/Views/Home/personal_details/@Model.seatList[1].flyNumber/@i/B/@TempData["order"]" class="avaibleSeats"><img src="~/Photos/icons/seat1.png" alt="Logo" width=45px;></a> </th>
                 }
                 else
                 {
-                    <td><a href="" id="noAvaible"> </a><img src="~/Photos/icons/seat2.png" alt="Logo" width=45px;> </td>
+                    <th><a href="" id="noAvaible"> </a><img src="~/Photos/icons/seat2.png" alt="Logo" width=45px;> </th>
                 }
 
                 @if (Model.seatList.Where(M => M.rowSeat == i && M.colSeat == "C").FirstOrDefault().available == "yes")
                 {
-                    <td><a href="~/Views/Home/personal_details/@Model.seatList[1].flyNumber/@i/C/@TempData["order"]" class="avaibleSeats"><img src="~/Photos/icons/seat1.png" alt="Logo" width=45px;></a> </td>
+                    <th><a href="~/Views/Home/personal_details/@Model.seatList[1].flyNumber/@i/C/@TempData["order"]" class="avaibleSeats"><img src="~/Photos/icons/seat1.png" alt="Logo" width=45px;></a> </th>
                 }
                 else
                 {
-                    <td><a href="" id="noAvaible"> </a><img src="~/Photos/icons/seat2.png" alt="Logo" width=45px;> </td>
+                    <th><a href="" id="noAvaible"> </a><img src="~/Photos/icons/seat2.png" alt="Logo" width=45px;> </th>
                 }
 
                 @if (Model.seatList.Where(M => M.rowSeat == i && M.colSeat == "D").FirstOrDefault().available == "yes")
                 {
-                    <td><a href="~/Views/Home/personal_details/@Model.seatList[1].flyNumber/@i/D/@TempData["order"]" class="avaibleSeats"><img src="~/Photos/icons/seat1.png" alt="Logo" width=45px;></a> </td>
+                    <th><a href="~/Views/Home/personal_details/@Model.seatList[1].flyNumber/@i/D/@TempData["order"]" class="avaibleSeats"><img src="~/Photos/icons/seat1.png" alt="Logo" width=45px;></a> </th>
                 }
                 else
                 {
-                    <td><a href="" id="noAvaible"> </a><img src="~/Photos/icons/seat2.png" alt="Logo" width=45px;> </td>
+                    <th><a href="" id="noAvaible"> </a><img src="~/Photos/icons/seat2.png" alt="Logo" width=45px;> </th>
                 }
 
                 @if (Model.seatList.Where(M => M.rowSeat == i && M.colSeat == "E").FirstOrDefault().available == "yes")
                 {
-                    <td><a href="~/Views/Home/personal_details/@Model.seatList[1].flyNumber/@i/E/@TempData["order"]" class="avaibleSeats"><img src="~/Photos/icons/seat1.png" alt="Logo" width=45px;></a> </td>
+                    <th><a href="~/Views/Home/personal_details/@Model.seatList[1].flyNumber/@i/E/@TempData["order"]" class="avaibleSeats"><img src="~/Photos/icons/seat1.png" alt="Logo" width=45px;></a> </th>
                 }
                 else
                 {
-                    <td><a href="" id="noAvaible"> </a><img src="~/Photos/icons/seat2.png" alt="Logo" width=45px;> </td>
+                    <th><a href="" id="noAvaible"> </a><img src="~/Photos/icons/seat2.png" alt="Logo" width=45px;> </th>
                 }
 
                 @if (Model.seatList.Where(M => M.rowSeat == i && M.colSeat == "F").FirstOrDefault().available == "yes")
                 {
-                    <td><a href="~/Views/Home/personal_details/@Model.seatList[1].flyNumber/@i/F/@TempData["order"]" class="avaibleSeats"><img src="~/Photos/icons/seat1.png" alt="Logo" width=45px;></a> </td>
+                    <th><a href="~/Views/Home/personal_details/@Model.seatList[1].flyNumber/@i/F/@TempData["order"]" class="avaibleSeats"><img src="~/Photos/icons/seat1.png" alt="Logo" width=45px;></a> </th>
                 }
                 else
                 {
-                    <td><a href="" id="noAvaible"> </a><img src="~/Photos/icons/seat2.png" alt="Logo" width=45px;> </td>
+                    <th><a href="" id="noAvaible"> </a><img src="~/Photos/icons/seat2.png" alt="Logo" width=45px;> </th>
                 }
 
             </tr>

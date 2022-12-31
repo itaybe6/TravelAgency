@@ -139,7 +139,7 @@ namespace TravelAgency.Controllers
             dal.FlyDB.Remove(y);
             dal.SaveChanges();
            
-            return View("addFly");
+            return View("adminHome");
         }
 
 
@@ -154,13 +154,14 @@ namespace TravelAgency.Controllers
         
         }
 
-        public ActionResult submit_EditFly(FlyViewModel temp)
-        {
-            //FlyDal dal = new FlyDal();
-            //dal.FlyDB.Where(f => f.flyNumber == temp.flyNumber).FirstOrDefault().price = temp.price;
-            //dal.SaveChanges();
+        public ActionResult submit_EditFly(string flynum, int seat , int price )
+            {
+            FlyDal dal = new FlyDal();
+            dal.FlyDB.Where(f => f.flyNumber == flynum).FirstOrDefault().price = price;
+            dal.FlyDB.Where(f => f.flyNumber == flynum).FirstOrDefault().flightSeat = seat;
+            dal.SaveChanges();
 
-            return View("addFly");
+            return View("home");
         }
 
 

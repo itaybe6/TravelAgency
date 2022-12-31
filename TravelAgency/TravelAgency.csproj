@@ -155,12 +155,17 @@
     <Compile Include="ViewModel\seatViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CSS\addEditFly.css" />
     <Content Include="CSS\payment.css" />
+    <Content Include="CSS\pDetails.css" />
     <Content Include="CSS\showFlights_oneWay.css" />
     <Content Include="CSS\showSeats.css" />
     <Content Include="JS\editFly.js" />
+    <Content Include="Photos\1.jpg" />
     <Content Include="Photos\10.png" />
     <Content Include="Photos\11.jpg" />
+    <Content Include="Photos\2.jpg" />
+    <Content Include="Photos\3.jpg" />
     <Content Include="Photos\4.jpg" />
     <Content Include="Photos\5.jpg" />
     <Content Include="Photos\6.jpg" />

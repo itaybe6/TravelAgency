@@ -14,7 +14,7 @@
     <link href="@Url.Content("~/CSS/home2.css")"
           rel="stylesheet" type="text/css" />
 
-    <link href="@Url.Content("~/CSS/personalDetails.css")"
+    <link href="@Url.Content("~/CSS/pDetails.css")"
           rel="stylesheet" type="text/css" />
 
 
@@ -65,24 +65,24 @@
             @using (Html.BeginForm("submit_personalDetails", "Ticket", FormMethod.Get))
             {
 
-                <label class="dateLabel">First Name :</label>
+                <label class="dateLabel">First Name :</label>@Html.TextBoxFor(m => m.firstName) @Html.ValidationMessageFor(x => x.firstName)
 
-                <div class="textbox"> @Html.TextBoxFor(m => m.firstName) @Html.ValidationMessageFor(x => x.firstName) </div>
+                <br />
+                <br />
+                <label class="dateLabel">Last Name :</label> @Html.TextBoxFor(m => m.lastName) @Html.ValidationMessageFor(x => x.lastName)
 
-                <label class="dateLabel">Last Name :</label>
-
-                <div class="textbox">  @Html.TextBoxFor(m => m.lastName) @Html.ValidationMessageFor(x => x.lastName)</div>
-
-                <label class="dateLabel">Passport : </label> <div class="textbox">  @Html.TextBoxFor(m => m.passport) @Html.ValidationMessageFor(x => x.passport)</div>
-
-
+                <br />
+                <br />
+                <label class="dateLabel">Passport : </label> @Html.TextBoxFor(m => m.passport) @Html.ValidationMessageFor(x => x.passport)
+                <br />
+                <br />
                 <!-- Safe input that user cannot change-->
                 <label class="dateLabel">Flight Number </label> <input readonly value="@Model.flyNUmber" name="flyNUmber" />
                 <br />
-
+                <br />
                 <label class="dateLabel">Seat </label> <input readonly value="@Model.seat" name="seat" />
                 <br />
-
+                <br />
                 <label class="dateLabel">Number Order </label> <input readonly value="@Model.orderNumber" name="orderNumber" />
 
 

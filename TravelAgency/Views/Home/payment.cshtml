@@ -19,6 +19,7 @@
           rel="stylesheet" type="text/css" />
 
     <title>home</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <meta name="viewport" content="width=device-width" />
 </head>
@@ -51,61 +52,82 @@
         <div id="payForm">
 
             <form action="~/Views/Home/submitPay" method="post">
-                <p id="p1">
-
-                    The price is :<strong> @Model.price$</strong>
-                </p>
 
 
-                <label class="labels">Your number order is :</label>
+                <label class="labels">Total Price : <strong> @Model.price$ </strong></label>
+
+                <label class="labels">Number Order</label>
 
                 <input class="inputs" type="text" name="numberOrder" readonly value="@Model.numberOrder" />
 
-                <label class="labels">Passport of the card owner </label>
-                <input class="inputs" type="text" required id="passport" name="passport" pattern="\d{8}" />
+
 
                 <br />
 
+                <br />
 
-                <label class="labels">Card Number</label>
-                <input class="inputs" type="text" id="cardNumber" name="cardNumber" required pattern="\d{16}" />
+                <label class="labels">check if your card saved in the system :</label>
 
                 <br />
 
-                <label class="labels">Year</label>
-                <select class="inputs" id="year" name="year" required>
-                    <option value=2023>2023</option>
-                    <option value=2024>2024</option>
-                    <option value=2025>2025</option>
-                    <option value=2026>2026</option>
-                    <option value=2027>2027</option>
-                    <option value=2028>2028</option>
-                    <option value=2029>2029</option>
-                </select>
-
-                <br />
-
-                <label class="labels">Month</label>
-
-                <select class="inputs" name="month" required>
-                    <option value=1>01</option>
-                    <option value=2>02</option>
-                    <option value=3>03</option>
-                    <option value=4>04</option>
-                    <option value=5>05</option>
-                    <option value=6>06</option>
-                    <option value=7>07</option>
-                    <option value=8>08</option>
-                    <option value=9>09</option>
-                    <option value=10>10</option>
-                    <option value=11>11</option>
-                    <option value=12>12</option>
-                </select>
+                <label class="labels">ID of the card owner :</label>
+                <input class="inputs" type="text" required id="id" name="id" pattern="\d{8}" />
 
 
-                <label class="labels">Keep credit information</label>
-                <input type="checkbox" id="keep-credit-info" name="keep">
+                <br /> <br />
 
+                       <div id="creditCrad">
+
+                           <label class="c1"> Credit Card</label>
+                           <br />
+
+                           <label class="labels">Card Number</label>
+                           <input class="inputs" type="text" id="cardNumber" name="cardNumber" pattern="\d{16}" placeholder="XXXX-XXXX-XXXX-XXXX" />
+
+                           <br />
+
+                           <label class="labels">Year</label>
+                           <select class="inputs" id="year" name="year" required>
+                               <option value=2023>2023</option>
+                               <option value=2024>2024</option>
+                               <option value=2025>2025</option>
+                               <option value=2026>2026</option>
+                               <option value=2027>2027</option>
+                               <option value=2028>2028</option>
+                               <option value=2029>2029</option>
+                           </select>
+
+                           <br />
+
+                           <label class="labels">Month</label>
+
+                           <select class="inputs" name="month" required>
+                               <option value=1>01</option>
+                               <option value=2>02</option>
+                               <option value=3>03</option>
+                               <option value=4>04</option>
+                               <option value=5>05</option>
+                               <option value=6>06</option>
+                               <option value=7>07</option>
+                               <option value=8>08</option>
+                               <option value=9>09</option>
+                               <option value=10>10</option>
+                               <option value=11>11</option>
+                               <option value=12>12</option>
+                           </select>
+                           <br />
+
+                           <label class="labels">CVV </label>
+                           <input class="inputs" type="text" required id="id" name="cvv" pattern="\d{3}" />
+
+                           <br />
+
+
+
+                           <label class="labels">Keep credit information</label>
+                           <input type="checkbox" id="keep-credit-info" name="keep">
+
+                       </div>
 
                 <input id="pay" type="submit" value="Pay" />
 
@@ -116,76 +138,157 @@
 
     </div>
 
-
-    <div id="noFirstTime">
-
-        <div id="payForm">
-
-            <form action="~/Views/Home/submitPaySaveCard" method="post">
-
-                <p id="p1">
-                    The price is :<strong> @Model.price$</strong>
-                    <br />
-                    Not your first time?
-                    Enter the passport number you purchased with it previously
-                </p>
+    <button id="check" onclick="checkCard()">Check</button>
 
 
-                <label class="labels">Your number order is :</label>
+    <div class="titleOrderDetils">
 
-                <input class="inputs" type="text" name="numberOrder" readonly value="@Model.numberOrder" />
+        <h1 id="titleOrderDetils1"> <strong>Order Detils</strong> </h1>
 
-                <label class="labels">Passport of the card owner </label>
-                <input class="inputs" type="text" required id="passport" name="passport" pattern="\d{8}" />
+    </div>
 
-                <input id="pay" type="submit" value="Pay" />
+    <div id="orderDetails">
 
+        <div id="firstFlight">
 
-                <br />
-            </form>
+            <label class="labels">Number Order Is <strong> @Model.numberOrder</strong></label>
+
+            <label class="labels">Flight Number <strong>  @TempData["flynum1"] </strong> </label>
+
+            <label class="labels">Source  <strong>  @TempData["source"] </strong> </label>
+
+            <label class="labels">Distanation  <strong> @TempData["dis"] </strong> </label>
+
+            <label class="labels">Date Flight  <strong>  @TempData["date1"] </strong> </label>
+
+            <label class="labels">Time Flight <strong> @TempData["time1"] </strong> </label>
+
+            <label class="labels">Price For Ticket  <strong> @TempData["price1"] </strong> </label>
+
+            <label class="labels">Number Ticket  <strong> @Model.numberTicket </strong> </label>
+
         </div>
+
+
+       
+        <div id="returnFlight">
+
+
+
+            <div id="firstFlight">
+
+                <label class="labels">Number Order Is <strong> @Model.numberOrder</strong></label>
+
+                <label class="labels">Flight Number <strong>  @TempData["flynum1"] </strong> </label>
+
+                <label class="labels">Source  <strong>  @TempData["source"] </strong> </label>
+
+                <label class="labels">Distanation  <strong> @TempData["dis"] </strong> </label>
+
+                <label class="labels">Date Flight  <strong>  @TempData["date1"] </strong> </label>
+
+                <label class="labels">Time Flight <strong> @TempData["time1"] </strong> </label>
+
+                <label class="labels">Price For Ticket  <strong> @TempData["price1"] </strong> </label>
+
+                <label class="labels">Number Ticket  <strong> @Model.numberTicket </strong> </label>
+
+            </div>
+
+
+
+
+
+
+
+
+
+        </div>
+            
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
 
     </div>
 
 
-
-
-    <button id="showFirstTime" onclick="showDiv('firstTime')">first Time</button>
-    <button id="showNoFirstTime" onclick="showDiv('noFirstTime')">I already bought here</button>
 
 
     <script type="text/javascript">
 
 
-        noFirstTime.style.display = "none";
-        showFirstTime.style.display = "none";
+        var temp = @TempData["flynum2"];
+        var returnDiv = document.getElementById("returnFlight");
 
-        function showDiv(divId) {
-            var firstForm = document.getElementById("firstTime");
-            var nofirstForm = document.getElementById("noFirstTime");
-            var showFirstTime = document.getElementById("showFirstTime");
-            var showNoFirstTime = document.getElementById("showNoFirstTime");
+        alert(@TempData["flynum2"]);
 
-            if (divId === 'firstTime') {
-
-                firstForm.style.display = 'block';
-                nofirstForm.style.display = 'none';
-                showFirstTime.style.display = 'none';
-                showNoFirstTime.style.display = 'block';
-
-            }
-            else if (divId === 'noFirstTime') {
-
-                firstForm.style.display = 'none';
-                nofirstForm.style.display = 'block';
-                showFirstTime.style.display = 'block';
-                showNoFirstTime.style.display = 'none';
+       
+        if (temp == null) {
+            returnDiv.style.display = "none";
+        }
+        else {
+            returnDiv.style.display = "block";
+        }
+        }
 
 
+
+        function checkCard() {
+
+            var ID = document.getElementById("id").value;
+
+            if (ID == "") {
+
+                alert("Enter id for the check");
 
             }
+            else {
+                $.ajax({
+                    type: "POST",
+                    url: "Home/searchCard",
+                    data: {
+                        id: ID
+                    },
+                    dataType: "json",
+                    success: function (result) {
+
+                        if (result.status === "true") {
+
+                            if (confirm("The credit card is with ending" + result.card.substr(12, 4) + "do you want to use it ?")) {
+
+                                alert("The pay success");
+                            }
+                            else {
+                                alert("We are sorry ,We were unable to find any credit cards that match this ID");
+                            }
 
 
+                        }
+
+                    }
+
+                });
+
+            }
 
         }
 

@@ -1,0 +1,80 @@
+﻿#q1 {
+    margin-top: -12px;
+}
+
+#q2 {
+    margin-top: -30px;
+}
+q3 {
+    margin-top: -29px;
+}
+
+
+#q4 {
+    margin-top: 29px;
+}
+
+
+
+#q5 {
+    margin-top: 26px;
+}
+
+
+
+
+#q6 {
+    margin-top: 27px;
+    margin-left: 2px;
+}
+
+q7 {
+    margin-top: 6px;
+    margin-left: 3px;
+}
+
+#q8 {
+    position: absolute;
+    left: 305px;
+    top: 434px;
+}
+
+#q9 {
+    position: absolute;
+    left: 305px;
+    top: 520px;
+}
+
+
+#save {
+    position: absolute;
+    left: 620px;
+    top: 201px;
+    --b: 3px;
+    --s: .45em;
+    --color: #ffffff;
+    padding: calc(0.5em + var(--s)) calc(0.9em + var(--s));
+    color: var(--color);
+    --_p: var(--s);
+    background: conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--color) 0) var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+    transition: .3s linear, color 0s, background-color 0s;
+    outline: var(--b) solid #0000;
+    outline-offset: 0.6em;
+    font-size: 15px;
+    border: 0;
+    font-weight: 900;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+    #save:hover, #save:focus-visible {
+        --_p: 0px;
+        outline-color: var(--color);
+        outline-offset: .05em;
+    }
+
+    #save:active {
+        background: var(--color);
+        color: #fff;
+    }

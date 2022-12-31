@@ -45,7 +45,7 @@ namespace Project_TravelAgency
 
             routes.MapRoute(
              name: "submitEditFly",
-             url: "Views/admin/submit_EditFly/{temp}",
+             url: "Views/admin/submit_EditFly/{flynum}/{seat}/{price}",
              defaults: new { controller = "admin", action = "submit_EditFly", id = UrlParameter.Optional }
          );
 
@@ -60,6 +60,13 @@ namespace Project_TravelAgency
             name: "personalDtails",
             url: "Views/Home/personal_details/{flyNum}/{row}/{col}/{orderNum}",
             defaults: new { controller = "Home", action = "personal_details", id = UrlParameter.Optional }
+        );
+
+
+            routes.MapRoute(
+            name: "logOutAdmin",
+            url: "admin/logout",
+            defaults: new { controller = "Home", action = "home", id = UrlParameter.Optional }
         );
 
             routes.MapRoute(
@@ -90,13 +97,20 @@ namespace Project_TravelAgency
 
 
             routes.MapRoute(
+               name: "checkCard",
+               url: "Home/searchCard/{id}",
+               defaults: new { controller = "Home", action = "searchCard", id = UrlParameter.Optional }
+           );
+
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
 
-            
 
+            
 
 
         }

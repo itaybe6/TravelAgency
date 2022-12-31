@@ -13,6 +13,7 @@
     <link href="@Url.Content("~/CSS/NavBar1.css")"
           rel="stylesheet" type="text/css" />
 
+
     <link href="@Url.Content("~/CSS/home2.css")"
           rel="stylesheet" type="text/css" />
 
@@ -20,9 +21,8 @@
           rel="stylesheet" type="text/css" />
 
 
-
     <title>showFlights</title>
-
+   
     <meta name="viewport" content="width=device-width" />
 </head>
 
@@ -34,23 +34,25 @@
             <img src="~/Photos/logo.png" alt="Logo" style="width:80px;">
         </a>
 
-        <div id="topnav-left">
-            <a class="active" href="/Home/home">Home</a>
+        <div class="left">
+            <a href="/Home/home">Home</a>
             <a href="/Home/MyFlights">My Flights</a>
-            <div class="floatRight">
-                <a href="/Home/login">Log In</a>
-                <a href="/Home/signUp">Sign Up  </a>
-            </div>
-
         </div>
+
+        <div class="floatRight">
+            <a href="/Home/login">Log In</a>
+            <a href="/Home/signUp">Sign Up  </a>
+        </div>
+
     </div>
 
 
 
     <div id="tbl_one">
+
         <table id="tbl1" cellpadding="10px">
 
-            <tr class="tr1">
+            <tr>
                 <th>Flight Number</th>
                 <th>Source</th>
                 <th>Distanation</th>
@@ -69,17 +71,17 @@
             @foreach (Fly fly in Model.flyList)
             {
                 <tr>
-                    <td>@fly.flyNumber</td>
-                    <td>@fly.sourceFly</td>
-                    <td>@fly.destination</td>
-                    <td>@fly.dateFly.ToShortDateString()</td>
-                    <td>@fly.timeFly</td>
-                    <td>@fly.dateLanding.ToShortDateString()</td>
-                    <td>@fly.timeLanding</td>
-                    <td>@fly.aviableSeat </td>
-                    <td>@fly.price</td>
-                    <td>@fly.rated</td>
-                    <td> <a href="~/Views/Home/ShowSeats/@fly.flyNumber/@TempData["order"]" class="chooseSeat">Choose Seats</a></td>
+                    <th>@fly.flyNumber</th>
+                    <th>@fly.sourceFly</th>
+                    <th>@fly.destination</th>
+                    <th>@fly.dateFly.ToShortDateString()</th>
+                    <th>@fly.timeFly</th>
+                    <th>@fly.dateLanding.ToShortDateString()</th>
+                    <th>@fly.timeLanding</th>
+                    <th>@fly.aviableSeat </th>
+                    <th>@fly.price</th>
+                    <th>@fly.rated</th>
+                    <th> <a href="~/Views/Home/ShowSeats/@fly.flyNumber/@TempData["order"]" class="chooseSeat">Choose Seats</a></th>
 
                 </tr>
 

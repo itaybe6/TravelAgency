@@ -1,4 +1,12 @@
-﻿.avaibleSeats  {
+﻿body {
+    background-image: url('/Photos/3.jpg');
+    background-color: #cccccc;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    Z-index: 99;
+}
+.avaibleSeats  {
     color:seagreen;
     
 }
@@ -77,11 +85,11 @@
 
 #seatNum {
     position: absolute;
-    font-size: 30px;
+    font-size: 40px;
     COLOR: WHITE;
     font-family: fantasy;
-    left: 783px;
-    top: 250px;
+    left: 733px;
+    top: 273px;
 }
 
 
@@ -91,6 +99,11 @@
     font-size: 30px;
     position: absolute;
     left: 606px;
-    top: 378px;
+    top: 433px;
     line-height: 2.228;
+}
+
+#tbl1 tr:first-child {
+    color: cornsilk;
+    font-size: 25px;
 }

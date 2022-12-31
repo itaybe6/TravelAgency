@@ -264,8 +264,10 @@ namespace TravelAgency.Controllers
                 orderDal.orderDB.Where(o => o.numberOrder == orderNum).FirstOrDefault().flyNumber2 = flyNum;
                 orderDal.SaveChanges();
             }
-           
-            
+
+
+            FlyDal flyDal = new FlyDal();
+            Fly t = flyDal.FlyDB.Where(o => o.flyNumber == ticket.flyNUmber).FirstOrDefault();
 
             if (order.chekin_return == "yes" && order.checkNum != order.numberTicket)
             {
@@ -275,8 +277,7 @@ namespace TravelAgency.Controllers
 
                 List<seat> list2 = seDal.seatDB.ToList<seat>();
                 List<seat> filterlist = new List<seat>();
-                FlyDal flyDal = new FlyDal();
-                Fly t = flyDal.FlyDB.Where(o => o.flyNumber == ticket.flyNUmber).FirstOrDefault();
+                
 
                 order.checkNum += 1;
                 order.price += t.price;
@@ -305,6 +306,11 @@ namespace TravelAgency.Controllers
                 seatDal seDal = new seatDal();
                 seDal.seatDB.Where(seat => seat.colSeat == col && seat.rowSeat == row && seat.flyNumber == flyNum).FirstOrDefault().available = "no"; //change the state of the seat to no aviable
                 seDal.SaveChanges();
+
+                TempData["flynum2"] = t.flyNumber;
+                TempData["date2"] = t.dateFly;
+                TempData["time2"] = t.timeFly;
+                TempData["price2"] = t.price;
 
                 return View("payment", order);
             }
@@ -416,6 +422,17 @@ namespace TravelAgency.Controllers
             //end of the order
             else 
             {
+                FlyDal flydal = new FlyDal();
+                Fly fly = flydal.FlyDB.Where(t => t.flyNumber == order.flyNumber).FirstOrDefault();
+
+                TempData["flynum1"] = fly.flyNumber;
+                TempData["date1"] = fly.dateFly.ToShortDateString();
+                TempData["time1"] = fly.timeFly;
+                TempData["price1"] = fly.price;
+                TempData["source"] = fly.sourceFly;
+                TempData["dis"] = fly.destination;
+
+
                 return View("payment",order);
 
             }
@@ -458,7 +475,8 @@ namespace TravelAgency.Controllers
                 creadit.number = Request.Form["cardNumber"];
                 creadit.month = Request.Form["month"].ToString();
                 creadit.year = Request.Form["year"].ToString();
-                creadit.passport = Request.Form["passport"];
+                creadit.id = Request.Form["id"];
+                creadit.cvv = Request.Form["cvv"];
                 dal.creditDB.Add(creadit);
                 dal.SaveChanges();  
 
@@ -471,15 +489,13 @@ namespace TravelAgency.Controllers
         {
             //check if the card exist in the System
             creditDal dalCrads = new creditDal();
-            string pas = Request.Form["passport"];
-            creditCards creadit = dalCrads.creditDB.Where(card => card.passport == pas).FirstOrDefault();
+            string pas = Request.Form["id"];
+            creditCards creadit = dalCrads.creditDB.Where(card => card.id == pas).FirstOrDefault();
 
             //return to pay page again
             if(creadit == null ) {
                 return View("payNotSuccess");
             }
-
-            
 
 
             string numberOrder = Request.Form["numberOrder"];
@@ -500,7 +516,23 @@ namespace TravelAgency.Controllers
             return View("paySuccess");
         }
 
-        
+        [HttpPost]
+        public ActionResult searchCard(string id) 
+        {
+            creditDal dal = new creditDal();
+
+            foreach(creditCards card in dal.creditDB.ToList())
+            {
+                if(card.id == id)
+                {
+                    return Json(new { status = "true", card = card.number });
+                }
+
+            }
+
+
+            return Json(new { status = "false" });
+        }
 
 
 

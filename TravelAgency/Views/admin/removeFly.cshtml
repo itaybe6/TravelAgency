@@ -32,15 +32,15 @@
             <a href="/admin/editFly">Edit Flight</a>
         </div>
 
-        <div id="topnav-left">
-            <a href="/admin/logout">Home Page</a>
+        <div id="topnav-right">
+            <a href="/Home/home">Home Page</a>
         </div>
 
     </div>
 
 
 
-    <table>
+    <table id="tbl1">
 
         <tr>
             <th>Flight Number</th>
@@ -55,11 +55,11 @@
         @foreach (Fly fly in Model.flyList)
         {
             <tr>
-                <td>@fly.flyNumber</td>
-                <td>@fly.sourceFly</td>
-                <td>@fly.destination</td>
-                <td>@fly.price</td>
-                <td> <a href="~/Views/admin/delete/@fly.flyNumber">Remove </a></td>
+                <th>@fly.flyNumber</th>
+                <th>@fly.sourceFly</th>
+                <th>@fly.destination</th>
+                <th>@fly.price</th>
+                <th> <a class="choose" href="~/Views/admin/delete/@fly.flyNumber">Remove </a></th>
 
 
             </tr>

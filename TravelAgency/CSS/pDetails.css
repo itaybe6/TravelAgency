@@ -1,0 +1,41 @@
+﻿body {
+    background-image: url('/Photos/1.jpg');
+    background-color: #cccccc;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    Z-index: 99;
+}
+
+
+#enterFlyForm {
+    height: 550px;
+    padding-left: 30px;
+    padding-top: 40px;
+}
+
+input {
+    font-size: 20px;
+    padding: 5px;
+    border-radius: 15px;
+    margin: 4px;
+    background-color: rgb(0 0 0 / 26%);
+    color: white;
+    left: 300px;
+    position: absolute;
+}
+
+#findFly {
+    position: absolute;
+    top: 680px;
+    left: 350px;
+    font-size: 25px;
+}
+
+.titleFly {
+    padding-left: 35px;
+}
+
+#enterFly {
+    margin-top: 50px;
+}

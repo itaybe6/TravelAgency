@@ -1,6 +1,16 @@
-﻿#tbl1 {
+﻿body {
+    background-image: url('/Photos/2.jpg');
+    background-color: #cccccc;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    Z-index: 99;
+}
+
+
+#tbl1 {
     position: absolute;
-    left: 368px;
+    left: 327px;
     top: 151px;
     background-color: #000000b3;
     border-radius: 0px 0px 15px 15px;
@@ -12,13 +22,13 @@
 
 #orderForm {
     position: absolute;
-    left: 368px;
-    top: 96px;
+    left: 327px;
+    top: 110px;
     background-color: black;
     border-radius: 15px 15px 0 0;
     color: white;
     padding-left: 15px;
-    width: 1148px;
+    width: 1333px;
 }
 
 #tbl_two{
@@ -41,7 +51,7 @@
     border-width: 2px;
     font-size: 25px;
     left: 1400px;
-    top: 103PX;
+    top: 117px;
     padding: 5px 15px 5px 15px;
 }
 
@@ -109,10 +119,11 @@
     }
 
 
-.tr {
-    font-family: "JetBrains Mono",monospace;
-}
 
+#tbl1 tr:first-child {
+    color: cornsilk;
+    font-size: 25px;
+}
 
 
 
