@@ -8,10 +8,10 @@
     width: 705px;
     color: white;
     border-radius: 0px 0px 15px 15px;
-    height: 320PX;
+    height: 465px;
     padding: 20px 0 0 0;
-    position:absolute;
-    top:180px;
+    position: absolute;
+    top: 180px;
 }
 
 .labels {
@@ -59,7 +59,7 @@
 
 #pay {
     position: absolute;
-    top: 280px;
+    top: 396px;
     left: 300px;
     --b: 3px;
     --s: .45em;
@@ -71,7 +71,7 @@
     transition: .3s linear, color 0s, background-color 0s;
     outline: var(--b) solid #0000;
     outline-offset: 0.6em;
-    font-size: 15px;
+    font-size: 24px;
     border: 0;
     font-weight: 900;
     user-select: none;
@@ -96,33 +96,31 @@
 
 #firstFlight {
     padding-right: 30px;
-    padding-top: 70px;
+    padding-top: 50px;
     font-size: 15px;
     background-color: rgb(0,0,0,0.5);
     width: 839px;
     color: white;
-    border-radius: 0px 0px 15px 15px;
-    height: 200px;
     position: absolute;
     top: 180px;
     display: flex;
-    left: 1001px
+    left: 980px;
+    height: 100px;
+    border-radius: 0 0 15px 15px;
 }
 
 
 
 .titleOrderDetils {
-    width: 839px;
+    width: 844px;
     font-family: "Open Sans", sans-serif;
     background-color: rgb(0 0 0 / 94%);
     padding: 1px 0px 1px 25px;
     text-align: left;
     border-radius: 15px 15px 0px 0px;
     position: absolute;
-    top: 100px;
+    top: 980px;
     left: 1001px;
-    
-
 }
 
 #titleOrderDetils1 {
@@ -131,11 +129,7 @@
     -webkit-text-fill-color: transparent;
 }
 
-#check {
-    position: absolute;
-    left: 600px;
-    top: 250px;
-}
+
 
 
 #creditCrad {
@@ -143,7 +137,73 @@
 }
 
 
-.c1{
-    font-size:30px;
-
+.c1 {
+    font-size: 40px;
+    padding-left: 35px;
+    font-weight: bolder;
 }
+
+
+
+#check {
+    position: absolute;
+    left: 603px;
+    top: 257px;
+    appearance: none;
+    background-color: #000000;
+    border: 2px solid #1A1A1A;
+    border-radius: 15px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-size: 12px;
+    font-weight: 800;
+    line-height: normal;
+    margin: 0;
+    min-height: 60px;
+    min-width: 0;
+    outline: none;
+    padding: 15px 15px 15px 15px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    
+    will-change: transform;
+}
+
+#check:disabled {
+    pointer-events: none;
+}
+
+#check:hover {
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+}
+
+#check:active {
+    box-shadow: none;
+    transform: translateY(0);
+}
+
+#returnFlight {
+    position: absolute;
+    top: 300px;
+    border-radius: 0px 0px 15px 15px;
+}
+
+#icons {
+    display: flex;
+    margin: 0;
+    position: absolute;
+    left: 1000px;
+    top: 190px;
+}
+
+    #icons img {
+        margin: 0 35px;
+    }
