@@ -95,14 +95,6 @@ namespace Project_TravelAgency
                 defaults: new { controller = "Home", action = "submitPay_SaveCard", id = UrlParameter.Optional }
             );
 
-
-            routes.MapRoute(
-               name: "checkCard",
-               url: "Home/searchCard/{id}",
-               defaults: new { controller = "Home", action = "searchCard", id = UrlParameter.Optional }
-           );
-
-
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

@@ -86,25 +86,29 @@ namespace TravelAgency.Controllers
         {
             FlyDal dal = new FlyDal();
             List<Fly> filterList;
-
+            List<Fly> filterList2;// to return flights
             string source = Request.Form["Source"].ToString();
             string dis = Request.Form["dis"].ToString();
             int numTicket = Int32.Parse(Request.Form["numTicket"]);
-            DateTime dateTime= DateTime.Now;
-            DateTime dateFly;
+            DateTime dateFly = DateTime.Parse(Request.Form["dateFrom"]);
+            DateTime dateReturn = DateTime.Parse(Request.Form["dateEnd"]);
 
 
-
-            //if the user dont enter flight date
-            if (Request.Form["dateFrom"] == "")
+            //if no exist any flight
+            filterList = dal.FlyDB.Where(f => f.sourceFly == source && f.destination == dis && f.aviableSeat >= numTicket && f.dateFly == dateFly ).ToList();
+            if (filterList.Count() == 0)
             {
-                filterList = dal.FlyDB.Where(f => f.sourceFly == source && f.destination == dis && f.aviableSeat >= numTicket && f.dateFly > dateTime).ToList();
+                return View("noFlights");
             }
-            else
+
+            //if no exist any flight in the return 
+            filterList2 = dal.FlyDB.Where(f => f.sourceFly == dis && f.destination == source && f.aviableSeat >= numTicket &&  f.dateFly == dateReturn).ToList();
+            if (filterList2.Count() == 0)
             {
-                dateFly = DateTime.Parse(Request.Form["dateFrom"]);
-                filterList = dal.FlyDB.Where(f => f.sourceFly == source && f.destination == dis && f.aviableSeat >= numTicket && f.dateFly > dateTime && f.dateFly == dateFly && f.dateFly > dateTime).ToList();
+                return View("noFlightsReturn");
             }
+
+
 
             //to rate the flights
             int rated;
@@ -121,7 +125,7 @@ namespace TravelAgency.Controllers
             order ord = new order();
             int num = rnd.Next(1, 999999999);
 
-            ord.numberTicket = Int32.Parse(Request.Form["numTicket"]);
+            ord.numberTicket = numTicket;
             ord.numberOrder = num.ToString();
             ord.checkNum = 1;
             ord.chekin_return = "no";
@@ -166,6 +170,12 @@ namespace TravelAgency.Controllers
             {
                 dateFly= DateTime.Parse(Request.Form["dateFrom"]);
                 filterList = dal.FlyDB.Where(f => f.sourceFly == source && f.destination == dis && f.aviableSeat >= numTicket && f.dateFly > dateTime && f.dateFly == dateFly && f.dateFly > dateTime).ToList();
+            }
+
+            //if no exist ant flight
+            if(filterList.Count() == 0)
+            {
+                return View("noFlights");
             }
 
             //rated the flights
@@ -475,13 +485,13 @@ namespace TravelAgency.Controllers
 
             flyDal.SaveChanges();
 
+
+
             //change the state of all the seat from green to red
             TicketDal ticketDal = new TicketDal();
             List<Ticket> ticketList = ticketDal.TicketDB.Where(tic => tic.orderNumber == numberOrder).ToList();
             seatDal seatD = new seatDal();
             seat tempSeat = new seat();
-
-
             int row;
             string col;
             foreach (Ticket ticket in ticketList)
@@ -513,15 +523,17 @@ namespace TravelAgency.Controllers
             //if the user want to save is details
             if (Request.Form["keep"] == "on")
             {
-                creditDal dal= new creditDal();
-                creditCards creadit = new creditCards();
+                cardsDal dal = new cardsDal();
+                cards creadit = new cards();
                 creadit.number = Request.Form["cardNumber"];
                 creadit.month = Request.Form["month"].ToString();
                 creadit.year = Request.Form["year"].ToString();
                 creadit.id = Request.Form["id"];
                 creadit.cvv = Request.Form["cvv"].ToString();
+                creadit.firstName = Request.Form["firstName"].ToString();
+                creadit.lastName = Request.Form["lastName"].ToString();
                 dal.creditDB.Add(creadit);
-                dal.SaveChanges();  
+                dal.SaveChanges();
 
             }
             return View("paySuccess");
@@ -531,12 +543,13 @@ namespace TravelAgency.Controllers
         public ActionResult submitPay_SaveCard()
         {
             //check if the card exist in the System
-            creditDal dalCrads = new creditDal();
+            cardsDal dalCrads = new cardsDal();
             string pas = Request.Form["id"];
-            creditCards creadit = dalCrads.creditDB.Where(card => card.id == pas).FirstOrDefault();
+            cards creadit = dalCrads.creditDB.Where(card => card.id == pas).FirstOrDefault();
 
             //return to pay page again with temp data
-            if(creadit == null ) {
+            if (creadit == null)
+            {
                 return View("payNotSuccess");
             }
 
@@ -562,13 +575,13 @@ namespace TravelAgency.Controllers
         [HttpPost]
         public ActionResult searchCard(string id) 
         {
-            creditDal dal = new creditDal();
+            cardsDal dal = new cardsDal();
 
-            foreach(creditCards card in dal.creditDB.ToList())
+            foreach(cards card in dal.creditDB.ToList())
             {
                 if(card.id == id)
                 {
-                    return Json(new { status = "true", card = card.number });
+                      return Json(new { status = "true", card = card.number });
                 }
 
             }

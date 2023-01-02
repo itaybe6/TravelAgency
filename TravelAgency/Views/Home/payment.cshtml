@@ -64,11 +64,6 @@
 
                 <br />
 
-                <br />
-
-                <label class="labels">check if your card saved in the system :</label>
-
-                <br />
 
                 <label class="labels">ID of the card owner :</label>
                 <input class="inputs" type="text" required id="id" name="id" pattern="\d{8}" />
@@ -80,6 +75,12 @@
 
                     <label class="c1"> Credit Card</label>
                     <br />
+
+                    <label class="labels">First Name</label>
+                    <input class="inputs" type="text" id="firstName" name="firstName" maxlength ="50"  placeholder="Name"/>
+
+                    <label class="labels">Last Name</label>
+                    <input class="inputs" type="text" id="lastName" name="lastName" maxlength ="50" placeholder="Last Name"/>
 
                     <label class="labels">Card Number</label>
                     <input class="inputs" type="text" id="cardNumber" name="cardNumber" pattern="\d{16}" placeholder="XXXX-XXXX-XXXX-XXXX" />
@@ -138,7 +139,7 @@
 
     </div>
 
-    <button id="check" onclick="checkCard()">Check</button>
+    <button id="check" onclick="checkCard()">Check If Save</button>
 
 
     <div class="titleOrderDetils">
@@ -233,17 +234,14 @@
 
 
         var returnDiv = document.getElementById("returnFlight");
-
         var tempData = '<%= flynum2 %>';
-        if (tempData !== '') {
-            document.getElementById('returnFlight').style.display = 'block';
+
+        returnDiv.style.display = 'none';
+
+        if (tempData.length == 6) {
+            returnDiv.style.display = 'block';
         }
-
-
-
-
-
-
+        
 
         function checkCard() {
 
@@ -257,7 +255,7 @@
             else {
                 $.ajax({
                     type: "POST",
-                    url: "Home/searchCard",
+                    url: "/Home/searchCard",
                     data: {
                         id: ID
                     },
@@ -266,9 +264,9 @@
 
                         if (result.status === "true") {
 
-                            if (confirm("The credit card is with ending" + result.card.substr(12, 4) + "do you want to use it ?")) {
+                            if (confirm("The credit card is with ending " + result.card.substr(12, 4) + " Save in the system ,do you want to use it ?")) {
 
-                                alert("The pay success");
+                                return true;
                             }
                             else {
                                 alert("We are sorry ,We were unable to find any credit cards that match this ID");

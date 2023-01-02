@@ -129,7 +129,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\adminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Dal\creditDal.cs" />
+    <Compile Include="Dal\cardsDal.cs" />
     <Compile Include="Dal\FlyDal.cs" />
     <Compile Include="Dal\orderDal.cs" />
     <Compile Include="Dal\passenger1Dal.cs" />
@@ -143,7 +143,7 @@
       <DependentUpon>202212012004193_passenger1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\creditCards.cs" />
+    <Compile Include="Models\cards.cs" />
     <Compile Include="Models\Fly.cs" />
     <Compile Include="Models\order.cs" />
     <Compile Include="Models\passenger1.cs" />
@@ -233,6 +233,8 @@
     <Content Include="Views\Home\payment.cshtml" />
     <Content Include="Views\Home\SearchFlight_Roundtrip.cshtml" />
     <Content Include="Views\Home\paySuccess.cshtml" />
+    <Content Include="Views\Home\noFlights.cshtml" />
+    <Content Include="Views\Home\noFlightsReturn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

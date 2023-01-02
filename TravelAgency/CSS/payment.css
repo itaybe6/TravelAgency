@@ -1,6 +1,11 @@
 ﻿body {
+    background-image: url('/Photos/11.jpg');
+    background-color: #cccccc;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    Z-index: 99;
 }
-
 
 #payForm {
     font-size: 30px;
@@ -119,8 +124,8 @@
     text-align: left;
     border-radius: 15px 15px 0px 0px;
     position: absolute;
-    top: 980px;
-    left: 1001px;
+    top: 100px;
+    left: 980px;
 }
 
 #titleOrderDetils1 {
