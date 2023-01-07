@@ -96,6 +96,15 @@ namespace Project_TravelAgency
             );
 
             routes.MapRoute(
+             name: "paySuccess",
+             url: "Home/paySuccess/{numberOrder}",
+             defaults: new { controller = "Home", action = "paySuccess", id = UrlParameter.Optional }
+         );
+
+
+
+           
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

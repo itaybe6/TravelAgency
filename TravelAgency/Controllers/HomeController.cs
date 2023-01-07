@@ -512,9 +512,6 @@ namespace TravelAgency.Controllers
                 tempSeat.available = "no";
                 seatD.SaveChanges();
 
-
-
-
             }
 
 
@@ -581,7 +578,7 @@ namespace TravelAgency.Controllers
             {
                 if(card.id == id)
                 {
-                      return Json(new { status = "true", card = card.number });
+                      return Json(new { status = "true", card = card.number ,card.cvv});
                 }
 
             }
@@ -590,7 +587,92 @@ namespace TravelAgency.Controllers
             return Json(new { status = "false" });
         }
 
+        
 
+        public ActionResult payment()
+        {
+            return View();
+        }
+
+        public ActionResult paySuccess(string numberOrder)
+        {
+            orderDal orderD = new orderDal();
+            order order = orderD.orderDB.Where(o => o.numberOrder == numberOrder).FirstOrDefault();
+
+            FlyDal flyDal = new FlyDal();
+
+            int num = flyDal.FlyDB.Where(f => f.flyNumber == order.flyNumber).FirstOrDefault().aviableSeat;
+            num -= order.numberTicket;
+            flyDal.FlyDB.Where(f => f.flyNumber == order.flyNumber).FirstOrDefault().aviableSeat = num ;
+
+            //only for round trip flight
+            if (order.flyNumber2 != null)
+                flyDal.FlyDB.Where(f => f.flyNumber == order.flyNumber2).FirstOrDefault().aviableSeat -= order.numberTicket;
+
+            flyDal.SaveChanges();
+
+            //change the state of all the seat from green to red
+            TicketDal ticketDal = new TicketDal();
+            List<Ticket> ticketList = ticketDal.TicketDB.Where(tic => tic.orderNumber == numberOrder).ToList();
+            seatDal seatD = new seatDal();
+            seat tempSeat = new seat();
+            int row;
+            string col;
+            foreach (Ticket ticket in ticketList)
+            {
+                //2C or 14B
+                if (ticket.seat.Length == 2)
+                {
+                    col = ticket.seat[1].ToString();
+                    row = Int32.Parse(ticket.seat[0].ToString());
+                }
+                else
+                {
+                    row = Int32.Parse(ticket.seat.Substring(0, 2).ToString());
+                    col = ticket.seat[2].ToString();
+
+                }
+                tempSeat = seatD.seatDB.Where(s => s.flyNumber == ticket.flyNUmber && s.colSeat == col && s.rowSeat == row).FirstOrDefault();
+                tempSeat.available = "no";
+                seatD.SaveChanges();
+
+            }
+            return View();
+        }
+
+
+
+        public ActionResult ShowTicket()
+        {
+            string passport = Request.Form["pas"];
+            
+            TicketDal ticDal = new TicketDal();
+
+            List<Ticket> list = ticDal.TicketDB.Where(t => t.passport == passport).ToList();
+
+            if(list.Count == 0) { 
+                ViewData["noTicket"] = "yes";
+                return View("MyFlights");
+ 
+            }
+
+            FlyDal flyDal = new FlyDal();
+            List<Fly> listFly= new List<Fly>();
+            Fly temp = new Fly();
+          
+
+            foreach( Ticket ticket in list)
+            {
+                temp = flyDal.FlyDB.Where(f=>f.flyNumber == ticket.flyNUmber).FirstOrDefault();
+                listFly.Add(temp);
+
+            }
+
+            FlyViewModel F = new FlyViewModel();
+            F.flyList = listFly;
+
+            return View(F);  
+        }
 
 
     }

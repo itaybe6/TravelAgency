@@ -1,4 +1,4 @@
-﻿@model TravelAgency.Models.Fly
+﻿@model TravelAgency.ViewModel.FlyViewModel
 
 @{
     Layout = null;
@@ -13,6 +13,14 @@
     <link href="@Url.Content("~/CSS/NavBar1.css")"
           rel="stylesheet" type="text/css" />
 
+
+    <link href="@Url.Content("~/CSS/payment.css")"
+          rel="stylesheet" type="text/css" />
+
+    <link href="@Url.Content("~/CSS/MyFlights.css")"
+          rel="stylesheet" type="text/css" />
+
+
     <meta name="viewport" content="width=device-width" />
     <title>MyFlights</title>
 </head>
@@ -24,7 +32,7 @@
         </a>
 
         <a href="/Home/home">Home</a>
-        <a class="active" href="/Home/MyFlights">My Flights</a>
+        <a href="/Home/MyFlights">My Flights</a>
 
         <div class="floatRight">
             <a href="/Home/login">Log In</a>
@@ -35,5 +43,58 @@
 
 
 
+
+
+    <div class="titleFly">
+
+        <h1 id="payTitle"> <strong>Search Flights</strong> </h1>
+
+    </div>
+
+
+
+
+    <div id="firstTime">
+
+        <form action="~/Home/ShowTicket" method="post">
+
+            <div id="payForm">
+
+
+                <label class="labels">Passport</label>
+
+                <input class="inputs" type="text" name="pas" id="pas" required />
+
+
+                <input id="pay" type="submit" value="Search" />
+
+
+
+            </div>
+
+
+        </form>
+
+
+    </div>
+
+
+    <script type="text/javascript">
+
+
+        var tempData = '@ViewData["noTicket"]';
+
+
+        if (tempData === "yes") {
+            alert("We have not found any tickets that match this passport");
+        }
+
+
+    </script>
+
+
+
 </body>
+
+
 </html>

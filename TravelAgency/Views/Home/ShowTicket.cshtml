@@ -1,0 +1,103 @@
+﻿@model TravelAgency.ViewModel.FlyViewModel
+@using TravelAgency.Models;
+
+@{
+    ViewBag.Title = "ShowTicket";
+}
+
+
+
+
+<html>
+
+<head>
+    <link href="@Url.Content("~/CSS/NavBar1.css")"
+          rel="stylesheet" type="text/css" />
+
+
+    <link href="@Url.Content("~/CSS/home2.css")"
+          rel="stylesheet" type="text/css" />
+
+    <link href="@Url.Content("~/CSS/showFlights_oneWay.css")"
+          rel="stylesheet" type="text/css" />
+
+    <link href="@Url.Content("~/CSS/showTicket.css")"
+          rel="stylesheet" type="text/css" />
+
+
+
+    <title>showFlights</title>
+
+    <meta name="viewport" content="width=device-width" />
+</head>
+
+<body>
+    <!-- navigation bar-->
+    <div class="topnav">
+
+        <a id="logo1" href="~/Home/home">
+            <img src="~/Photos/logo.png" alt="Logo" style="width:80px;">
+        </a>
+
+        <div class="left">
+            <a href="/Home/home">Home</a>
+            <a href="/Home/MyFlights">My Flights</a>
+        </div>
+
+        <div class="floatRight">
+            <a href="/Home/login">Log In</a>
+            <a href="/Home/signUp">Sign Up  </a>
+        </div>
+
+    </div>
+
+
+
+    <div id="tbl_one">
+
+        <table id="tbl1" cellpadding="10px">
+
+            <tr>
+                <th>Flight Number</th>
+                <th>Source</th>
+                <th>Distanation</th>
+                <th>Date Flight</th>
+                <th>Time Flight</th>
+                <th>Date Landing</th>
+                <th>Time Landing</th>
+            </tr>
+
+
+
+            @foreach (Fly fly in Model.flyList)
+            {
+                <tr>
+                    <th>@fly.flyNumber</th>
+                    <th>@fly.sourceFly</th>
+                    <th>@fly.destination</th>
+                    <th>@fly.dateFly.ToShortDateString()</th>
+                    <th>@fly.timeFly</th>
+                    <th>@fly.dateLanding.ToShortDateString()</th>
+                    <th>@fly.timeLanding</th>
+
+                </tr>
+
+            }
+
+        </table>
+
+    </div>
+
+
+
+    <form id="orderForm" action="orderFlight">
+
+        <label id="orderLabel">Your Flights</label>
+
+    </form>
+
+
+</body>
+
+</html>
+

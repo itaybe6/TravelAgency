@@ -39,7 +39,7 @@
 
             <div class="floatRight">
 
-                <a class="active" href="/Home/login">Log In</a>
+                <a href="/Home/login">Log In</a>
                 <a href="/Home/signUp">Sign Up  </a>
 
             </div>
@@ -47,6 +47,7 @@
     </div>
 
     <div class="login">
+
         @using (Html.BeginForm("enterLogin", "passenger1", FormMethod.Post))
         {
             <label class="label1">User Name</label>

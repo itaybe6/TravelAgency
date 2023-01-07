@@ -205,10 +205,27 @@
     display: flex;
     margin: 0;
     position: absolute;
-    left: 1000px;
+    left: 1100px;
     top: 190px;
+    height:30px;
 }
 
     #icons img {
-        margin: 0 35px;
+        margin: -1px 38px;
     }
+
+
+#q4 {
+    right: -110px;
+    position: absolute;
+}
+
+#q6 {
+    position: absolute;
+    right: -205px;
+}
+#q3{
+
+
+
+}

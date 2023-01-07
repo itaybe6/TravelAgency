@@ -96,6 +96,7 @@ appt{
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
+    margin-left: 95px;
 }
 
 

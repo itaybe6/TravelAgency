@@ -1,0 +1,14 @@
+﻿body {
+}
+
+
+#orderForm {
+    height: 50px;
+    width: 1148px;
+}
+
+#orderLabel {
+    font-size: 40px;
+    padding-left: 446px;
+    font-family: "JetBrains Mono",monospace;
+}

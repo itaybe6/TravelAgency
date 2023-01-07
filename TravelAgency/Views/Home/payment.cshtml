@@ -211,19 +211,17 @@
 
     <div id="icons">
 
+        <img src="~/Photos/icons/icon-5.png" id="q5" alt="Logo">
+
         <img src="~/Photos/icons/icon-1.png" id="q1" alt="Logo">
 
         <img src="~/Photos/icons/icon-2.png" id="q2" alt="Logo">
 
-        <img src="~/Photos/icons/icon-3.png" id="q4" alt="Logo">
+        <img src="~/Photos/icons/icon-3.png" id="q3" alt="Logo">
 
-        <img src="~/Photos/icons/icon-5.png" id="q5" alt="Logo">
+        <img src="~/Photos/icons/icon-4.png" id="q4" alt="Logo">
 
         <img src="~/Photos/icons/icon-6.png" id="q6" alt="Logo">
-
-        <img src="~/Photos/icons/icon-7.png" id="q7" alt="Logo">
-
-        <img src="~/Photos/icons/icon-4.png" id="q8" alt="Logo">
 
 
 
@@ -241,7 +239,7 @@
         if (tempData.length == 6) {
             returnDiv.style.display = 'block';
         }
-        
+
 
         function checkCard() {
 
@@ -266,13 +264,21 @@
 
                             if (confirm("The credit card is with ending " + result.card.substr(12, 4) + " Save in the system ,do you want to use it ?")) {
 
-                                return true;
-                            }
-                            else {
-                                alert("We are sorry ,We were unable to find any credit cards that match this ID");
-                            }
+                                var cvv = prompt("Enter CVV of this card:");
+
+                                if (cvv == result.cvv) {
+                                    window.location.href = "/Home/paySuccess/@Model.numberOrder";
+                                }
+                                else {
+                                    alert("Error , CVV did not match the card");
+                                }
 
 
+                            }
+
+                        }
+                        else {
+                            alert("We are sorry ,We were unable to find any credit cards that match this ID");
                         }
 
                     }

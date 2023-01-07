@@ -153,13 +153,16 @@
     <Compile Include="ViewModel\FlyViewModel.cs" />
     <Compile Include="ViewModel\passengerViewModel.cs" />
     <Compile Include="ViewModel\seatViewModel.cs" />
+    <Compile Include="ViewModel\TicketViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="CSS\addEditFly.css" />
+    <Content Include="CSS\MyFlights.css" />
     <Content Include="CSS\payment.css" />
     <Content Include="CSS\pDetails.css" />
     <Content Include="CSS\showFlights_oneWay.css" />
     <Content Include="CSS\showSeats.css" />
+    <Content Include="CSS\showTicket.css" />
     <Content Include="JS\editFly.js" />
     <Content Include="Photos\1.jpg" />
     <Content Include="Photos\10.png" />
@@ -235,6 +238,7 @@
     <Content Include="Views\Home\paySuccess.cshtml" />
     <Content Include="Views\Home\noFlights.cshtml" />
     <Content Include="Views\Home\noFlightsReturn.cshtml" />
+    <Content Include="Views\Home\ShowTicket.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
