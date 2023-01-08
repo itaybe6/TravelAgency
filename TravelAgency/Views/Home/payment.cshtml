@@ -204,6 +204,27 @@
 
 
 
+            <div id="icons">
+
+                <div id="icons2">
+
+                    <img src="~/Photos/icons/icon-5.png" id="q5" alt="Logo">
+
+                    <img src="~/Photos/icons/icon-1.png" id="q1" alt="Logo">
+
+                    <img src="~/Photos/icons/icon-2.png" id="q2" alt="Logo">
+
+                    <img src="~/Photos/icons/icon-3.png" id="q3" alt="Logo">
+
+                    <img src="~/Photos/icons/icon-4.png" id="q4" alt="Logo">
+
+                    <img src="~/Photos/icons/icon-6.png" id="q6" alt="Logo">
+
+                </div>
+
+            </div>
+
+
         </div>
 
     </div>
@@ -228,11 +249,14 @@
     </div>
 
 
+
+
+
     <script type="text/javascript">
 
 
         var returnDiv = document.getElementById("returnFlight");
-        var tempData = '<%= flynum2 %>';
+        var tempData = '@TempData["flynum2"]';
 
         returnDiv.style.display = 'none';
 

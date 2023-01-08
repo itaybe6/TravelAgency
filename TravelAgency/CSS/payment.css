@@ -1,5 +1,5 @@
 ﻿body {
-    background-image: url('/Photos/11.jpg');
+    background-image: url('/Photos/12.jpg');
     background-color: #cccccc;
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -152,8 +152,8 @@
 
 #check {
     position: absolute;
-    left: 603px;
-    top: 257px;
+    left: 534px;
+    top: 242px;
     appearance: none;
     background-color: #000000;
     border: 2px solid #1A1A1A;
@@ -177,7 +177,6 @@
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
-    
     will-change: transform;
 }
 
@@ -229,3 +228,12 @@
 
 
 }
+
+#icons2 {
+    position: absolute;
+    display: flex;
+}
+
+    #icons2 img {
+        margin: -1px 40px;
+    }

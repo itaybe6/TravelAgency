@@ -12,8 +12,8 @@ namespace TravelAgency.Models
     {
         [Key]
         [Required]
-        [StringLength(14)]
-        public string passport_flyNumber { get; set; }
+        [StringLength(30)]
+        public string passport_flyNumber_ordernumber { get; set; }
         
         [Required]
         [StringLength(8, ErrorMessage = "Passport must to be contain 8 digits")]
@@ -38,6 +38,9 @@ namespace TravelAgency.Models
         [Required]
         [StringLength(10, MinimumLength = 1)]
         public string orderNumber { get; set; }
+
+
+        public string pay { get; set; }
 
 
 

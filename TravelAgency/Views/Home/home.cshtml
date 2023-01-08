@@ -16,10 +16,11 @@
     <link href="@Url.Content("~/CSS/home2.css")"
           rel="stylesheet" type="text/css" />
 
-   
+
     <title>home</title>
 
     <script src="https://kit.fontawesome.com/c681bde18b.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <meta name="viewport" content="width=device-width" />
 </head>
@@ -1205,6 +1206,7 @@
 
                 if (source1.value == dis1.value) {
                     alert("Please choose a difrent country");
+                    swal("Good job!", "You clicked the button!", "success");
                     return false;
                 }
 

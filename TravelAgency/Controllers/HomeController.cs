@@ -12,14 +12,35 @@ using TravelAgency.ViewModel;
 
 
 
-
 namespace TravelAgency.Controllers
 {
     public class HomeController : Controller
     {
         // GET: Home
+
+        public void check_seatsSave()
+        {
+            seatDal seatDal= new seatDal();
+            TimeSpan tempTime = new TimeSpan(DateTime.Now.Ticks);
+            List<seat> seats= seatDal.seatDB.Where(s => s.available == "blk").ToList();
+
+            foreach(seat s in seats)
+            {
+                
+                if(tempTime.TotalMinutes - s.timeForSave.TotalMinutes >= 30)
+                {
+                    seatDal.seatDB.Where(seat => seat.flyNumber == s.flyNumber && seat.rowSeat == s.rowSeat && seat.colSeat == s.colSeat ).FirstOrDefault().available = "yes";
+                    seatDal.seatDB.Where(seat => seat.flyNumber == s.flyNumber && seat.rowSeat == s.rowSeat && seat.colSeat == s.colSeat).FirstOrDefault().timeForSave = default(TimeSpan); 
+                    seatDal.SaveChanges();
+                }
+            }
+
+
+
+        }
         public ActionResult Index()
         {
+            check_seatsSave();
             return View();
         }
 
@@ -265,9 +286,10 @@ namespace TravelAgency.Controllers
             ticket.flyNUmber = flyNum;
             ticket.seat = row.ToString() + col;
             ticket.orderNumber = orderNum;
+            
 
             orderDal orderDal= new orderDal();
-            order order = orderDal.orderDB.Where(o => o.numberOrder== orderNum).FirstOrDefault();
+            order order = orderDal.orderDB.Where(o => o.numberOrder == orderNum).FirstOrDefault();
 
             if(order.chekin_return == "yes")
             {
@@ -281,8 +303,11 @@ namespace TravelAgency.Controllers
 
             if (order.chekin_return == "yes" && order.checkNum != order.numberTicket)
             {
+                //bgjkhgbhjbj
+                TimeSpan tempTime = new TimeSpan(DateTime.Now.Ticks);
                 seatDal seDal = new seatDal();
-                //seDal.seatDB.Where(seat => seat.colSeat == col && seat.rowSeat == row && seat.flyNumber == flyNum).FirstOrDefault().available = "no"; //change the state of the seat to no aviable
+                //seDal.seatDB.Where(seat => seat.colSeat == col && seat.rowSeat == row && seat.flyNumber == flyNum).FirstOrDefault().available = "blk"; //change the state of the seat to save
+                //seDal.seatDB.Where(seat => seat.colSeat == col && seat.rowSeat == row && seat.flyNumber == flyNum).FirstOrDefault().timeForSave= tempTime;
                 //seDal.SaveChanges();
 
                 List<seat> list2 = seDal.seatDB.ToList<seat>();
@@ -313,8 +338,10 @@ namespace TravelAgency.Controllers
 
             else if (order.chekin_return == "yes" && order.checkNum == order.numberTicket)
             {
-                //seatDal seDal = new seatDal();
-                //seDal.seatDB.Where(seat => seat.colSeat == col && seat.rowSeat == row && seat.flyNumber == flyNum).FirstOrDefault().available = "no"; //change the state of the seat to no aviable
+                //TimeSpan tempTime = new TimeSpan(DateTime.Now.Ticks);
+                seatDal seDal = new seatDal();
+                //seDal.seatDB.Where(seat => seat.colSeat == col && seat.rowSeat == row && seat.flyNumber == flyNum).FirstOrDefault().available = "blk"; //change the state of the seat to save
+                //seDal.seatDB.Where(seat => seat.colSeat == col && seat.rowSeat == row && seat.flyNumber == flyNum).FirstOrDefault().timeForSave = tempTime;
                 //seDal.SaveChanges();
 
                 TempData["flynum2"] = t.flyNumber;
@@ -340,7 +367,8 @@ namespace TravelAgency.Controllers
 
         public ActionResult submit_personalDetails(Ticket ticket)
         {
-            ticket.passport_flyNumber=ticket.passport + ticket.flyNUmber;
+            ticket.passport_flyNumber_ordernumber=ticket.passport + "_" + ticket.flyNUmber + "_" + ticket.orderNumber;
+            ticket.pay = "no";
             TicketDal dal = new TicketDal();
             List<Ticket> list = dal.TicketDB.ToList<Ticket>();
             
@@ -348,8 +376,9 @@ namespace TravelAgency.Controllers
             //check the object is not exist להוסיף הודעת שגיאה
             foreach (Ticket t in list)
             {
-                if (t.passport_flyNumber == ticket.passport_flyNumber)
+                if (t.passport == ticket.passport && ticket.pay == "yes")
                 {
+                    ViewData["haveTicket"] = "yes";
                     return View("personal_details");
                    
                 }
@@ -360,15 +389,15 @@ namespace TravelAgency.Controllers
             dal.TicketDB.Add(ticket);
             dal.SaveChanges();
 
+            //change the state of the seat
+            //TimeSpan tempTime = new TimeSpan(DateTime.Now.Ticks);
+            seatDal seDal = new seatDal();
             //int row = Int32.Parse(ticket.seat[0].ToString());
             //string col = ticket.seat[1].ToString();
-
-            //change the state of the seat
-            seatDal seDal = new seatDal();
             //seat seat1 = seDal.seatDB.Where(temp => temp.rowSeat == row && temp.colSeat == col && temp.flyNumber == ticket.flyNUmber).FirstOrDefault();
-            //seat1.available = "no";
+            //seat1.available = "blk";
+            //seat1.timeForSave= tempTime;
             //seDal.SaveChanges();
-
 
             //move to page according the number of tickets that have to order
             orderDal dalOrder = new orderDal();
@@ -495,9 +524,11 @@ namespace TravelAgency.Controllers
             int row;
             string col;
             foreach (Ticket ticket in ticketList)
-            {       
+            {
+                ticketDal.TicketDB.Where(t => t.passport_flyNumber_ordernumber == ticket.passport_flyNumber_ordernumber).FirstOrDefault().pay = "yes";
+                ticketDal.SaveChanges();
                 //2C or 14B
-                if(ticket.seat.Length == 2)
+                if (ticket.seat.Length == 2)
                 {
                     col = ticket.seat[1].ToString();
                     row = Int32.Parse(ticket.seat[0].ToString());
@@ -537,38 +568,6 @@ namespace TravelAgency.Controllers
         }
 
 
-        public ActionResult submitPay_SaveCard()
-        {
-            //check if the card exist in the System
-            cardsDal dalCrads = new cardsDal();
-            string pas = Request.Form["id"];
-            cards creadit = dalCrads.creditDB.Where(card => card.id == pas).FirstOrDefault();
-
-            //return to pay page again with temp data
-            if (creadit == null)
-            {
-                return View("payNotSuccess");
-            }
-
-
-            string numberOrder = Request.Form["numberOrder"];
-            orderDal orderD = new orderDal();
-            order order = orderD.orderDB.Where(o => o.numberOrder == numberOrder).FirstOrDefault();
-
-            FlyDal flyDal = new FlyDal();
-
-            flyDal.FlyDB.Where(f => f.flyNumber == order.flyNumber).FirstOrDefault().aviableSeat -= order.numberTicket;
-
-            //only for round trip flight
-            if (order.flyNumber2 != null)
-                flyDal.FlyDB.Where(f => f.flyNumber == order.flyNumber2).FirstOrDefault().aviableSeat -= order.numberTicket;
-
-            flyDal.SaveChanges();
-
-
-            return View("paySuccess");
-        }
-
         [HttpPost]
         public ActionResult searchCard(string id) 
         {
@@ -587,7 +586,6 @@ namespace TravelAgency.Controllers
             return Json(new { status = "false" });
         }
 
-        
 
         public ActionResult payment()
         {
@@ -620,6 +618,8 @@ namespace TravelAgency.Controllers
             string col;
             foreach (Ticket ticket in ticketList)
             {
+                ticketDal.TicketDB.Where(t => t.passport_flyNumber_ordernumber == ticket.passport_flyNumber_ordernumber).FirstOrDefault().pay = "yes";
+                ticketDal.SaveChanges();
                 //2C or 14B
                 if (ticket.seat.Length == 2)
                 {
@@ -640,15 +640,13 @@ namespace TravelAgency.Controllers
             return View();
         }
 
-
-
         public ActionResult ShowTicket()
         {
             string passport = Request.Form["pas"];
             
             TicketDal ticDal = new TicketDal();
 
-            List<Ticket> list = ticDal.TicketDB.Where(t => t.passport == passport).ToList();
+            List<Ticket> list = ticDal.TicketDB.Where(t => t.passport == passport && t.pay =="yes").ToList();
 
             if(list.Count == 0) { 
                 ViewData["noTicket"] = "yes";

@@ -80,7 +80,7 @@
             <i><strong>Date Landing  </strong></i> @Model.fly.dateLanding.ToShortDateString()  <br /><br />
 
 
-            <i><strong>Time</strong></i>  @Model.fly.timeFly
+            <i><strong>Time</strong></i>  @Model.fly.timeLanding
 
             <br /><br />
             <i><strong>Fly Number </strong></i> <div class="textbox">  </div> @Model.fly.flyNumber
@@ -89,7 +89,7 @@
             <br /><br />
             <i><strong>Price  </strong></i><div class="textbox"></div> @Html.TextBoxFor(m => m.fly.price)
             <br /><br />
-            <i><strong>Number Seats </strong></i><div class="textbox"></div> <select id="country" name="aviableSeat" class="form-control">
+            <i><strong>Number Seats </strong></i><div class="textbox"></div> <select id="price" name="aviableSeat" class="form-control">
                 <option value="@Model.fly.aviableSeat">@Model.fly.flightSeat</option>
                 <option value=180>180</option>
                 <option value=210>210</option>
@@ -131,8 +131,9 @@
 
 
 
-
         </form>
+
+
 
         <a id="save" href="~/Views/admin/submit_EditFly/@Model.fly.flyNumber/@Model.fly.flightSeat/@Model.fly.price">save</a>
 
@@ -142,6 +143,7 @@
     </div>
 
 
+    
 
 
 

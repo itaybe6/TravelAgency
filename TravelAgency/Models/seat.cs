@@ -26,6 +26,7 @@ namespace TravelAgency.Models
         [Key]
         public string id  { get; set; }    
 
+        public TimeSpan timeForSave { get; set; }
         public seat(string t1, int row, string col, string available,string id)
         {
             this.flyNumber = t1;
@@ -33,6 +34,7 @@ namespace TravelAgency.Models
             this.colSeat = col;
             this.available = available;
             this.id = id;
+            timeForSave = new TimeSpan();
         }
 
         public seat()
