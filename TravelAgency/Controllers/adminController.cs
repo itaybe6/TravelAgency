@@ -173,8 +173,8 @@ namespace TravelAgency.Controllers
             dal.FlyDB.Where(f => f.flyNumber == flyNum).FirstOrDefault().price = Int32.Parse(price);
 
             //to check if buy tickets
-            int aviableSeats = dal.FlyDB.Where(f => f.flyNumber == flyNum).FirstOrDefault().aviableSeat;
-            if(aviableSeats > Int32.Parse(seats)) {
+            int tickets = dal.FlyDB.Where(f => f.flyNumber == flyNum).FirstOrDefault().flightSeat - dal.FlyDB.Where(f => f.flyNumber == flyNum).FirstOrDefault().aviableSeat ;
+            if(Int32.Parse(seats) > tickets ) {
                 dal.FlyDB.Where(f => f.flyNumber == flyNum).FirstOrDefault().flightSeat = Int32.Parse(seats);
                 dal.FlyDB.Where(f => f.flyNumber == flyNum).FirstOrDefault().aviableSeat = Int32.Parse(seats);
             }
