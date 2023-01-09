@@ -21,7 +21,14 @@
           rel="stylesheet" type="text/css" />
 
     <meta name="viewport" content="width=device-width" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+    <style>
+        .icons {
+            margin-left: -35px;
+            margin-top: -475px;
+        }
+    </style>
 </head>
 
 <body>
@@ -83,13 +90,13 @@
             <i><strong>Time</strong></i>  @Model.fly.timeLanding
 
             <br /><br />
-            <i><strong>Fly Number </strong></i> <div class="textbox">  </div> @Model.fly.flyNumber
+            <i><strong>Fly Number </strong></i> <div class="textbox">  </div> <input class="inputs" type="text" id="flyNum" value="@Model.fly.flyNumber" readonly />
 
 
             <br /><br />
-            <i><strong>Price  </strong></i><div class="textbox"></div> @Html.TextBoxFor(m => m.fly.price)
+            <i><strong>Price  </strong></i><div class="textbox"></div>   <input class="inputs" type="text" id="price" placeholder="@Model.fly.price" required/>
             <br /><br />
-            <i><strong>Number Seats </strong></i><div class="textbox"></div> <select id="price" name="aviableSeat" class="form-control">
+            <i><strong>Number Seats </strong></i><div class="textbox"></div> <select id="Seats" name="aviableSeat" class="form-control">
                 <option value="@Model.fly.aviableSeat">@Model.fly.flightSeat</option>
                 <option value=180>180</option>
                 <option value=210>210</option>
@@ -134,16 +141,56 @@
         </form>
 
 
+        <button id="save" onclick="Save()">Save</button>
 
-        <a id="save" href="~/Views/admin/submit_EditFly/@Model.fly.flyNumber/@Model.fly.flightSeat/@Model.fly.price">save</a>
-
+       
 
 
 
     </div>
 
 
-    
+
+    <script type="text/javascript">
+
+
+        
+
+        function Save() {
+            
+            var flyNumber =  document.getElementById("flyNum").value;
+            var Price = document.getElementById("price").value;
+            var Seats = document.getElementById("Seats").value;
+
+           
+                $.ajax({
+                    type: "POST",
+                    url: "/admin/SaveEdit",
+                    data: {
+                        flyNum: flyNumber,
+                        price: Price,
+                        seats: Seats
+                    },
+                    dataType: "json",
+                    success: function (result) {
+
+                        if (result.status === "true") {
+                            
+                            window.location.href = "/admin/adminHome";
+
+                        }
+                        
+                    }
+
+                });
+
+
+        }
+
+
+
+
+    </script>
 
 
 

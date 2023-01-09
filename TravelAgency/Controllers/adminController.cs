@@ -165,7 +165,26 @@ namespace TravelAgency.Controllers
             return View("adminHome");
         }
 
-       
+        //tring price
+        [HttpPost]
+        public ActionResult SaveEdit(string flyNum ,string price ,string seats)
+        {
+            FlyDal dal = new FlyDal();
+            dal.FlyDB.Where(f => f.flyNumber == flyNum).FirstOrDefault().price = Int32.Parse(price);
+
+            //to check if buy tickets
+            int aviableSeats = dal.FlyDB.Where(f => f.flyNumber == flyNum).FirstOrDefault().aviableSeat;
+            if(aviableSeats > Int32.Parse(seats)) {
+                dal.FlyDB.Where(f => f.flyNumber == flyNum).FirstOrDefault().flightSeat = Int32.Parse(seats);
+                dal.FlyDB.Where(f => f.flyNumber == flyNum).FirstOrDefault().aviableSeat = Int32.Parse(seats);
+            }
+           
+            dal.SaveChanges();
+
+            return Json(new { status = "true"});
+
+        }
+
 
     }
 
