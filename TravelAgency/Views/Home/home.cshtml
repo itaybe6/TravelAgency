@@ -1205,13 +1205,12 @@
             if (oneWayForm.style.display != "none") {
 
                 if (source1.value == dis1.value) {
-                    alert("Please choose a difrent country");
-                    swal("Good job!", "You clicked the button!", "success");
+                    swal("Oops..", "Please choose a difrent country!", "error");
                     return false;
                 }
 
                 if (dateOneWay < currentDate) {
-                    alert("Incorrect date, please select flights starting from tomorrow");
+                    swal("Incorrect date", "please select flights starting from tomorrow", "error");
                     return false;
                 }
             }
@@ -1219,19 +1218,19 @@
             if (RoundtripForm.style.display == "block") {
 
                 if (source2.value == dis2.value) {
-                    alert("Please choose a difrent country");
+                    swal("Oops..", "Please choose a difrent country!", "error");
                     return false;
                 }
 
                 if (startDate < currentDate || endDate < currentDate) {
-                    alert("Incorrect date, please select flights starting from tomorrow");
+                    swal("Incorrect date", "please select flights starting from tomorrow", "error");
                     return false;
                 }
 
             }
 
             if (startDate > endDate) {
-                alert("The end trip date must to be greater from the start trip date");
+                swal("Incorrect date", "The end trip date must to be greater from the start trip date", "error");
                 return false;
             }
             
