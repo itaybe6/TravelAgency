@@ -12,7 +12,7 @@ namespace TravelAgency.Models
     {
         [Key]
         [Required]
-        [StringLength(30)]
+        [StringLength(30, MinimumLength = 1)]
         public string passport_flyNumber_ordernumber { get; set; }
         
         [Required]
@@ -38,7 +38,6 @@ namespace TravelAgency.Models
         [Required]
         [StringLength(10, MinimumLength = 1)]
         public string orderNumber { get; set; }
-
 
         public string pay { get; set; }
 

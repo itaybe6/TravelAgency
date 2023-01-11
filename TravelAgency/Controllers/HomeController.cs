@@ -286,9 +286,9 @@ namespace TravelAgency.Controllers
             ticket.flyNUmber = flyNum;
             ticket.seat = row.ToString() + col;
             ticket.orderNumber = orderNum;
-            
+           
 
-            orderDal orderDal= new orderDal();
+            orderDal orderDal = new orderDal();
             order order = orderDal.orderDB.Where(o => o.numberOrder == orderNum).FirstOrDefault();
 
             if(order.chekin_return == "yes")
@@ -303,16 +303,27 @@ namespace TravelAgency.Controllers
 
             if (order.chekin_return == "yes" && order.checkNum != order.numberTicket)
             {
-                //bgjkhgbhjbj
-                TimeSpan tempTime = new TimeSpan(DateTime.Now.Ticks);
-                seatDal seDal = new seatDal();
-                //seDal.seatDB.Where(seat => seat.colSeat == col && seat.rowSeat == row && seat.flyNumber == flyNum).FirstOrDefault().available = "blk"; //change the state of the seat to save
-                //seDal.seatDB.Where(seat => seat.colSeat == col && seat.rowSeat == row && seat.flyNumber == flyNum).FirstOrDefault().timeForSave= tempTime;
-                //seDal.SaveChanges();
 
+                TicketDal dal = new TicketDal();
+                Ticket tic = dal.TicketDB.Where(ti => ti.passport_flyNumber_ordernumber.Length == 1).FirstOrDefault();
+                Ticket tempT = new Ticket();
+                tempT.passport = tic.passport;
+                tempT.flyNUmber = flyNum;
+                tempT.orderNumber = tic.orderNumber;
+                tempT.pay = "no";
+                tempT.firstName = tic.firstName;
+                tempT.lastName = tic.lastName;
+                tempT.passport_flyNumber_ordernumber = tic.passport + "_" + flyNum + "_" + tic.orderNumber;
+                tempT.seat = row.ToString() + col;
+                dal.TicketDB.Remove(tic);
+                dal.TicketDB.Add(tempT);
+                dal.SaveChanges();
+
+
+                seatDal seDal = new seatDal();
                 List<seat> list2 = seDal.seatDB.ToList<seat>();
                 List<seat> filterlist = new List<seat>();
-                
+               
 
                 order.checkNum += 1;
                 order.price += t.price;
@@ -338,12 +349,24 @@ namespace TravelAgency.Controllers
 
             else if (order.chekin_return == "yes" && order.checkNum == order.numberTicket)
             {
-                //TimeSpan tempTime = new TimeSpan(DateTime.Now.Ticks);
-                seatDal seDal = new seatDal();
-                //seDal.seatDB.Where(seat => seat.colSeat == col && seat.rowSeat == row && seat.flyNumber == flyNum).FirstOrDefault().available = "blk"; //change the state of the seat to save
-                //seDal.seatDB.Where(seat => seat.colSeat == col && seat.rowSeat == row && seat.flyNumber == flyNum).FirstOrDefault().timeForSave = tempTime;
-                //seDal.SaveChanges();
+                //
+                TicketDal dal = new TicketDal();
+                Ticket tic = dal.TicketDB.Where(ti => ti.passport_flyNumber_ordernumber.Length == 1).FirstOrDefault();
+                Ticket tempT = new Ticket();
+                tempT.passport = tic.passport;
+                tempT.flyNUmber = flyNum;
+                tempT.orderNumber = tic.orderNumber;
+                tempT.pay = "no";
+                tempT.firstName = tic.firstName;
+                tempT.lastName = tic.lastName;
+                tempT.passport_flyNumber_ordernumber = tic.passport + "_" + flyNum + "_" + tic.orderNumber;
+                tempT.seat = row.ToString() + col;
+                dal.TicketDB.Remove(tic);
+                dal.TicketDB.Add(tempT);
+                dal.SaveChanges();
 
+
+                seatDal seDal = new seatDal();
                 TempData["flynum2"] = t.flyNumber;
                 TempData["date2"] = t.dateFly.ToShortDateString();
                 TempData["time2"] = t.timeFly;
@@ -389,20 +412,35 @@ namespace TravelAgency.Controllers
             dal.TicketDB.Add(ticket);
             dal.SaveChanges();
 
+
+
+
             //change the state of the seat
-            //TimeSpan tempTime = new TimeSpan(DateTime.Now.Ticks);
             seatDal seDal = new seatDal();
-            //int row = Int32.Parse(ticket.seat[0].ToString());
-            //string col = ticket.seat[1].ToString();
-            //seat seat1 = seDal.seatDB.Where(temp => temp.rowSeat == row && temp.colSeat == col && temp.flyNumber == ticket.flyNUmber).FirstOrDefault();
-            //seat1.available = "blk";
-            //seat1.timeForSave= tempTime;
-            //seDal.SaveChanges();
+            
 
             //move to page according the number of tickets that have to order
             orderDal dalOrder = new orderDal();
             order order = dalOrder.orderDB.Where(o => o.numberOrder == ticket.orderNumber).FirstOrDefault();
             
+
+
+            if(order.chekin_return == "no")
+            {
+                Ticket tempT = new Ticket();
+                tempT.passport = ticket.passport;
+                tempT.flyNUmber = ticket.flyNUmber;
+                tempT.orderNumber = ticket.orderNumber;
+                tempT.pay = "no";
+                tempT.firstName= ticket.firstName;
+                tempT.lastName= ticket.lastName;
+                tempT.passport_flyNumber_ordernumber = order.checkNum.ToString();
+                tempT.seat = "A1";
+                dal.TicketDB.Add(tempT);
+                dal.SaveChanges();
+            }
+
+
 
             if(order.checkNum != order.numberTicket)
             {
@@ -508,11 +546,13 @@ namespace TravelAgency.Controllers
 
            flyDal.FlyDB.Where(f=>f.flyNumber == order.flyNumber).FirstOrDefault().aviableSeat -= order.numberTicket;
 
-            //only for round trip flight
-            if(order.flyNumber2 != null )
+            if (order.flyNumber2 != null)
                 flyDal.FlyDB.Where(f => f.flyNumber == order.flyNumber2).FirstOrDefault().aviableSeat -= order.numberTicket;
 
             flyDal.SaveChanges();
+
+            //only for round trip flight
+
 
 
 
@@ -544,6 +584,12 @@ namespace TravelAgency.Controllers
                 seatD.SaveChanges();
 
             }
+
+
+
+            
+
+
 
 
 
