@@ -291,19 +291,11 @@ namespace TravelAgency.Controllers
             orderDal orderDal = new orderDal();
             order order = orderDal.orderDB.Where(o => o.numberOrder == orderNum).FirstOrDefault();
 
+            //adding ticket for the reatun way
             if(order.chekin_return == "yes")
             {
                 orderDal.orderDB.Where(o => o.numberOrder == orderNum).FirstOrDefault().flyNumber2 = flyNum;
                 orderDal.SaveChanges();
-            }
-
-
-            FlyDal flyDal = new FlyDal();
-            Fly t = flyDal.FlyDB.Where(o => o.flyNumber == ticket.flyNUmber).FirstOrDefault();
-
-            if (order.chekin_return == "yes" && order.checkNum != order.numberTicket)
-            {
-
                 TicketDal dal = new TicketDal();
                 Ticket tic = dal.TicketDB.Where(ti => ti.passport_flyNumber_ordernumber.Length == 1).FirstOrDefault();
                 Ticket tempT = new Ticket();
@@ -318,13 +310,19 @@ namespace TravelAgency.Controllers
                 dal.TicketDB.Remove(tic);
                 dal.TicketDB.Add(tempT);
                 dal.SaveChanges();
+            }
 
+
+            FlyDal flyDal = new FlyDal();
+            Fly t = flyDal.FlyDB.Where(o => o.flyNumber == ticket.flyNUmber).FirstOrDefault();
+
+            if (order.chekin_return == "yes" && order.checkNum != order.numberTicket)
+            {
 
                 seatDal seDal = new seatDal();
                 List<seat> list2 = seDal.seatDB.ToList<seat>();
                 List<seat> filterlist = new List<seat>();
                
-
                 order.checkNum += 1;
                 order.price += t.price;
                 orderDal.SaveChanges();
@@ -349,22 +347,6 @@ namespace TravelAgency.Controllers
 
             else if (order.chekin_return == "yes" && order.checkNum == order.numberTicket)
             {
-                //
-                TicketDal dal = new TicketDal();
-                Ticket tic = dal.TicketDB.Where(ti => ti.passport_flyNumber_ordernumber.Length == 1).FirstOrDefault();
-                Ticket tempT = new Ticket();
-                tempT.passport = tic.passport;
-                tempT.flyNUmber = flyNum;
-                tempT.orderNumber = tic.orderNumber;
-                tempT.pay = "no";
-                tempT.firstName = tic.firstName;
-                tempT.lastName = tic.lastName;
-                tempT.passport_flyNumber_ordernumber = tic.passport + "_" + flyNum + "_" + tic.orderNumber;
-                tempT.seat = row.ToString() + col;
-                dal.TicketDB.Remove(tic);
-                dal.TicketDB.Add(tempT);
-                dal.SaveChanges();
-
 
                 seatDal seDal = new seatDal();
                 TempData["flynum2"] = t.flyNumber;
@@ -522,8 +504,6 @@ namespace TravelAgency.Controllers
                 return View("payment",order);
 
             }
-            
-
 
         }
 
@@ -550,10 +530,6 @@ namespace TravelAgency.Controllers
                 flyDal.FlyDB.Where(f => f.flyNumber == order.flyNumber2).FirstOrDefault().aviableSeat -= order.numberTicket;
 
             flyDal.SaveChanges();
-
-            //only for round trip flight
-
-
 
 
             //change the state of all the seat from green to red
@@ -584,13 +560,6 @@ namespace TravelAgency.Controllers
                 seatD.SaveChanges();
 
             }
-
-
-
-            
-
-
-
 
 
 
